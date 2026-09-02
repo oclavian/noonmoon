@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      /* Ensure window.fetch has a setter across Window.prototype and prototype chain to prevent
+         "TypeError: Cannot set property fetch of #<Window> which has only a getter" */
+      (function() {
+        try {
+          var g = typeof globalThis !== 'undefined' ? globalThis : (typeof window !== 'undefined' ? window : self);
+          var currentFetch = g.fetch ? (g.fetch.bind ? g.fetch.bind(g) : g.fetch) : undefined;
+
+          var descriptor = {
+            get: function() {
+              return currentFetch;
+            },
+            set: function(newFetch) {
+              currentFetch = newFetch;
+            },
+            configurable: true,
+            enumerable: true
+          };
+
+          // 1. Define on Window.prototype if available
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            try {
+              Object.defineProperty(Window.prototype, 'fetch', descriptor);
+            } catch (_) {}
+          }
+
+          // 2. Define on each prototype in the prototype chain
+          try {
+            var proto = Object.getPrototypeOf(g);
+            while (proto && proto !== Object.prototype) {
+              try {
+                Object.defineProperty(proto, 'fetch', descriptor);
+              } catch (_) {}
+              proto = Object.getPrototypeOf(proto);
+            }
+          } catch (_) {}
+
+          // 3. Define directly on the global object
+          try {
+            Object.defineProperty(g, 'fetch', descriptor);
+          } catch (_) {}
+        } catch (_) {}
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>নুন-মুন (Noon-Moon) | সেরা বাংলা কনভার্টার ও ডিজিটাল টুলস হাব</title>
+    <meta name="description" content="নুন-মুন (Noon-Moon) বাংলাদেশের সেরা অনলাইন ডিজিটাল টুলস হাব। এখানে পাবেন ইউনিকোড থেকে বিজয় ও বিজয় থেকে ইউনিকোড কনভার্টার, অভ্র ফোনেটিক, নির্ভুল বাংলা বয়স ক্যালকুলেটর, পিডিএফ (PDF) টুলস (মার্জ, স্প্লিট, ইমেজ টু পিডিএফ), এবং অফিশিয়াল কাজের জন্য রেডিমেড ফরমাল বাংলা টেমপ্লেট। সবার জন্য ১০০% ফ্রি ও নিরাপদ।" />
+    <meta name="keywords" content="Noon-Moon, নুন-মুন, বাংলা কনভার্টার, ইউনিকোড থেকে বিজয়, বিজয় থেকে ইউনিকোড, বাংলা বয়স ক্যালকুলেটর, পিডিএফ টুলস, বাংলা টেমপ্লেট, Unicode to Bijoy, Bijoy to Unicode, Bangla PDF tools, Bangla Age Calculator, Avro Phonetic converter, Bengali typing, Bangla fonts, online bangla converter, sutonnyOMJ to Unicode, unicode to sutonnyomj, bangla typing practice, online pdf editor, pdf to image converter bangla, image to pdf, age calculator bangladesh, bangla application template, cv format bangla, bangla date converter, bengali calendar tools, bangladesh digital tools, free digital tools bangla, image resizer, text tools" />
+    <meta name="author" content="Noon-Moon" />
+    <meta name="theme-color" content="#10b981" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Noon-Moon" />
+    <meta property="og:url" content="https://noon-moon.example.com/" />
+    <meta property="og:title" content="নুন-মুন (Noon-Moon) | সেরা বাংলা কনভার্টার ও ডিজিটাল টুলস হাব" />
+    <meta property="og:description" content="নুন-মুন (Noon-Moon) বাংলাদেশের সেরা অনলাইন ডিজিটাল টুলস হাব। এখানে পাবেন ইউনিকোড থেকে বিজয় ও বিজয় থেকে ইউনিকোড কনভার্টার, অভ্র ফোনেটিক, নির্ভুল বাংলা বয়স ক্যালকুলেটর, পিডিএফ (PDF) টুলস, এবং অফিশিয়াল কাজের জন্য রেডিমেড ফরমাল বাংলা টেমপ্লেট। সবার জন্য ১০০% ফ্রি ও নিরাপদ।" />
+    <meta property="og:image" content="https://noon-moon.example.com/noon-moon-logo.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://noon-moon.example.com/" />
+    <meta property="twitter:title" content="নুন-মুন (Noon-Moon) | সেরা বাংলা কনভার্টার ও ডিজিটাল টুলস" />
+    <meta property="twitter:description" content="নুন-মুন (Noon-Moon) বাংলাদেশের সেরা অনলাইন ডিজিটাল টুলস হাব। এখানে পাবেন ইউনিকোড থেকে বিজয় ও বিজয় থেকে ইউনিকোড কনভার্টার, অভ্র ফোনেটিক, নির্ভুল বাংলা বয়স ক্যালকুলেটর, পিডিএফ (PDF) টুলস, এবং অফিশিয়াল কাজের জন্য রেডিমেড ফরমাল বাংলা টেমপ্লেট। সবার জন্য ১০০% ফ্রি ও নিরাপদ।" />
+    <meta property="twitter:image" content="https://noon-moon.example.com/noon-moon-logo.png" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://noon-moon.example.com/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://db.onlinewebfonts.com/c/745d8457da8dec2e3477d0d4da431299?family=SutonnyMJ" rel="stylesheet" type="text/css">
+    <link href="https://db.onlinewebfonts.com/c/01e1baf4ba01ac8d4fa3e79bac540ac5?family=SolaimanLipi" rel="stylesheet" type="text/css">
+    
+    <!-- JSON-LD Structured Data for Software Application -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://noon-moon.example.com/#website",
+          "url": "https://noon-moon.example.com/",
+          "name": "Noon-Moon (নুন-মুন)",
+          "description": "সেরা বাংলা কনভার্টার ও ডিজিটাল টুলস হাব",
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://noon-moon.example.com/#webapp",
+          "name": "Noon-Moon",
+          "url": "https://noon-moon.example.com/",
+          "description": "নুন-মুন (Noon-Moon) বাংলাদেশের সেরা অনলাইন ডিজিটাল টুলস হাব। এখানে পাবেন ইউনিকোড থেকে বিজয় ও বিজয় থেকে ইউনিকোড কনভার্টার, অভ্র ফোনেটিক, নির্ভুল বাংলা বয়স ক্যালকুলেটর, পিডিএফ (PDF) টুলস (মার্জ, স্প্লিট, ইমেজ টু পিডিএফ), এবং অফিশিয়াল কাজের জন্য রেডিমেড ফরমাল বাংলা টেমপ্লেট। সবার জন্য ১০০% ফ্রি ও নিরাপদ।",
+          "applicationCategory": "UtilityApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "inLanguage": ["bn", "en"]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-[#efefef] text-[#333333] antialiased selection:bg-[#0d6206] selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

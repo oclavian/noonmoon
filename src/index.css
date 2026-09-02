@@ -1,0 +1,254 @@
+@import url("https://db.onlinewebfonts.com/c/745d8457da8dec2e3477d0d4da431299?family=SutonnyMJ");
+@import url("https://db.onlinewebfonts.com/c/01e1baf4ba01ac8d4fa3e79bac540ac5?family=SolaimanLipi");
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: 'SutonnyMJ';
+  src: url('https://db.onlinewebfonts.com/t/745d8457da8dec2e3477d0d4da431299.eot');
+  src: url('https://db.onlinewebfonts.com/t/745d8457da8dec2e3477d0d4da431299.eot?#iefix') format('embedded-opentype'),
+       url('https://db.onlinewebfonts.com/t/745d8457da8dec2e3477d0d4da431299.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/745d8457da8dec2e3477d0d4da431299.woff') format('woff'),
+       url('https://db.onlinewebfonts.com/t/745d8457da8dec2e3477d0d4da431299.ttf') format('truetype'),
+       url('https://db.onlinewebfonts.com/t/745d8457da8dec2e3477d0d4da431299.svg#SutonnyMJ') format('svg'),
+       local('SutonnyMJ'),
+       local('Sutonny MJ'),
+       local('SutonnyMJ-Regular');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SolaimanLipi';
+  src: url('https://db.onlinewebfonts.com/t/01e1baf4ba01ac8d4fa3e79bac540ac5.eot');
+  src: url('https://db.onlinewebfonts.com/t/01e1baf4ba01ac8d4fa3e79bac540ac5.eot?#iefix') format('embedded-opentype'),
+       url('https://db.onlinewebfonts.com/t/01e1baf4ba01ac8d4fa3e79bac540ac5.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/01e1baf4ba01ac8d4fa3e79bac540ac5.woff') format('woff'),
+       url('https://db.onlinewebfonts.com/t/01e1baf4ba01ac8d4fa3e79bac540ac5.ttf') format('truetype'),
+       url('https://db.onlinewebfonts.com/t/01e1baf4ba01ac8d4fa3e79bac540ac5.svg#SolaimanLipi') format('svg'),
+       local('SolaimanLipi'),
+       local('Solaiman Lipi'),
+       local('SolaimanLipi-Regular');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-family-primary: 'SolaimanLipi', 'Hind Siliguri', 'Noto Sans Bengali', 'Plus Jakarta Sans', sans-serif;
+    --font-family-solaiman: 'SolaimanLipi', 'Solaiman Lipi', 'Hind Siliguri', sans-serif;
+    --font-family-sutonny: 'SutonnyMJ', 'Sutonny MJ', 'SutonnyMJ-Regular', sans-serif;
+    --font-family-mono: 'JetBrains Mono', monospace;
+    
+    /* Modern Brand Colors */
+    --color-brand-50: #ecfdf5;
+    --color-brand-100: #d1fae5;
+    --color-brand-500: #10b981;
+    --color-brand-600: #059669;
+    --color-brand-700: #047857;
+    --color-brand-800: #065f46;
+    --color-brand-900: #064e3b;
+    --color-brand-950: #022c22;
+    
+    /* Dark Surface Colors for Header/Footer */
+    --color-header-bg: #091312;
+    --color-header-border: #132e27;
+    
+    /* Card & Text Colors */
+    --color-surface: #ffffff;
+    --color-surface-subtle: #f8fafc;
+    --color-text-main: #0f172a;
+    --color-text-muted: #64748b;
+    --color-border: #e2e8f0;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --color-surface: #0f172a;
+    --color-surface-subtle: #1e293b;
+    --color-text-main: #f8fafc;
+    --color-text-muted: #94a3b8;
+    --color-border: #334155;
+
+    --color-white: #0f172a;
+    --color-black: #f8fafc;
+    --color-slate-50: #020617;
+    --color-slate-100: #0f172a;
+    --color-slate-200: #1e293b;
+    --color-slate-300: #334155;
+    --color-slate-400: #64748b;
+    --color-slate-500: #94a3b8;
+    --color-slate-600: #cbd5e1;
+    --color-slate-700: #e2e8f0;
+    --color-slate-800: #f1f5f9;
+    --color-slate-900: #f8fafc;
+    --color-slate-950: #f8fafc;
+
+    --color-emerald-50: #022c22;
+    --color-emerald-100: #064e3b;
+    --color-emerald-200: #065f46;
+    --color-emerald-300: #047857;
+    --color-emerald-400: #10b981;
+    --color-emerald-500: #34d399;
+    --color-emerald-600: #6ee7b7;
+    --color-emerald-700: #a7f3d0;
+    --color-emerald-800: #d1fae5;
+    --color-emerald-900: #ecfdf5;
+    --color-emerald-950: #ecfdf5;
+
+    --color-blue-50: #172554;
+    --color-blue-100: #1e3a8a;
+    --color-blue-200: #1e40af;
+    --color-blue-300: #1d4ed8;
+    --color-blue-400: #3b82f6;
+    --color-blue-500: #60a5fa;
+    --color-blue-600: #93c5fd;
+    --color-blue-700: #bfdbfe;
+    --color-blue-800: #dbeafe;
+    --color-blue-900: #eff6ff;
+    --color-blue-950: #eff6ff;
+
+    --color-rose-50: #4c0519;
+    --color-rose-100: #881337;
+    --color-rose-200: #9f1239;
+    --color-rose-300: #be123c;
+    --color-rose-400: #f43f5e;
+    --color-rose-500: #fb7185;
+    --color-rose-600: #fda4af;
+    --color-rose-700: #fecdd3;
+    --color-rose-800: #ffe4e6;
+    --color-rose-900: #fff1f2;
+    --color-rose-950: #fff1f2;
+
+    --color-amber-50: #451a03;
+    --color-amber-100: #78350f;
+    --color-amber-200: #92400e;
+    --color-amber-300: #b45309;
+    --color-amber-400: #f59e0b;
+    --color-amber-500: #fbbf24;
+    --color-amber-600: #fcd34d;
+    --color-amber-700: #fde68a;
+    --color-amber-800: #fef3c7;
+    --color-amber-900: #fffbeb;
+    --color-amber-950: #fffbeb;
+
+  }
+
+  body {
+    font-family: var(--font-family-primary);
+    color: var(--color-text-main);
+    background-color: var(--color-slate-100);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Accessibility & Focus-Visible WCAG 2.2 AA */
+  *:focus-visible {
+    outline: 2px solid #059669 !important;
+    outline-offset: 2px !important;
+  }
+}
+
+.font-bangla {
+  font-family: 'SolaimanLipi', 'Hind Siliguri', 'Noto Sans Bengali', 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-solaiman {
+  font-family: 'SolaimanLipi', 'Solaiman Lipi', 'Hind Siliguri', sans-serif;
+}
+
+.font-sutonny {
+  font-family: 'SutonnyMJ', 'Sutonny MJ', sans-serif;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.font-sans-ui {
+  font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+}
+
+/* Glassmorphic & Modern Shadow effects */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dark-glass {
+  background: rgba(9, 19, 18, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.card-elevation {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-elevation:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Navigation horizontal scrollbar & touch styling */
+.nav-scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(16, 185, 129, 0.65) rgba(6, 78, 59, 0.35);
+}
+
+.nav-scroll-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.nav-scroll-container::-webkit-scrollbar-track {
+  background: rgba(4, 40, 31, 0.5);
+  border-radius: 9999px;
+}
+
+.nav-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.7);
+  border-radius: 9999px;
+}
+
+.nav-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(52, 211, 153, 0.95);
+}
+
+
+@keyframes move-forever {
+  0% { transform: translate3d(-90px, 0, 0); }
+  100% { transform: translate3d(85px, 0, 0); }
+}
+.wave-parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+.wave-parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+.wave-parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+.wave-parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+.wave-parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+
