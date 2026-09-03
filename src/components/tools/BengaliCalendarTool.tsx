@@ -98,10 +98,10 @@ export const BengaliCalendarTool: React.FC = () => {
   return (
     <section id="bengali-calendar-container" className="space-y-4 sm:space-y-6">
       {/* Header card */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 shadow-xs">
+      <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/60 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-50 text-slate-900 border border-purple-200 flex items-center justify-center font-bold shadow-xs shrink-0">
+            <div className="w-10 h-10 rounded-[1rem] bg-purple-50 text-slate-900 border border-purple-200 flex items-center justify-center font-bold shadow-sm shrink-0">
               <CalendarIcon className="w-5 h-5" />
             </div>
             <div>
@@ -125,7 +125,7 @@ export const BengaliCalendarTool: React.FC = () => {
               <button
                 key={idx}
                 onClick={() => handleSetDate(item.date)}
-                className="text-xs bg-slate-50 hover:bg-purple-50 text-slate-700 dark:text-slate-300 hover:text-purple-800 border border-slate-300/60 hover:border-purple-300 px-2.5 sm:px-3 py-1.5 rounded-xl font-medium transition-all"
+                className="text-xs bg-slate-50 hover:bg-purple-50 text-slate-700 hover:text-purple-800 border border-slate-300/60 hover:border-purple-300 px-2.5 sm:px-3 py-1.5 rounded-[1rem] font-medium transition-all"
               >
                 {item.label}
               </button>
@@ -136,7 +136,7 @@ export const BengaliCalendarTool: React.FC = () => {
         {/* Date Picker Row */}
         <div className="pt-3.5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <label htmlFor="calendar-date-picker" className="text-xs font-bold text-slate-600 dark:text-slate-400 whitespace-nowrap">
+            <label htmlFor="calendar-date-picker" className="text-xs font-bold text-slate-600 whitespace-nowrap">
               {t('selectDate')}:
             </label>
             <input
@@ -144,16 +144,16 @@ export const BengaliCalendarTool: React.FC = () => {
               id="calendar-date-picker"
               value={selectedDateStr}
               onChange={(e) => setSelectedDateStr(e.target.value)}
-              className="bg-slate-50 border border-slate-300/60 hover:border-slate-300 text-slate-900 text-xs sm:text-sm font-semibold rounded-xl px-3 py-1.5 sm:py-2 outline-none focus:border-slate-900 focus:ring-2 focus:ring-slate-900/10"
+              className="bg-slate-50 border border-slate-300/60 hover:border-slate-300 text-slate-900 text-xs sm:text-sm font-semibold rounded-[1rem] px-3 py-1.5 sm:py-2 outline-none focus:border-slate-900 focus:ring-2 focus:ring-slate-900/10"
             />
           </div>
 
           <button
             onClick={handleCopyDate}
-            className={`flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-xl transition-all shadow-xs ${
+            className={`flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-[1rem] transition-all shadow-sm ${
               copied
                 ? 'bg-purple-700 text-white'
-                : 'bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 active:scale-95'
+                : 'bg-slate-900 hover:bg-slate-800:bg-slate-200 text-white active:scale-95'
             }`}
           >
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
@@ -163,12 +163,12 @@ export const BengaliCalendarTool: React.FC = () => {
       </div>
 
       {/* Main Showcase Hero Widget */}
-      <div className="bg-gradient-to-br from-[#06231c] via-[#09352a] to-[#041d17] text-[#ffffff] p-5 sm:p-8 rounded-2xl sm:rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#06231c] via-[#09352a] to-[#041d17] text-[#ffffff] p-5 sm:p-8 rounded-[2rem] sm:rounded-3xl shadow-sm border border-slate-200 relative overflow-hidden">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           {/* Main Big Bengali Date Display */}
           <div className="space-y-2.5 sm:space-y-3">
             <div className="flex flex-wrap items-center gap-2">
-              <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full border shadow-xs ${currentSeasonColor.bg} ${currentSeasonColor.text} ${currentSeasonColor.border}`}>
+              <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full border shadow-sm ${currentSeasonColor.bg} ${currentSeasonColor.text} ${currentSeasonColor.border}`}>
                 <SeasonIcon className="w-3.5 h-3.5" />
                 {language === 'bn' ? `ঋতু: ${bResult.seasonBn}` : `Season: ${seasonEnMap[bResult.seasonBn] || bResult.seasonBn}`}
               </span>
@@ -191,13 +191,13 @@ export const BengaliCalendarTool: React.FC = () => {
 
           {/* Quick Metrics Badge */}
           <div className="grid grid-cols-2 gap-2.5 sm:gap-3 min-w-[200px] sm:min-w-[240px]">
-            <div className="bg-[#022c22]/60 backdrop-blur-md p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border border-[#047857]/40 text-center">
+            <div className="bg-[#022c22]/60 backdrop-blur-md p-3 sm:p-3.5 rounded-[1rem] sm:rounded-[2rem] border border-[#047857]/40 text-center">
               <div className="text-[11px] sm:text-xs text-[#34d399] font-medium">
                 {language === 'bn' ? 'বাংলা মাস' : 'Bengali Month'}
               </div>
               <div className="text-lg sm:text-xl font-bold text-[#ffffff] mt-0.5">{bResult.monthBn}</div>
             </div>
-            <div className="bg-[#022c22]/60 backdrop-blur-md p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border border-[#047857]/40 text-center">
+            <div className="bg-[#022c22]/60 backdrop-blur-md p-3 sm:p-3.5 rounded-[1rem] sm:rounded-[2rem] border border-[#047857]/40 text-center">
               <div className="text-[11px] sm:text-xs text-[#34d399] font-medium">
                 {language === 'bn' ? 'বাংলা সন' : 'Bengali Year'}
               </div>
@@ -208,7 +208,7 @@ export const BengaliCalendarTool: React.FC = () => {
       </div>
 
       {/* Bangla Calendar Months Reference Grid */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 shadow-xs space-y-3 sm:space-y-4">
+      <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-8 space-y-3 sm:space-y-4">
         <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
           <CalendarDays className="w-4 h-4 text-purple-600" />
           {language === 'bn' ? 'বাংলা ১২ মাসের হিসাব ও ঋতু পরিক্রমা (বাংলা একাডেমি প্রমিত)' : '12 Bengali Months & 6 Seasons (Bangla Academy Standard)'}
@@ -220,9 +220,9 @@ export const BengaliCalendarTool: React.FC = () => {
             return (
               <div
                 key={idx}
-                className={`p-3 rounded-xl border text-center transition-all ${
+                className={`p-3 rounded-[1rem] border text-center transition-all ${
                   isCurrent
-                    ? 'bg-purple-50 border-slate-900 dark:border-white shadow-xs ring-2 ring-purple-500/20'
+                    ? 'bg-purple-50 border-slate-900 shadow-sm ring-2 ring-purple-500/20'
                     : 'bg-slate-50/70 border-slate-300/60/80 hover:border-purple-300'
                 }`}
               >
@@ -231,7 +231,7 @@ export const BengaliCalendarTool: React.FC = () => {
                 </div>
                 <div className="text-xs text-slate-500 mt-0.5">{m.days}</div>
                 <span className={`inline-block mt-1.5 text-[10px] font-semibold px-2 py-0.5 rounded-full ${
-                  isCurrent ? 'bg-purple-200 text-purple-900' : 'bg-slate-200/80 text-slate-600 dark:text-slate-400'
+                  isCurrent ? 'bg-purple-200 text-purple-900' : 'bg-slate-200/80 text-slate-600'
                 }`}>
                   {m.season}
                 </span>

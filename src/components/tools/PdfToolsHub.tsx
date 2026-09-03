@@ -264,10 +264,10 @@ export const PdfToolsHub: React.FC = () => {
   return (
     <section className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="text-center space-y-2">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
           {t('পিডিএফ এডিটর ও টুলস', 'Free PDF Editor & Tools')}
         </h2>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
           {t(
             'ব্রাউজার থেকেই সম্পূর্ণ ফ্রিতে যেকোনো পিডিএফ ফাইল জোড়া লাগানো, আলাদা করা, বা জলছাপ দেওয়া যায়। কোনো ফাইল সার্ভারে আপলোড হয় না, তাই এটি ১০০% সুরক্ষিত।',
             'Merge, split, add watermarks, and modify any PDF directly from your browser. No files are uploaded to servers, ensuring 100% privacy.'
@@ -281,10 +281,10 @@ export const PdfToolsHub: React.FC = () => {
           <button
             key={mode.id}
             onClick={() => handleModeSwitch(mode.id as PdfToolMode)}
-            className={`flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border transition-all ${
+            className={`flex flex-col items-center justify-center gap-2 p-4 rounded-[2rem] border transition-all ${
               activeMode === mode.id
                 ? 'bg-purple-600 text-white border-purple-600 shadow-md scale-[1.02]'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-purple-50 dark:hover:bg-slate-800'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-purple-50:bg-slate-800'
             }`}
           >
             {mode.icon}
@@ -293,18 +293,18 @@ export const PdfToolsHub: React.FC = () => {
         ))}
       </div>
 
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-8 shadow-sm">
+      <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-8">
         
         {/* Upload Area */}
         <div 
           onClick={() => fileInputRef.current?.click()}
-          className="w-full border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:border-purple-400 transition-all text-slate-500"
+          className="w-full border-2 border-dashed border-slate-300 rounded-[2rem] p-8 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-slate-50:bg-slate-800/50 hover:border-purple-400 transition-all text-slate-500"
         >
-          <div className="w-14 h-14 rounded-full bg-purple-50 dark:bg-slate-800 flex items-center justify-center text-purple-600 dark:text-purple-400">
+          <div className="w-14 h-14 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
             <Plus className="w-7 h-7" />
           </div>
           <div className="text-center">
-            <p className="font-semibold text-slate-700 dark:text-slate-300">
+            <p className="font-semibold text-slate-700">
               {t('ফাইল নির্বাচন করুন বা ড্র্যাগ করে আনুন', 'Click to browse or drag files here')}
             </p>
             <p className="text-xs mt-1">
@@ -324,18 +324,18 @@ export const PdfToolsHub: React.FC = () => {
         {/* Selected Files List */}
         {selectedFiles.length > 0 && (
           <div className="mt-6 space-y-3">
-            <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-2">
+            <h3 className="text-sm font-bold text-slate-700 flex items-center gap-2">
               <FileOutput className="w-4 h-4 text-purple-600" />
               {t('নির্বাচিত ফাইলসমূহ:', 'Selected Files:')}
             </h3>
             <div className="flex flex-col gap-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
               {selectedFiles.map((file, i) => (
-                <div key={i} className="flex items-center justify-between bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-200 dark:border-slate-700">
+                <div key={i} className="flex items-center justify-between bg-slate-50 p-3 rounded-[1rem] border border-slate-200">
                   <div className="flex items-center gap-3 overflow-hidden">
                     {activeMode === 'image-to-pdf' ? <ImageIcon className="w-5 h-5 text-blue-500 shrink-0" /> : <FileText className="w-5 h-5 text-rose-500 shrink-0" />}
-                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300 truncate">{file.name}</span>
+                    <span className="text-sm font-medium text-slate-700 truncate">{file.name}</span>
                   </div>
-                  <button onClick={() => removeFile(i)} className="p-1.5 text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 rounded-lg transition-colors">
+                  <button onClick={() => removeFile(i)} className="p-1.5 text-slate-400 hover:text-rose-500 hover:bg-rose-50:bg-rose-900/30 rounded-lg transition-colors">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
@@ -346,10 +346,10 @@ export const PdfToolsHub: React.FC = () => {
 
         {/* Tool Specific Options */}
         {selectedFiles.length > 0 && (
-          <div className="mt-6 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+          <div className="mt-6 p-4 bg-slate-50 rounded-[1rem] border border-slate-200">
             {activeMode === 'split' && (
               <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700 dark:text-slate-300">
+                <label className="text-sm font-bold text-slate-700">
                   {t('কোন্‌ কোন্‌ পেজ আলাদা করতে চান?', 'Which pages to extract?')}
                 </label>
                 <input 
@@ -357,7 +357,7 @@ export const PdfToolsHub: React.FC = () => {
                   value={splitRange} 
                   onChange={(e) => setSplitRange(e.target.value)}
                   placeholder="e.g., 1-3, 5, 8-10"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 outline-none focus:border-purple-500"
+                  className="w-full px-4 py-2.5 rounded-[1rem] border border-slate-300 bg-white text-slate-900 outline-none focus:border-purple-500"
                 />
                 <p className="text-xs text-slate-500">{t('উদাহরণ: ১-৩, ৫ (শুধুমাত্র ১ থেকে ৩ নম্বর এবং ৫ নম্বর পেজ)', 'Example: 1-3, 5 (Pages 1 to 3, and 5)')}</p>
               </div>
@@ -365,7 +365,7 @@ export const PdfToolsHub: React.FC = () => {
             
             {activeMode === 'watermark' && (
               <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700 dark:text-slate-300">
+                <label className="text-sm font-bold text-slate-700">
                   {t('ওয়াটারমার্ক টেক্সট', 'Watermark Text')}
                 </label>
                 <input 
@@ -373,44 +373,44 @@ export const PdfToolsHub: React.FC = () => {
                   value={watermarkText} 
                   onChange={(e) => setWatermarkText(e.target.value)}
                   placeholder="Confidential"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 outline-none focus:border-purple-500"
+                  className="w-full px-4 py-2.5 rounded-[1rem] border border-slate-300 bg-white text-slate-900 outline-none focus:border-purple-500"
                 />
               </div>
             )}
 
             {activeMode === 'merge' && (
-              <p className="text-sm text-slate-600 dark:text-slate-400">
+              <p className="text-sm text-slate-600">
                 {t('উপরের ফাইলগুলো জোড়া লাগিয়ে একটি পিডিএফ ফাইল তৈরি করা হবে।', 'The above files will be merged into a single PDF document.')}
               </p>
             )}
 
                         {activeMode === 'pdf-to-image' && (
               <div className="space-y-4">
-                <p className="text-sm text-slate-600 dark:text-slate-400">
+                <p className="text-sm text-slate-600">
                   {t('পিডিএফের প্রতিটি পেজকে আলাদা ছবিতে রূপান্তর করে একটি জিপ (ZIP) ফাইলে ডাউনলোড করা হবে।', 'Each page of the PDF will be converted to an image and downloaded as a ZIP file.')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="space-y-2 flex-1">
-                    <label className="text-sm font-bold text-slate-700 dark:text-slate-300">
+                    <label className="text-sm font-bold text-slate-700">
                       {t('ইমেজ ফরম্যাট', 'Image Format')}
                     </label>
                     <select 
                       value={imageFormat} 
                       onChange={(e) => setImageFormat(e.target.value as 'png' | 'jpeg')}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 outline-none focus:border-purple-500"
+                      className="w-full px-4 py-2.5 rounded-[1rem] border border-slate-300 bg-white text-slate-900 outline-none focus:border-purple-500"
                     >
                       <option value="png">PNG (Best Quality, Transparent bg)</option>
                       <option value="jpeg">JPEG (Smaller file size, White bg)</option>
                     </select>
                   </div>
                   <div className="space-y-2 flex-1">
-                    <label className="text-sm font-bold text-slate-700 dark:text-slate-300">
+                    <label className="text-sm font-bold text-slate-700">
                       {t('কোয়ালিটি / স্কেল', 'Quality / Scale')}
                     </label>
                     <select 
                       value={imageScale} 
                       onChange={(e) => setImageScale(Number(e.target.value))}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 outline-none focus:border-purple-500"
+                      className="w-full px-4 py-2.5 rounded-[1rem] border border-slate-300 bg-white text-slate-900 outline-none focus:border-purple-500"
                     >
                       <option value={1.5}>Standard (1.5x)</option>
                       <option value={2}>High (2x)</option>
@@ -422,7 +422,7 @@ export const PdfToolsHub: React.FC = () => {
             )}
 
             {activeMode === 'image-to-pdf' && (
-              <p className="text-sm text-slate-600 dark:text-slate-400">
+              <p className="text-sm text-slate-600">
                 {t('উপরের ছবিগুলো দিয়ে একটি পিডিএফ ফাইল তৈরি করা হবে।', 'The above images will be converted into a single PDF document.')}
               </p>
             )}
@@ -435,7 +435,7 @@ export const PdfToolsHub: React.FC = () => {
             <button 
               onClick={handleProcess}
               disabled={isProcessing}
-              className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center gap-2"
+              className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-[1rem] transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center gap-2"
             >
               {isProcessing ? t('প্রসেসিং হচ্ছে...', 'Processing...') : (activeMode === 'pdf-to-image' ? t('ছবিতে কনভার্ট করুন', 'Convert to Images') : t('পিডিএফ তৈরি করুন', 'Process PDF'))}
             </button>
@@ -444,7 +444,7 @@ export const PdfToolsHub: React.FC = () => {
               <a 
                 href={outputUrl} 
                 download={outputFilename}
-                className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 text-center"
+                className="flex-1 bg-emerald-600 hover:bg-[#005B48] text-white font-bold py-3 px-6 rounded-[1rem] transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 text-center"
               >
                 <Download className="w-5 h-5" />
                 {t('ডাউনলোড করুন', 'Download Result')}

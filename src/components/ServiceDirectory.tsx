@@ -55,10 +55,9 @@ export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab 
   const { language, t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<ServiceCategory | 'all'>('all');
-  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [favorites, setFavorites] = useState<string[]>(['s-1', 's-2', 's-3', 's-4']);
 
-  // 8 Primary Core Tools in Lipighor Card Grid Style
+  // 8 Primary Core Tools
   const coreTools: CoreToolItem[] = [
     {
       id: 'core-bijoy-unicode',
@@ -165,160 +164,134 @@ export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab 
     {
       id: 'core-number-words',
       tab: 'number-words',
-      titleBn: 'সংখ্যা থেকে কথায় রূপান্তর',
-      titleEn: 'Number to Bangla Words (Cheque)',
-      subtitleBn: 'ব্যাংক চেক ও টাকার অংক বাংলায়',
-      subtitleEn: 'Bank Cheque, Receipts & Official Taka Text',
-      descriptionBn: 'যেকোনো বড় সংখ্যা বা টাকার পরিমাণ ইনপুট দিলে স্বয়ংক্রিয়ভাবে প্রমিত বাংলায় (চেক ও ভাউচার ফরম্যাটে টাকা ও পয়সা সহ) রূপান্তর।',
-      descriptionEn: 'Convert any numeric amount into standard Bengali words formatted for bank cheques, vouchers, and formal documents.',
-      badgeBn: 'ব্যাংক ও ভাউচার',
-      badgeEn: 'Banking & Cheques',
-      icon: BarChart3,
-      tagsBn: ['ব্যাংক চেক ফরম্যাট', 'টাকা ও পয়সা', 'ইংরেজি/বাংলা সংখ্যা', 'তাত্ক্ষণিক রূপান্তর'],
-      tagsEn: ['Cheque Format', 'Taka & Poisha', 'Bengali Digits', 'Fast Convert'],
-      actionBn: 'কথায় রূপান্তর করুন',
-      actionEn: 'Convert to Words',
+      titleBn: 'সংখ্যা থেকে কথায় রূপান্তর',
+      titleEn: 'Number to Words',
+      subtitleBn: 'বড় অংক বা টাকাকে টেক্সটে রূপান্তর',
+      subtitleEn: 'Convert Large Digits to Text',
+      descriptionBn: 'যেকোনো বড় অংকের সংখ্যা বা টাকার পরিমাণ (যেমন: চেক লেখার জন্য) টাইপ করলে তা স্বয়ংক্রিয়ভাবে কথায় বা বাংলা টেক্সটে রূপান্তরিত হবে।',
+      descriptionEn: 'Type any large numerical amount or currency to instantly generate its Bengali text representation for cheques and formal use.',
+      badgeBn: 'নতুন ফিচার',
+      badgeEn: 'New Feature',
+      icon: Type,
+      tagsBn: ['চেকের টাকার পরিমাণ', 'কোটি ও লাখ', 'অটো কনভার্ট', 'এক ক্লিকে কপি'],
+      tagsEn: ['Cheque Amount', 'Crore & Lakh', 'Auto Convert', 'Copy'],
+      actionBn: 'সংখ্যা কনভার্ট করুন',
+      actionEn: 'Convert Numbers',
     },
     {
       id: 'core-spell-dict',
       tab: 'spell-dict',
-      titleBn: 'বাংলা বানান ও একাডেমি অভিধান',
-      titleEn: 'Spell Checker & Academy Dictionary',
-      subtitleBn: 'প্রমিত বানান যাচাই ও শব্দার্থ সন্ধান',
-      subtitleEn: 'Standard Bengali Spelling, Meanings & Synonyms',
-      descriptionBn: 'বাংলা একাডেমি প্রমিত বানানরীতি অনুযায়ী যেকোনো শব্দের সঠিক বানান যাচাই, অর্থ, পদ, সমার্থক শব্দ ও বিপরীত শব্দ সন্ধান।',
-      descriptionEn: 'Check correct Bengali spelling, find word meanings, grammatical parts of speech, and comprehensive synonyms.',
-      badgeBn: 'বাংলা একাডেমি',
-      badgeEn: 'Bangla Academy',
+      titleBn: 'বাংলা বানান ও ডিকশনারি',
+      titleEn: 'Spelling & Dictionary',
+      subtitleBn: 'শুদ্ধ বানান যাচাই ও সমার্থক শব্দ',
+      subtitleEn: 'Spell Checker & Synonyms',
+      descriptionBn: 'বাংলা একাডেমি প্রমিত বানানরীতি অনুযায়ী যেকোনো শব্দের সঠিক বানান, সমার্থক শব্দ ও ডিকশনারি থেকে অর্থ খুঁজে বের করুন।',
+      descriptionEn: 'Check correct spelling according to Bangla Academy rules, find synonyms, and search meanings in the comprehensive dictionary.',
+      badgeBn: 'শিক্ষামূলক',
+      badgeEn: 'Educational',
       icon: BookOpen,
-      tagsBn: ['শুদ্ধ বানান', 'সমার্থক শব্দ', 'শব্দার্থ ও পদ', 'ব্যাকরণ নিয়ম'],
-      tagsEn: ['Spell Check', 'Synonyms', 'Definitions', 'Grammar'],
-      actionBn: 'অভিধান খুলুন',
+      tagsBn: ['প্রমিত বানান', 'সমার্থক শব্দ', 'বিপরীত শব্দ', 'অভিধান'],
+      tagsEn: ['Proper Spelling', 'Synonyms', 'Antonyms', 'Dictionary'],
+      actionBn: 'ডিকশনারি খুলুন',
       actionEn: 'Open Dictionary',
-    },
+    }
   ];
 
-  // Filtered Services from BANGLA_SERVICES
-  const filteredServices = BANGLA_SERVICES.filter(service => {
-    const matchesCategory = selectedCategory === 'all' || service.category === selectedCategory;
-    const q = searchQuery.toLowerCase().trim();
-    const matchesSearch = !q || (
-      service.name.toLowerCase().includes(q) ||
-      service.nameBn.toLowerCase().includes(q) ||
-      service.description.toLowerCase().includes(q) ||
-      service.descriptionBn.toLowerCase().includes(q)
-    );
-    return matchesCategory && matchesSearch;
-  });
-
-  const categories: { id: ServiceCategory | 'all'; labelBn: string; labelEn: string }[] = [
+  const categories = [
     { id: 'all', labelBn: 'সকল সেবা', labelEn: 'All Services' },
-    { id: 'text-typing', labelBn: 'কিবোর্ড ও টাইপিং', labelEn: 'Text & Typing' },
-    { id: 'language-lexicon', labelBn: 'ভাষা ও অভিধান', labelEn: 'Language & Lexicon' },
-    { id: 'dates-numbers', labelBn: 'পঞ্জিকা ও সংখ্যা', labelEn: 'Dates & Numbers' },
-    { id: 'pdf-tools', labelBn: 'পিডিএফ ও ফাইল', labelEn: 'PDF & Files' },
-    { id: 'gov-public', labelBn: 'সরকারি ও নাগরিক সেবা', labelEn: 'Citizen & Gov' },
-    { id: 'audio-speech', labelBn: 'ভয়েস ও অডিও', labelEn: 'Audio & Speech' },
+    { id: 'text-typing', labelBn: 'টাইপিং ও রূপান্তর', labelEn: 'Typing & Conversion' },
+    { id: 'language-lexicon', labelBn: 'ভাষা ও অভিধান', labelEn: 'Language & Dictionary' },
+    { id: 'dates-numbers', labelBn: 'তারিখ, সময় ও হিসাব', labelEn: 'Dates, Time & Calc' },
+    { id: 'audio-speech', labelBn: 'ভয়েস ও অডিও', labelEn: 'Voice & Audio' },
+    { id: 'gov-public', labelBn: 'সরকারি ও নাগরিক সেবা', labelEn: 'Govt & Public' },
     { id: 'media-literature', labelBn: 'মিডিয়া ও সাহিত্য', labelEn: 'Media & Literature' },
   ];
 
   const toggleFavorite = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
     setFavorites(prev => 
-      prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
     );
   };
 
+  const filteredServices = BANGLA_SERVICES.filter(service => {
+    const matchesCategory = selectedCategory === 'all' || service.category === selectedCategory;
+    const searchLower = searchQuery.toLowerCase();
+    const matchesSearch = 
+      service.name.toLowerCase().includes(searchLower) ||
+      service.nameBn.includes(searchLower) ||
+      (service.description && service.description.toLowerCase().includes(searchLower)) ||
+      (service.descriptionBn && service.descriptionBn.includes(searchLower));
+    return matchesCategory && matchesSearch;
+  });
+
+  // Utility to map index to Bento Grid style
+  const getBentoStyle = (index: number) => {
+    // 0, 3, 5, 7 -> White 3D
+    // 1, 6 -> Orange Gradient
+    // 2, 4 -> Green Gradient
+    const map: Record<number, 'white' | 'orange' | 'green'> = {
+      0: 'white', 1: 'orange', 2: 'green', 3: 'white',
+      4: 'green', 5: 'white', 6: 'orange', 7: 'white'
+    };
+    return map[index] || 'white';
+  };
+
   return (
-    <div id="lipighor-portal-main" className="space-y-8 sm:space-y-12">
-      {/* 1. HERO BANNER: Curved Crimson Red Banner with Search & Live Stats */}
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-red-800 via-red-700 to-rose-900 text-white shadow-xl border border-red-900/40 p-6 sm:p-10">
-        {/* Background decorative curved SVG */}
-        <div className="absolute -right-20 -top-20 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute right-8 bottom-0 opacity-10 pointer-events-none hidden md:block">
-          <span className="text-[160px] font-black font-bangla text-white select-none leading-none">বাংলা</span>
-        </div>
-
-        <div className="relative z-10 space-y-6">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-            {/* Left: Graphic Logo & Title */}
-            <div className="flex items-center gap-4 sm:gap-6">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white text-red-700 flex items-center justify-center font-extrabold text-3xl sm:text-4xl shadow-2xl border-4 border-red-200/60 shrink-0 transform -rotate-2 hover:rotate-0 transition-transform overflow-hidden">
-                <img src="/noon-moon-logo.png" alt="Noon-Moon Logo" className="w-full h-full object-cover select-none" />
-              </div>
-              <div className="space-y-1.5">
-                <div className="inline-flex items-center gap-2 bg-red-950/50 text-red-200 text-xs font-semibold px-3 py-0.5 rounded-full border border-red-400/30">
-                  <Sparkles className="w-3.5 h-3.5 text-red-300" />
-                  <span>{language === 'bn' ? 'বাংলা ভাষার আধুনিক ডিজিটাল পোর্টাল' : 'Modern Bengali Digital Tools Portal'}</span>
-                </div>
-                <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-snug">
-                  {language === 'bn' ? 'বাংলা ডিজিটাল টুলস ও কিবোর্ড পোর্টাল' : 'Bangla Digital Tools & Keyboard Hub'}
-                </h1>
-                <p className="text-xs sm:text-sm text-red-100/90 max-w-xl leading-relaxed">
-                  {language === 'bn' 
-                    ? 'বিজয় ⇄ ইউনিকোড কনভার্টার, অভ্র ফোনেটিক টাইপিং, বঙ্গাব্দ ক্যালেন্ডার, বয়স গণক, পিডিএফ এডিটর ও নিত্যপ্রয়োজনীয় ডিজিটাল সেবা এক ক্লিকে সম্পূর্ণ বিনামূল্যে।' 
-                    : 'Bijoy to Unicode converter, Avro phonetic typing, Bengali calendar, age calculator, PDF tools and essential digital citizen services for free.'}
-                </p>
-              </div>
-            </div>
-
-            {/* Right: Live Counter Stats Pill */}
-            <div className="bg-red-950/60 border border-red-400/30 backdrop-blur-md rounded-2xl p-4 sm:p-5 flex flex-row lg:flex-col gap-4 text-center shrink-0 shadow-inner w-full sm:w-auto justify-around">
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-white font-sans-ui">
-                  {language === 'bn' ? '১০+' : '10+'}
-                </div>
-                <div className="text-[11px] text-red-200 font-medium">{language === 'bn' ? 'নিজস্ব লাইভ টুলস' : 'Live Interactive Tools'}</div>
-              </div>
-              <div className="h-px w-full bg-red-800/60 hidden lg:block" />
-              <div className="w-px h-auto bg-red-800/60 block lg:hidden" />
-              <div>
-                <div className="text-xl sm:text-2xl font-extrabold text-white font-sans-ui">
-                  {language === 'bn' ? '৪৫+' : '45+'}
-                </div>
-                <div className="text-[11px] text-red-200 font-medium">{language === 'bn' ? 'বাংলা নাগরিক সেবা' : 'Digital Citizen Services'}</div>
-              </div>
-            </div>
+    <div className="space-y-10 sm:space-y-16 animate-in fade-in duration-300">
+      
+      {/* 1. HERO SEARCH BANNER */}
+      <section className="bg-white rounded-[2rem] card-elevation p-6 sm:p-10 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#006B54]/5 to-transparent rounded-bl-full pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#FF8A3D]/5 to-transparent rounded-tr-full pointer-events-none" />
+        
+        <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8 relative z-10">
+          <div className="space-y-3">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+              {language === 'bn' ? 'বাংলা পোর্টাল হাব' : 'Bangla Portal Hub'}
+            </h1>
+            <p className="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto leading-relaxed">
+              {language === 'bn' 
+                ? 'টাইপিং, কনভার্টার, পঞ্জিকা থেকে শুরু করে দৈনন্দিন সকল প্রয়োজনীয় ডিজিটাল নাগরিক সেবা এখন এক ঠিকানায়।' 
+                : 'From typing, converters, calendar to daily essential digital citizen services, all in one place.'}
+            </p>
           </div>
 
-          {/* Integrated Lipighor Search Bar inside Hero */}
-          <div className="pt-2 max-w-3xl">
-            <div className="relative">
-              <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+          <div className="max-w-2xl mx-auto">
+            <div className="relative group">
+              <div className="absolute inset-y-0 left-0 pl-4 sm:pl-5 flex items-center pointer-events-none">
+                <Search className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400 group-focus-within:text-[#006B54] transition-colors" />
+              </div>
               <input
-                id="hero-tools-search-input"
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={language === 'bn' ? 'যেকোনো টুল বা সেবা খুঁজুন (যেমন: বিজয়, ফোনেটিক, বয়স, ক্যালেন্ডার, পিডিএফ)...' : 'Search any tool or service (e.g., Bijoy, Phonetic, Age, Calendar, PDF)...'}
-                className="w-full pl-12 pr-10 py-3.5 sm:py-4 rounded-2xl bg-white text-slate-900 text-sm sm:text-base font-medium placeholder-slate-400 shadow-lg focus:outline-none focus:ring-4 focus:ring-red-400/50 transition-all border border-red-200"
+                placeholder={language === 'bn' ? 'সেবা, টুল বা কিবোর্ড খুঁজুন...' : 'Search services, tools or keywords...'}
+                className="w-full bg-slate-50 border-2 border-slate-200 text-slate-900 rounded-full pl-12 sm:pl-14 pr-12 sm:pr-14 py-3 sm:py-4 text-sm sm:text-base font-semibold focus:outline-none focus:border-[#006B54] focus:bg-white shadow-sm transition-all placeholder-slate-400"
               />
               {searchQuery && (
-                <button 
+                <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+                  className="absolute inset-y-0 right-0 pr-4 sm:pr-5 flex items-center"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 hover:text-slate-700 transition-colors" />
                 </button>
               )}
             </div>
 
             {/* Quick Filter Tag Pills */}
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-3 text-xs">
-              <span className="text-red-200 font-semibold">{language === 'bn' ? 'জনপ্রিয় অনুসন্ধান:' : 'Quick tags:'}</span>
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs">
+              <span className="text-slate-400 font-medium">{language === 'bn' ? 'জনপ্রিয়:' : 'Popular:'}</span>
               {[
                 { label: language === 'bn' ? 'বিজয় ⇄ ইউনিকোড' : 'Bijoy ⇄ Unicode', tab: 'bijoy-unicode' as TabType },
                 { label: language === 'bn' ? 'অভ্র ফোনেটিক' : 'Avro Phonetic', tab: 'phonetic' as TabType },
-                { label: language === 'bn' ? 'বয়স ক্যালকুলেটর' : 'Age Calculator', tab: 'age-calculator' as TabType },
                 { label: language === 'bn' ? 'বাংলা পঞ্জিকা' : 'Calendar', tab: 'calendar' as TabType },
                 { label: language === 'bn' ? 'পিডিএফ টুলস' : 'PDF Tools', tab: 'pdf-tools' as TabType },
-                { label: language === 'bn' ? 'দরখাস্ত ফরম' : 'Templates', tab: 'templates' as TabType },
-                { label: language === 'bn' ? 'কথায় রূপান্তর' : 'Words', tab: 'number-words' as TabType },
               ].map((pill, idx) => (
                 <button
                   key={idx}
                   onClick={() => onSelectTab(pill.tab)}
-                  className="bg-red-950/40 hover:bg-white hover:text-red-800 text-red-100 px-2.5 py-1 rounded-lg border border-red-400/30 transition-all font-medium text-[11px] sm:text-xs"
+                  className="bg-white hover:bg-slate-50 text-slate-600 px-3 py-1.5 rounded-full border border-slate-200 hover:border-slate-300 transition-all font-medium shadow-sm active:scale-95"
                 >
                   {pill.label}
                 </button>
@@ -328,81 +301,83 @@ export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab 
         </div>
       </section>
 
-      {/* 2. "আমাদের প্রধান ডিজিটাল টুলস" (Lipighor 6/8 Core Cards Grid) */}
-      <section className="space-y-4 sm:space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 pb-3">
+      {/* 2. CORE TOOLS (Bento Grid Style) */}
+      <section className="space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 px-2">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-red-700 bg-red-50 px-3 py-1 rounded-full mb-1 border border-red-200">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#006B54] bg-emerald-50 px-3 py-1 rounded-full mb-2 border border-emerald-100">
               <Zap className="w-3.5 h-3.5" />
               <span>{language === 'bn' ? 'আমরা আপনাদের দিচ্ছি' : 'What We Offer'}</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               {language === 'bn' ? 'আমাদের জনপ্রিয় ডিজিটাল টুলস' : 'Our Popular Digital Tools'}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500">
-              {language === 'bn' 
-                ? 'বাংলা টাইপিং, রূপান্তর, হিসাব ও দৈনন্দিন সেবার নির্ভুল অনলাইন সমাধান' 
-                : 'Accurate online solutions for Bengali typing, conversion, calculations and daily tools'}
-            </p>
           </div>
-          <span className="text-xs text-slate-400 font-medium">
-            {language === 'bn' ? '৮টি প্রধান টুল' : '8 Core Tools'}
-          </span>
         </div>
 
-        {/* 8 Primary Tool Cards (Lipighor Aesthetic: Red badge, white container, hover elevation) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {coreTools.map((tool) => {
+        {/* 8 Primary Tool Cards (3D Bento Layout) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
+          {coreTools.map((tool, idx) => {
             const Icon = tool.icon;
+            const style = getBentoStyle(idx);
+            
+            let containerClass = "group cursor-pointer rounded-[2rem] p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 ";
+            let iconBgClass = "";
+            let textPrimaryClass = "";
+            let textMutedClass = "";
+            let buttonClass = "w-full py-2.5 rounded-full font-bold text-xs transition-transform active:scale-95 flex items-center justify-center gap-2 ";
+            let badgeClass = "text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide ";
+
+            if (style === 'white') {
+              containerClass += "bg-white card-elevation border border-white";
+              iconBgClass = "bg-[#F0EBE1] text-[#006B54] group-hover:bg-[#006B54] group-hover:text-white transition-colors";
+              textPrimaryClass = "text-slate-900";
+              textMutedClass = "text-slate-500";
+              buttonClass += "bg-[#F4F2EE] text-slate-700 group-hover:bg-[#006B54] group-hover:text-white";
+              badgeClass += "bg-slate-100 text-slate-600";
+            } else if (style === 'orange') {
+              containerClass += "bg-gradient-to-br from-[#FFB775] to-[#FF8A3D] shadow-card-orange border border-white/20";
+              iconBgClass = "bg-white/20 text-white shadow-inner";
+              textPrimaryClass = "text-white";
+              textMutedClass = "text-white/80";
+              buttonClass += "bg-white/90 text-orange-600 shadow-md group-hover:bg-white";
+              badgeClass += "bg-white/20 text-white backdrop-blur-sm";
+            } else if (style === 'green') {
+              containerClass += "bg-gradient-to-br from-[#005B48] to-[#003B2E] shadow-card-green border border-white/10";
+              iconBgClass = "bg-white/10 text-white shadow-inner";
+              textPrimaryClass = "text-white";
+              textMutedClass = "text-emerald-100/80";
+              buttonClass += "bg-emerald-50 text-[#005B48] shadow-md group-hover:bg-white";
+              badgeClass += "bg-emerald-800/50 text-emerald-100 backdrop-blur-sm border border-emerald-500/30";
+            }
+
             return (
-              <div
-                key={tool.id}
-                onClick={() => onSelectTab(tool.tab)}
-                className="group cursor-pointer bg-white rounded-2xl border border-red-100/90 hover:border-red-500 p-5 flex flex-col justify-between shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative"
-              >
-                {/* Top Badge & Icon */}
-                <div className="space-y-3">
+              <div key={tool.id} onClick={() => onSelectTab(tool.tab)} className={containerClass}>
+                <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 border border-red-200/80 flex items-center justify-center font-bold text-xl shrink-0 group-hover:bg-red-600 group-hover:text-white transition-colors shadow-xs">
+                    <div className={`w-12 h-12 rounded-[1.25rem] flex items-center justify-center font-bold text-xl shrink-0 ${iconBgClass}`}>
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[11px] font-bold text-red-800 bg-red-50 px-2.5 py-0.5 rounded-full border border-red-200">
+                    <span className={badgeClass}>
                       {language === 'bn' ? tool.badgeBn : tool.badgeEn}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                    <h3 className={`text-xl font-bold leading-tight ${textPrimaryClass}`}>
                       {language === 'bn' ? tool.titleBn : tool.titleEn}
                     </h3>
-                    <p className="text-[11px] font-semibold text-red-700 mt-0.5">
+                    <p className={`text-[12px] font-semibold mt-1 ${textMutedClass}`}>
                       {language === 'bn' ? tool.subtitleBn : tool.subtitleEn}
                     </p>
                   </div>
-
-                  <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-                    {language === 'bn' ? tool.descriptionBn : tool.descriptionEn}
-                  </p>
-
-                  {/* Feature Tags */}
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {(language === 'bn' ? tool.tagsBn : tool.tagsEn).slice(0, 3).map((tag, idx) => (
-                      <span key={idx} className="text-[10.5px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md font-medium">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
                 </div>
 
-                {/* Bottom Action Button */}
-                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-xs font-bold text-red-600 group-hover:text-red-700 flex items-center gap-1">
+                <div className="mt-8 pt-4 border-t border-black/5">
+                  <button className={buttonClass}>
                     <span>{language === 'bn' ? tool.actionBn : tool.actionEn}</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-medium uppercase">
-                    {language === 'bn' ? 'ফ্রি' : 'Free'}
-                  </span>
+                  </button>
                 </div>
               </div>
             );
@@ -411,20 +386,20 @@ export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab 
       </section>
 
       {/* 3. FEATURED BANNER: Bangla Text Cleaner & Normalizer Spotlight */}
-      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-red-950 text-white rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-5 border border-slate-700/60 shadow-lg">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-red-600 text-white flex items-center justify-center font-bold text-xl shrink-0 shadow-md">
-            <BarChart3 className="w-6 h-6" />
+      <section className="bg-gradient-to-br from-[#005B48] via-[#004B3A] to-[#003B2E] text-white rounded-[2rem] p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-card-green border border-emerald-800/50">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="w-16 h-16 rounded-[1.5rem] bg-white/10 text-white flex items-center justify-center font-bold text-xl shrink-0 shadow-inner backdrop-blur-sm border border-white/10">
+            <BarChart3 className="w-8 h-8" />
           </div>
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-red-300 bg-red-950/60 px-2.5 py-0.5 rounded-full border border-red-700/50">
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-100 bg-emerald-900/50 px-3 py-1 rounded-full border border-emerald-500/30">
               <Sparkles className="w-3 h-3" />
               <span>{language === 'bn' ? 'স্মার্ট ইউটিলিটি' : 'Smart Utility'}</span>
             </div>
-            <h3 className="text-base sm:text-lg font-bold text-white">
+            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
               {language === 'bn' ? 'বাংলা টেক্সট ক্লিন ও অ্যানালাইজার ল্যাব' : 'Bangla Text Cleaner & Analyzer Lab'}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+            <p className="text-sm text-emerald-100/80 max-w-xl leading-relaxed">
               {language === 'bn' 
                 ? 'যুক্তবর্ণের ত্রুটি সংশোধন, অদৃশ্য স্পেস (ZWJ/ZWNJ) দূরীকরণ, শব্দ ও অক্ষর কাউন্টার এবং পড়ার আনুমানিক সময় পরিমাপ।' 
                 : 'Fix broken conjuncts, remove zero-width joiners, count words & characters, and calculate estimated reading time.'}
@@ -433,110 +408,41 @@ export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab 
         </div>
         <button
           onClick={() => onSelectTab('analyzer')}
-          className="whitespace-nowrap px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-bold transition-all shadow-md active:scale-98 flex items-center gap-2 shrink-0"
+          className="whitespace-nowrap w-full md:w-auto px-6 py-3 rounded-full bg-[#FF8A3D] hover:bg-[#FF9B58] text-white text-sm font-bold transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 shrink-0"
         >
           <span>{language === 'bn' ? 'অ্যানালাইজার খুলুন' : 'Open Analyzer'}</span>
           <ArrowRight className="w-4 h-4" />
         </button>
       </section>
 
-      {/* 4. SOCIAL / CONNECT RIBBON (Lipighor Style 3 Cards) */}
-      <section className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-        {/* Facebook */}
-        <a
-          href="https://facebook.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group bg-white rounded-2xl border border-slate-200 hover:border-red-500 p-4 flex items-center gap-3.5 shadow-xs hover:shadow-md transition-all"
-        >
-          <div className="w-11 h-11 rounded-xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center shrink-0 group-hover:bg-red-600 group-hover:text-white transition-colors">
-            <ThumbsUp className="w-5 h-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h4 className="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-red-600 transition-colors truncate">
-              {language === 'bn' ? 'অফিশিয়াল ফেসবুক পেজ' : 'Official Facebook Page'}
-            </h4>
-            <p className="text-[11px] text-slate-500 truncate">
-              {language === 'bn' ? 'বাংলা টেকনোলজি আপডেট পেতে জয়েন করুন' : 'Join for Bangla tech updates'}
-            </p>
-          </div>
-        </a>
-
-        {/* YouTube */}
-        <a
-          href="https://youtube.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group bg-white rounded-2xl border border-slate-200 hover:border-red-500 p-4 flex items-center gap-3.5 shadow-xs hover:shadow-md transition-all"
-        >
-          <div className="w-11 h-11 rounded-xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center shrink-0 group-hover:bg-red-600 group-hover:text-white transition-colors">
-            <Video className="w-5 h-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h4 className="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-red-600 transition-colors truncate">
-              {language === 'bn' ? 'ইউটিউব সহায়িকা' : 'YouTube Guides'}
-            </h4>
-            <p className="text-[11px] text-slate-500 truncate">
-              {language === 'bn' ? 'বিজয় ও অভ্র কিবোর্ড টিউটোরিয়াল' : 'Bijoy & Avro tutorials'}
-            </p>
-          </div>
-        </a>
-
-        {/* Community Feedback */}
-        <button
-          onClick={() => {
-            const footerEl = document.getElementById('app-global-footer');
-            footerEl?.scrollIntoView({ behavior: 'smooth' });
-          }}
-          className="text-left group bg-white rounded-2xl border border-slate-200 hover:border-red-500 p-4 flex items-center gap-3.5 shadow-xs hover:shadow-md transition-all"
-        >
-          <div className="w-11 h-11 rounded-xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center shrink-0 group-hover:bg-red-600 group-hover:text-white transition-colors">
-            <MessageCircle className="w-5 h-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h4 className="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-red-600 transition-colors truncate">
-              {language === 'bn' ? 'যোগাযোগ ও মতামত' : 'Feedback & Contact'}
-            </h4>
-            <p className="text-[11px] text-slate-500 truncate">
-              {language === 'bn' ? 'নতুন কোনো টুলের অনুরোধ জানান' : 'Suggest a new tool'}
-            </p>
-          </div>
-        </button>
-      </section>
-
-      {/* 6. COMPLETE BANGLA SERVICES DIRECTORY (45+ Curated Citizen & Language Tools) */}
+      {/* 4. COMPLETE BANGLA SERVICES DIRECTORY */}
       <section className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-200 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-200 pb-4 px-2">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-red-700 bg-red-50 px-3 py-0.5 rounded-full mb-1 border border-red-200">
-              <Layers className="w-3 h-3" />
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-600 bg-orange-50 px-3 py-1 rounded-full mb-2 border border-orange-200">
+              <Layers className="w-3.5 h-3.5" />
               <span>{language === 'bn' ? 'নাগরিক সেবা ও ডিরেক্টরি' : 'Citizen Services Directory'}</span>
             </div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
               {language === 'bn' ? 'সকল বাংলা ডিজিটাল সেবা ও পোর্টাল' : 'All Bengali Digital Services & Portals'}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500">
-              {language === 'bn' 
-                ? 'বাংলা একাডেমি, জাতীয় তথ্য বাতায়ন, কিবোর্ড সফটওয়্যার ও প্রয়োজনীয় সকল লিংক' 
-                : 'Bangla Academy, National Portal, keyboard software and essential resources'}
-            </p>
           </div>
 
-          <span className="text-xs text-slate-500 font-medium">
+          <span className="text-xs text-slate-500 font-medium bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm">
             {language === 'bn' ? `প্রদর্শিত: ${filteredServices.length}টি সেবা` : `Showing: ${filteredServices.length} services`}
           </span>
         </div>
 
         {/* Category Pills Bar */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-none px-2">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              className={`whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold transition-all shadow-sm ${
                 selectedCategory === cat.id
-                  ? 'bg-red-600 text-white shadow-sm'
-                  : 'bg-white text-slate-600 border border-slate-200 hover:bg-red-50 hover:text-red-700'
+                  ? 'bg-[#006B54] text-white border-transparent'
+                  : 'bg-white text-slate-600 border border-slate-200 hover:border-[#006B54] hover:text-[#006B54]'
               }`}
             >
               {language === 'bn' ? cat.labelBn : cat.labelEn}
@@ -545,62 +451,58 @@ export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab 
         </div>
 
         {/* Services Card Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {filteredServices.map((service) => {
             const isFav = favorites.includes(service.id);
             return (
               <article
                 key={service.id}
-                className="group bg-white rounded-2xl border border-slate-200/90 hover:border-red-500 hover:shadow-md transition-all p-5 flex flex-col justify-between"
+                className="group bg-white rounded-[1.5rem] card-elevation p-5 flex flex-col justify-between"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[10px] uppercase tracking-wider font-bold px-2.5 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200">
+                    <span className="text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
                       {service.badge || (service.isExternal ? 'এক্সটার্নাল' : 'অভ্যন্তরীণ')}
                     </span>
                     <button
                       onClick={(e) => toggleFavorite(service.id, e)}
                       title={isFav ? 'পছন্দের তালিকা থেকে মুছুন' : 'পছন্দের তালিকায় রাখুন'}
-                      className="text-slate-400 hover:text-red-600 transition-colors p-1"
+                      className="text-slate-300 hover:text-red-500 transition-colors p-1"
                     >
-                      <Heart className={`w-4 h-4 ${isFav ? 'text-red-600 fill-red-600' : ''}`} />
+                      <Heart className={`w-4 h-4 ${isFav ? 'text-red-500 fill-red-500' : ''}`} />
                     </button>
                   </div>
 
                   <div>
-                    <h3 className="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#006B54] transition-colors leading-tight">
                       {language === 'bn' ? service.nameBn : service.name}
                     </h3>
-                    <p className="text-xs text-slate-500 line-clamp-2 mt-1 leading-relaxed">
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-2 leading-relaxed">
                       {language === 'bn' ? service.descriptionBn : service.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
                   {service.internalTab ? (
                     <button
                       onClick={() => onSelectTab(service.internalTab!)}
-                      className="px-4 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-xs transition-all active:scale-95 flex items-center gap-1.5"
+                      className="px-4 py-2 rounded-full bg-slate-100 group-hover:bg-[#006B54] text-slate-700 group-hover:text-white font-bold text-xs shadow-sm transition-all flex items-center gap-1.5"
                     >
                       <span>{language === 'bn' ? 'সরাসরি ব্যবহার' : 'Use Tool'}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1" />
                     </button>
                   ) : (
                     <a
                       href={service.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-1.5 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-700 font-bold text-xs transition-all flex items-center gap-1.5 border border-slate-200"
+                      className="px-4 py-2 rounded-full bg-slate-100 hover:bg-[#FF8A3D] text-slate-700 hover:text-white font-bold text-xs shadow-sm transition-all flex items-center gap-1.5 border border-slate-200 hover:border-transparent"
                     >
                       <span>{language === 'bn' ? 'অফিশিয়াল পোর্টাল' : 'Official Portal'}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
-
-                  <span className="text-[11px] text-slate-400 font-medium">
-                    {service.isExternal ? 'External' : 'Internal'}
-                  </span>
                 </div>
               </article>
             );
@@ -608,19 +510,21 @@ export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab 
         </div>
 
         {filteredServices.length === 0 && (
-          <div className="text-center py-12 bg-white rounded-2xl border border-slate-200 p-8 space-y-3">
-            <div className="w-12 h-12 rounded-full bg-red-50 text-red-600 flex items-center justify-center mx-auto">
-              <Search className="w-6 h-6" />
+          <div className="text-center py-16 bg-white rounded-[2rem] card-elevation p-8 space-y-4 max-w-lg mx-auto mt-8">
+            <div className="w-16 h-16 rounded-full bg-[#F0EBE1] text-[#006B54] flex items-center justify-center mx-auto shadow-inner">
+              <Search className="w-8 h-8" />
             </div>
-            <h3 className="text-base font-bold text-slate-800">
-              {language === 'bn' ? 'কোনো সেবা খুঁজে পাওয়া যায়নি' : 'No services found'}
-            </h3>
-            <p className="text-xs text-slate-500">
-              {language === 'bn' ? 'অনুসন্ধান শব্দটি পরিবর্তন করে পুনরায় চেষ্টা করুন।' : 'Please adjust your search keyword and try again.'}
-            </p>
+            <div>
+              <h3 className="text-lg font-bold text-slate-900">
+                {language === 'bn' ? 'কোনো সেবা খুঁজে পাওয়া যায়নি' : 'No services found'}
+              </h3>
+              <p className="text-sm text-slate-500 mt-1">
+                {language === 'bn' ? 'অনুসন্ধান শব্দটি পরিবর্তন করে পুনরায় চেষ্টা করুন।' : 'Please adjust your search keyword and try again.'}
+              </p>
+            </div>
             <button
               onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}
-              className="px-4 py-1.5 rounded-xl bg-red-600 text-white text-xs font-bold"
+              className="mt-2 px-6 py-2.5 rounded-full bg-[#006B54] text-white text-sm font-bold shadow-md hover:bg-[#005B48] transition-colors"
             >
               {language === 'bn' ? 'সকল সেবা প্রদর্শন' : 'Reset Filters'}
             </button>

@@ -109,6 +109,25 @@ const phoneticRules: [RegExp, string][] = [
   [/h/gi, 'হ'],
   [/w/gi, 'ও'],
 
+  // Vowel sequences
+  [/aI/g, 'াঈ'],
+  [/ai/gi, 'াই'],
+  [/aU/g, 'াঊ'],
+  [/au/gi, 'াউ'],
+  [/ao/gi, 'াও'],
+  [/eI/g, 'েঈ'],
+  [/ei/gi, 'েই'],
+  [/eU/g, 'েঊ'],
+  [/eu/gi, 'েউ'],
+  [/eo/gi, 'েও'],
+  [/iU/g, 'িঊ'],
+  [/iu/gi, 'িউ'],
+  [/io/gi, 'িও'],
+  [/uI/g, 'ুঈ'],
+  [/ui/gi, 'ুই'],
+  [/uo/gi, 'ুও'],
+  [/ua/gi, 'ুয়া'],
+
   // Vowels and Kar
   [/aa/gi, 'া'],
   [/ee/gi, 'ী'],
@@ -128,6 +147,18 @@ const phoneticRules: [RegExp, string][] = [
 
 export function parsePhoneticWord(word: string): string {
   if (!word) return '';
+  
+  let clean = word;
+  
+  // Check exact special words first
+  for (const [regex, replacement] of phoneticRules) {
+    if (regex.source.includes('\\b')) {
+      if (clean.match(regex)) {
+        clean = clean.replace(regex, replacement);
+        if (/[অ-য়]/.test(clean)) return clean;
+      }
+    }
+  }
   
   // Independent vowel at the start of a word
   const initialVowels: Record<string, string> = {
@@ -149,8 +180,6 @@ export function parsePhoneticWord(word: string): string {
     'rri': 'ঋ',
   };
 
-  let clean = word;
-  
   // Check if starts with independent vowel
   for (const [key, val] of Object.entries(initialVowels).sort((a, b) => b[0].length - a[0].length)) {
     if (clean.toLowerCase().startsWith(key.toLowerCase())) {

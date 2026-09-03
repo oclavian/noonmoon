@@ -209,10 +209,10 @@ export const PhoneticTool: React.FC = () => {
   return (
     <section id="phonetic-typing-tool-container" className="space-y-4 sm:space-y-6">
       {/* Tool Header Card */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 shadow-xs">
+      <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/60 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-50 text-slate-900 border border-purple-200 flex items-center justify-center font-bold shadow-xs shrink-0">
+            <div className="w-10 h-10 rounded-[1rem] bg-purple-50 text-slate-900 border border-purple-200 flex items-center justify-center font-bold shadow-sm shrink-0">
               <Keyboard className="w-5 h-5" />
             </div>
             <div>
@@ -235,9 +235,9 @@ export const PhoneticTool: React.FC = () => {
             {/* Voice Typing Button */}
             <button
               onClick={toggleVoiceTyping}
-              className={`flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl border transition-all ${
+              className={`flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-[1rem] border transition-all ${
                 isListening
-                  ? 'bg-rose-600 text-white border-rose-600 animate-pulse shadow-xs'
+                  ? 'bg-rose-600 text-white border-rose-600 animate-pulse shadow-sm'
                   : 'bg-purple-50 hover:bg-purple-100 text-purple-800 border-purple-300'
               }`}
               title="কথা বলে বাংলায় টাইপ করুন"
@@ -249,7 +249,7 @@ export const PhoneticTool: React.FC = () => {
             {/* File Upload Trigger */}
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border border-slate-300/60 transition-all"
+              className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-[1rem] bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300/60 transition-all"
               title="টেক্সট ফাইল আপলোড করুন"
             >
               <Upload className="w-3.5 h-3.5" />
@@ -266,10 +266,10 @@ export const PhoneticTool: React.FC = () => {
             {/* History Toggle */}
             <button
               onClick={() => setShowHistory(!showHistory)}
-              className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl border transition-all ${
+              className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-[1rem] border transition-all ${
                 showHistory
                   ? 'bg-slate-800 text-white border-slate-800'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border-slate-300/60'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-300/60'
               }`}
               title="পূর্ববর্তী ড্রাফট ইতিহাস"
             >
@@ -280,10 +280,10 @@ export const PhoneticTool: React.FC = () => {
             {/* Cheat Sheet Toggle */}
             <button
               onClick={() => setShowCheatSheet(!showCheatSheet)}
-              className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl border transition-all ${
+              className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-[1rem] border transition-all ${
                 showCheatSheet
-                  ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-purple-600 shadow-xs'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border-slate-300/60'
+                  ? 'bg-slate-900 text-white border-purple-600 shadow-sm'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-300/60'
               }`}
             >
               <HelpCircle className="w-3.5 h-3.5" />
@@ -292,7 +292,7 @@ export const PhoneticTool: React.FC = () => {
 
             <button
               onClick={handleClear}
-              className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 text-slate-600 dark:text-slate-400 border border-slate-300/60 transition-all"
+              className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-[1rem] bg-slate-100 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 text-slate-600 border border-slate-300/60 transition-all"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>{t('clear')}</span>
@@ -302,7 +302,7 @@ export const PhoneticTool: React.FC = () => {
 
         {/* Voice status banner */}
         {voiceStatus && (
-          <div className="mt-3 p-2.5 bg-purple-50 text-purple-800 border border-purple-200 rounded-xl text-xs flex items-center gap-2">
+          <div className="mt-3 p-2.5 bg-purple-50 text-purple-800 border border-purple-200 rounded-[1rem] text-xs flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-purple-500 animate-ping" />
             <span>{voiceStatus}</span>
           </div>
@@ -315,7 +315,7 @@ export const PhoneticTool: React.FC = () => {
             <button
               key={idx}
               onClick={() => setEnglishInput(sample.text)}
-              className="text-xs bg-slate-50 hover:bg-purple-50 text-slate-600 dark:text-slate-400 hover:text-purple-800 border border-slate-300/60 hover:border-purple-300 px-2.5 py-1 rounded-lg transition-all"
+              className="text-xs bg-slate-50 hover:bg-purple-50 text-slate-600 hover:text-purple-800 border border-slate-300/60 hover:border-purple-300 px-2.5 py-1 rounded-lg transition-all"
             >
               {sample.label}
             </button>
@@ -325,7 +325,7 @@ export const PhoneticTool: React.FC = () => {
 
       {/* History Drawer */}
       {showHistory && (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-5 shadow-xs space-y-3 animate-in fade-in">
+        <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-6 space-y-3 animate-in fade-in">
           <div className="flex items-center justify-between border-b border-slate-200/60 pb-2.5">
             <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
               <History className="w-4 h-4 text-purple-600" />
@@ -352,7 +352,7 @@ export const PhoneticTool: React.FC = () => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
               {historyList.map((item) => (
-                <div key={item.id} className="p-3 bg-slate-50 hover:bg-purple-50/50 rounded-xl border border-slate-300/60 flex flex-col justify-between space-y-2">
+                <div key={item.id} className="p-3 bg-slate-50 hover:bg-purple-50/50 rounded-[1rem] border border-slate-300/60 flex flex-col justify-between space-y-2">
                   <div className="font-bangla text-xs font-semibold text-slate-900 line-clamp-2">
                     {item.content}
                   </div>
@@ -388,7 +388,7 @@ export const PhoneticTool: React.FC = () => {
       {/* Dual Pane Interactive Typing Console */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
         {/* English Phonetic Input Panel */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-5 shadow-xs flex flex-col justify-between focus-within:border-slate-900 dark:border-white transition-colors">
+        <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-6 flex flex-col justify-between focus-within:border-slate-900 transition-colors">
           <div>
             <div className="flex items-center justify-between gap-2 mb-2.5">
               <label htmlFor="phonetic-english-input" className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
@@ -406,7 +406,7 @@ export const PhoneticTool: React.FC = () => {
               onChange={(e) => setEnglishInput(e.target.value)}
               placeholder={language === 'bn' ? 'এখানে ইংরেজিতে টাইপ করুন (যেমন: ami banglay gan gai)...' : 'Type in English phonetics here (e.g. ami banglay gan gai)...'}
               rows={7}
-              className="w-full text-sm sm:text-base font-mono-code text-slate-900 bg-slate-50/50 p-3.5 sm:p-4 rounded-xl border border-slate-300/60/80 focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 outline-none resize-none transition-all"
+              className="w-full text-sm sm:text-base font-mono-code text-slate-900 bg-slate-50/50 p-3.5 sm:p-4 rounded-[1rem] border border-slate-300/60/80 focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 outline-none resize-none transition-all"
             />
           </div>
           <div className="pt-2.5 flex items-center justify-between text-xs text-slate-500 border-t border-slate-200/60 mt-2">
@@ -415,7 +415,7 @@ export const PhoneticTool: React.FC = () => {
         </div>
 
         {/* Bengali Output Panel */}
-        <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 sm:p-5 shadow-xs flex flex-col justify-between bg-gradient-to-b from-purple-50/30 to-white">
+        <div className="bg-slate-50/50 rounded-[2rem] border border-slate-200 p-4 sm:p-5 shadow-sm flex flex-col justify-between bg-gradient-to-b from-purple-50/30 to-white">
           <div>
             <div className="flex items-center justify-between gap-2 mb-2.5">
               <label className="text-xs font-bold uppercase tracking-wider text-purple-800 flex items-center gap-1.5">
@@ -428,7 +428,7 @@ export const PhoneticTool: React.FC = () => {
                 <span>{formatNum(charCount)} {t('characters')}</span>
               </div>
             </div>
-            <div className="w-full min-h-[160px] sm:min-h-[190px] text-base sm:text-xl font-bangla font-medium text-slate-900 bg-white p-3.5 sm:p-4 rounded-xl border border-purple-200/80 shadow-inner leading-relaxed select-all">
+            <div className="w-full min-h-[160px] sm:min-h-[190px] text-base sm:text-xl font-bangla font-medium text-slate-900 bg-white p-3.5 sm:p-4 rounded-[1rem] border border-purple-200/80 shadow-inner leading-relaxed select-all">
               {banglaOutput || (
                 <span className="text-slate-300 font-normal italic text-sm sm:text-base">
                   {language === 'bn' ? 'বামপাশে টাইপ করলেই এখানে বাংলা রূপান্তর দেখা যাবে...' : 'Realtime Bengali rendering will appear here as you type...'}
@@ -443,7 +443,7 @@ export const PhoneticTool: React.FC = () => {
               <button
                 onClick={handleSpeak}
                 disabled={!banglaOutput}
-                className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-xl transition-all ${
+                className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-[1rem] transition-all ${
                   isSpeaking
                     ? 'bg-amber-500 text-white animate-pulse'
                     : 'bg-purple-100/80 hover:bg-purple-200 text-purple-800 disabled:opacity-40'
@@ -457,7 +457,7 @@ export const PhoneticTool: React.FC = () => {
               <button
                 onClick={handleDownloadDoc}
                 disabled={!banglaOutput}
-                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 disabled:opacity-40 transition-all"
+                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-[1rem] bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 disabled:opacity-40 transition-all"
                 title="ওয়ার্ড ফাইল (.doc) ডাউনলোড"
               >
                 <FileText className="w-3.5 h-3.5" />
@@ -467,7 +467,7 @@ export const PhoneticTool: React.FC = () => {
               <button
                 onClick={handleDownloadTxt}
                 disabled={!banglaOutput}
-                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 dark:text-slate-300 disabled:opacity-40 transition-all"
+                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-[1rem] bg-slate-100 hover:bg-slate-200 text-slate-700 disabled:opacity-40 transition-all"
                 title="টেক্সট ফাইল ডাউনলোড"
               >
                 <Download className="w-3.5 h-3.5" />
@@ -478,7 +478,7 @@ export const PhoneticTool: React.FC = () => {
               <button
                 onClick={handlePrint}
                 disabled={!banglaOutput}
-                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 dark:text-slate-300 disabled:opacity-40 transition-all"
+                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-[1rem] bg-slate-100 hover:bg-slate-200 text-slate-700 disabled:opacity-40 transition-all"
                 title="প্রিন্ট করুন"
               >
                 <Printer className="w-3.5 h-3.5" />
@@ -489,10 +489,10 @@ export const PhoneticTool: React.FC = () => {
             <button
               onClick={handleCopy}
               disabled={!banglaOutput}
-              className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-xl shadow-xs transition-all active:scale-95 ${
+              className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-[1rem] shadow-sm transition-all active:scale-95 ${
                 copied
                   ? 'bg-purple-700 text-white'
-                  : 'bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 disabled:opacity-40'
+                  : 'bg-slate-900 hover:bg-slate-800:bg-slate-200 text-white disabled:opacity-40'
               }`}
             >
               {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
@@ -504,7 +504,7 @@ export const PhoneticTool: React.FC = () => {
 
       {/* Interactive Phonetic Cheat Sheet Drawer */}
       {showCheatSheet && (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-5 shadow-xs space-y-4 animate-in fade-in duration-150">
+        <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-6 space-y-4 animate-in fade-in duration-150">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/60 pb-3">
             <div>
               <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
@@ -529,7 +529,7 @@ export const PhoneticTool: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3">
             {filteredCheatRules.map((rule, idx) => (
-              <div key={idx} className="bg-slate-50 p-2.5 sm:p-3 rounded-xl border border-slate-300/60/80 space-y-1 hover:border-purple-300 transition-colors">
+              <div key={idx} className="bg-slate-50 p-2.5 sm:p-3 rounded-[1rem] border border-slate-300/60/80 space-y-1 hover:border-purple-300 transition-colors">
                 <div className="flex items-center justify-between">
                   <span className="font-mono-code font-bold text-slate-900 text-xs bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200">
                     {rule.key}

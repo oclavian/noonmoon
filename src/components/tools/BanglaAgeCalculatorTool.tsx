@@ -157,10 +157,10 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
   return (
     <section id="bangla-age-calculator-tool" className="space-y-4 sm:space-y-6">
       {/* Header Card */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 shadow-xs">
+      <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/60 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-50 text-slate-900 border border-purple-200 flex items-center justify-center font-bold shadow-xs shrink-0">
+            <div className="w-10 h-10 rounded-[1rem] bg-purple-50 text-slate-900 border border-purple-200 flex items-center justify-center font-bold shadow-sm shrink-0">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
@@ -181,13 +181,13 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
           </div>
 
           {/* Mode Switcher */}
-          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-300/60 self-start sm:self-auto">
+          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-[1rem] border border-slate-300/60 self-start sm:self-auto">
             <button
               onClick={() => setMode('current-age')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                 mode === 'current-age'
-                  ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  ? 'bg-slate-900 text-white shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               {language === 'bn' ? 'বর্তমান বয়স' : 'Current Age'}
@@ -196,8 +196,8 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
               onClick={() => setMode('date-difference')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                 mode === 'date-difference'
-                  ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  ? 'bg-slate-900 text-white shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               {language === 'bn' ? 'তারিখের ব্যবধান' : 'Date Difference'}
@@ -209,7 +209,7 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
         {mode === 'current-age' ? (
           <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
             <div className="space-y-1.5">
-              <label htmlFor="birthdate-input" className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+              <label htmlFor="birthdate-input" className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                 <Gift className="w-3.5 h-3.5 text-purple-600" />
                 <span>{language === 'bn' ? 'আপনার জন্মতারিখ নির্বাচন করুন:' : 'Select Your Date of Birth:'}</span>
               </label>
@@ -219,12 +219,12 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
                 value={birthDateStr}
                 onChange={(e) => setBirthDateStr(e.target.value)}
                 max={new Date().toISOString().split('T')[0]}
-                className="w-full text-sm font-semibold bg-slate-50 border border-slate-300/60 px-3.5 py-2 rounded-xl text-slate-900 focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 outline-none"
+                className="w-full text-sm font-semibold bg-slate-50 border border-slate-300/60 px-3.5 py-2 rounded-[1rem] text-slate-900 focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 outline-none"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label htmlFor="targetdate-input" className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+              <label htmlFor="targetdate-input" className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-blue-600" />
                 <span>{language === 'bn' ? 'যে তারিখ অনুযায়ী হিসাব হবে:' : 'Calculate Age As Of:'}</span>
               </label>
@@ -233,7 +233,7 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
                 type="date"
                 value={targetDateStr}
                 onChange={(e) => setTargetDateStr(e.target.value)}
-                className="w-full text-sm font-semibold bg-slate-50 border border-slate-300/60 px-3.5 py-2 rounded-xl text-slate-900 focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 outline-none"
+                className="w-full text-sm font-semibold bg-slate-50 border border-slate-300/60 px-3.5 py-2 rounded-[1rem] text-slate-900 focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 outline-none"
               />
             </div>
 
@@ -256,25 +256,25 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
         ) : (
           <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
+              <label className="text-xs font-bold text-slate-700">
                 {language === 'bn' ? 'শুরুর তারিখ (Start Date):' : 'Start Date:'}
               </label>
               <input
                 type="date"
                 value={diffStartStr}
                 onChange={(e) => setDiffStartStr(e.target.value)}
-                className="w-full text-sm font-semibold bg-slate-50 border border-slate-300/60 px-3.5 py-2 rounded-xl text-slate-900 focus:border-slate-900 focus:bg-white outline-none"
+                className="w-full text-sm font-semibold bg-slate-50 border border-slate-300/60 px-3.5 py-2 rounded-[1rem] text-slate-900 focus:border-slate-900 focus:bg-white outline-none"
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
+              <label className="text-xs font-bold text-slate-700">
                 {language === 'bn' ? 'শেষের তারিখ (End Date):' : 'End Date:'}
               </label>
               <input
                 type="date"
                 value={diffEndStr}
                 onChange={(e) => setDiffEndStr(e.target.value)}
-                className="w-full text-sm font-semibold bg-slate-50 border border-slate-300/60 px-3.5 py-2 rounded-xl text-slate-900 focus:border-slate-900 focus:bg-white outline-none"
+                className="w-full text-sm font-semibold bg-slate-50 border border-slate-300/60 px-3.5 py-2 rounded-[1rem] text-slate-900 focus:border-slate-900 focus:bg-white outline-none"
               />
             </div>
           </div>
@@ -285,12 +285,12 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
       {mode === 'current-age' && ageResult && (
         <div className="space-y-4 sm:space-y-5 animate-in fade-in duration-200">
           {/* Primary Age Big Card */}
-          <div className="bg-white dark:bg-slate-900 text-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-md border border-[#047857]/60 relative overflow-hidden">
+          <div className="bg-white text-slate-900 border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-md border border-[#047857]/60 relative overflow-hidden">
             <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 w-48 h-48 bg-purple-500/10 rounded-full blur-2xl pointer-events-none" />
             
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
               <div>
-                <div className="inline-flex items-center gap-2 bg-purple-700/60 text-[#6ee7b7] text-xs font-bold px-3 py-1 rounded-full border border-slate-900 dark:border-white/40 mb-3">
+                <div className="inline-flex items-center gap-2 bg-purple-700/60 text-[#6ee7b7] text-xs font-bold px-3 py-1 rounded-full border border-slate-900/40 mb-3">
                   <Sparkles className="w-3.5 h-3.5 text-[#34d399]" />
                   <span>{language === 'bn' ? 'বর্তমান বয়স হিসাব' : 'Calculated Age'}</span>
                 </div>
@@ -308,21 +308,21 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
               <div className="flex flex-wrap items-center gap-2.5 shrink-0">
                 <button
                   onClick={handleCopySummary}
-                  className="flex items-center gap-1.5 bg-purple-500 hover:bg-purple-400 text-slate-950 text-xs sm:text-sm font-bold px-4 py-2 rounded-xl transition-all shadow-sm active:scale-95"
+                  className="flex items-center gap-1.5 bg-purple-500 hover:bg-purple-400 text-slate-950 text-xs sm:text-sm font-bold px-4 py-2 rounded-[1rem] transition-all shadow-sm active:scale-95"
                 >
                   {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   <span>{copied ? (language === 'bn' ? 'কপি হয়েছে!' : 'Copied!') : (language === 'bn' ? 'বিবরণী কপি' : 'Copy Summary')}</span>
                 </button>
                 <button
                   onClick={handlePrintCertificate}
-                  className="flex items-center gap-1.5 bg-[#022c22]/70 hover:bg-purple-900 text-[#d1fae5] text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl border border-purple-600/50 transition-all"
+                  className="flex items-center gap-1.5 bg-[#022c22]/70 hover:bg-purple-900 text-[#d1fae5] text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-[1rem] border border-purple-600/50 transition-all"
                 >
                   <Printer className="w-4 h-4" />
                   <span>{language === 'bn' ? 'সনদ প্রিন্ট' : 'Print View'}</span>
                 </button>
                 <button
                   onClick={handleDownloadPdfCertificate}
-                  className="flex items-center gap-1.5 bg-rose-950/70 hover:bg-rose-900 text-rose-100 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl border border-rose-600/50 transition-all"
+                  className="flex items-center gap-1.5 bg-rose-950/70 hover:bg-rose-900 text-rose-100 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-[1rem] border border-rose-600/50 transition-all"
                 >
                   <Download className="w-4 h-4" />
                   <span>{language === 'bn' ? 'পিডিএফ সনদ' : 'PDF Cert'}</span>
@@ -334,24 +334,24 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
           {/* Secondary Bento Grid Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {/* Card 1: Bengali Date of Birth Details */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-xs flex flex-col justify-between hover:border-purple-300 transition-colors">
+            <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-6 flex flex-col justify-between hover:border-purple-300 transition-colors">
               <div>
                 <div className="flex items-center gap-2.5 text-slate-900 font-bold text-sm mb-3">
                   <CalendarDays className="w-4 h-4" />
                   <h4>{language === 'bn' ? 'বাংলা জন্মতারিখ (বঙ্গাব্দ)' : 'Bengali San Date of Birth'}</h4>
                 </div>
-                <div className="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                  <div className="p-3 bg-purple-50/60 rounded-xl border border-purple-100">
+                <div className="space-y-2 text-xs sm:text-sm text-slate-700">
+                  <div className="p-3 bg-purple-50/60 rounded-[1rem] border border-purple-100">
                     <span className="text-xs text-slate-500">{language === 'bn' ? 'বাংলা সন ও পঞ্জিকা তারিখ:' : 'Bengali San & Date:'}</span>
                     <p className="text-base font-bold text-purple-950 font-bangla mt-0.5">
                       {ageResult.bengaliDob.dayBn} {ageResult.bengaliDob.monthBn}, {ageResult.bengaliDob.yearBn} বঙ্গাব্দ
                     </p>
                   </div>
-                  <div className="flex items-center justify-between pt-1 text-slate-600 dark:text-slate-400">
+                  <div className="flex items-center justify-between pt-1 text-slate-600">
                     <span>{language === 'bn' ? 'জন্মকালীন ঋতু:' : 'Birth Season:'}</span>
                     <strong className="text-slate-900 font-bangla">{ageResult.bengaliDob.seasonBn} ঋতু</strong>
                   </div>
-                  <div className="flex items-center justify-between text-slate-600 dark:text-slate-400">
+                  <div className="flex items-center justify-between text-slate-600">
                     <span>{language === 'bn' ? 'জন্মের বার:' : 'Birth Day of Week:'}</span>
                     <strong className="text-slate-900 font-bangla">{ageResult.bengaliDob.weekdayBn}</strong>
                   </div>
@@ -360,24 +360,24 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
             </div>
 
             {/* Card 2: Next Birthday Countdown */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-xs flex flex-col justify-between hover:border-purple-300 transition-colors">
+            <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-6 flex flex-col justify-between hover:border-purple-300 transition-colors">
               <div>
                 <div className="flex items-center gap-2.5 text-amber-600 font-bold text-sm mb-3">
                   <Gift className="w-4 h-4" />
                   <h4>{language === 'bn' ? 'পরবর্তী জন্মদিন কাউন্টডাউন' : 'Next Birthday'}</h4>
                 </div>
-                <div className="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                  <div className="p-3 bg-amber-50/70 rounded-xl border border-amber-200/80">
+                <div className="space-y-2 text-xs sm:text-sm text-slate-700">
+                  <div className="p-3 bg-amber-50/70 rounded-[1rem] border border-amber-200/80">
                     <span className="text-xs text-amber-800">{language === 'bn' ? 'জন্মদিন আসতে বাকি:' : 'Days Remaining:'}</span>
                     <p className="text-lg font-extrabold text-amber-950 font-bangla mt-0.5">
                       আর {ageResult.daysToNextBirthdayBn} দিন
                     </p>
                   </div>
-                  <div className="flex items-center justify-between pt-1 text-slate-600 dark:text-slate-400">
+                  <div className="flex items-center justify-between pt-1 text-slate-600">
                     <span>{language === 'bn' ? 'পরবর্তী বয়স হবে:' : 'Next Milestone Age:'}</span>
                     <strong className="text-slate-900 font-bangla">{ageResult.nextAgeYearsBn} বছর</strong>
                   </div>
-                  <div className="flex items-center justify-between text-slate-600 dark:text-slate-400">
+                  <div className="flex items-center justify-between text-slate-600">
                     <span>{language === 'bn' ? 'পরবর্তী জন্মদিনের বার:' : 'Day of the Week:'}</span>
                     <strong className="text-slate-900 font-bangla">{ageResult.nextBirthdayDayBn}</strong>
                   </div>
@@ -386,13 +386,13 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
             </div>
 
             {/* Card 3: Lifespan Biological Insights */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-xs flex flex-col justify-between hover:border-purple-300 transition-colors">
+            <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-6 flex flex-col justify-between hover:border-purple-300 transition-colors">
               <div>
                 <div className="flex items-center gap-2.5 text-rose-600 font-bold text-sm mb-3">
                   <Activity className="w-4 h-4" />
                   <h4>{language === 'bn' ? 'জীবনকালের রোমাঞ্চকর তথ্য' : 'Lifespan Statistics'}</h4>
                 </div>
-                <div className="space-y-2.5 text-xs text-slate-600 dark:text-slate-400">
+                <div className="space-y-2.5 text-xs text-slate-600">
                   <div className="flex items-center justify-between pb-1.5 border-b border-slate-200/60">
                     <span className="flex items-center gap-1.5">
                       <Heart className="w-3.5 h-3.5 text-rose-500" />
@@ -423,26 +423,26 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
 
       {/* Date Difference Mode Display */}
       {mode === 'date-difference' && diffResult && (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-xs animate-in fade-in">
+        <div className="bg-white rounded-[2rem] card-elevation p-6 sm:p-8 animate-in fade-in">
           <h3 className="text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
             <Clock className="w-4 h-4 text-purple-600" />
             <span>{language === 'bn' ? 'তারিখ দুটির মধ্যকার ব্যবধানের ফলাফল' : 'Date Difference Result'}</span>
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5">
-            <div className="p-4 bg-purple-50 rounded-xl border border-purple-200">
+            <div className="p-4 bg-purple-50 rounded-[1rem] border border-purple-200">
               <span className="text-xs text-slate-900">{language === 'bn' ? 'বছর' : 'Years'}</span>
               <p className="text-2xl font-bold text-purple-950 font-bangla mt-1">{diffResult.yearsBn} বছর</p>
             </div>
-            <div className="p-4 bg-purple-50 rounded-xl border border-purple-200">
+            <div className="p-4 bg-purple-50 rounded-[1rem] border border-purple-200">
               <span className="text-xs text-slate-900">{language === 'bn' ? 'মাস' : 'Months'}</span>
               <p className="text-2xl font-bold text-purple-950 font-bangla mt-1">{diffResult.monthsBn} মাস</p>
             </div>
-            <div className="p-4 bg-purple-50 rounded-xl border border-purple-200">
+            <div className="p-4 bg-purple-50 rounded-[1rem] border border-purple-200">
               <span className="text-xs text-slate-900">{language === 'bn' ? 'দিন' : 'Days'}</span>
               <p className="text-2xl font-bold text-purple-950 font-bangla mt-1">{diffResult.daysBn} দিন</p>
             </div>
-            <div className="p-4 bg-slate-50 rounded-xl border border-slate-300/60">
+            <div className="p-4 bg-slate-50 rounded-[1rem] border border-slate-300/60">
               <span className="text-xs text-slate-500">{language === 'bn' ? 'মোট দিন সংখ্যা' : 'Total Days'}</span>
               <p className="text-2xl font-bold text-slate-900 font-bangla mt-1">{diffResult.totalDaysBn} দিন</p>
             </div>

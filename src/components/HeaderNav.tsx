@@ -1,4 +1,3 @@
-import { WaveBottom } from './Waves';
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Keyboard, 
@@ -133,193 +132,179 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-red-800 via-red-700 to-rose-900 text-white shadow-md border-b border-red-950/30 transition-all pb-8 sm:pb-12">
-      <WaveBottom />
-      
-      {/* Top Brand & Controls Bar (Lipighor Style Header) */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-4">
-        {/* Brand Logo & Title */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          <button 
-            id="brand-logo-btn"
-            onClick={() => handleTabClick('directory')}
-            className="flex items-center gap-2.5 sm:gap-3.5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300 rounded-xl p-1 group transition-transform active:scale-98"
-          >
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white text-red-700 flex items-center justify-center shadow-md border border-red-200/50 group-hover:scale-105 transition-transform shrink-0 overflow-hidden">
-              <img src="/noon-moon-logo.png" alt="Noon-Moon Logo" className="w-full h-full object-cover select-none" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-extrabold text-[19px] sm:text-[22px] text-white tracking-tight font-sans-ui flex items-center gap-1.5">
-                  <span>{language === 'bn' ? 'নুন-মুন' : 'Noon-Moon'}</span>
-                  <span className="text-red-100 text-[11px] sm:text-xs font-semibold px-2 py-0.5 rounded-md bg-red-950/50 border border-red-400/30">
-                    {language === 'bn' ? 'বাংলা পোর্টাল' : 'Bangla Portal'}
-                  </span>
-                </span>
-                <span className="hidden xs:inline-flex text-[10px] sm:text-[11px] bg-red-950/40 text-red-200 font-semibold px-2.5 py-0.5 rounded-full border border-red-500/40">
-                  {t('brandBadge')}
-                </span>
+    <header className="sticky top-2 sm:top-6 z-50 max-w-[1400px] w-full mx-auto px-4 xl:px-8">
+      <div className="glass-panel rounded-[2rem] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] transition-all flex flex-col overflow-hidden border border-white/80">
+        {/* Top Brand & Controls Bar */}
+        <div className="px-4 sm:px-6 py-3 flex items-center justify-between gap-2 sm:gap-4 bg-white/40">
+          {/* Brand Logo & Title */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <button 
+              id="brand-logo-btn"
+              onClick={() => handleTabClick('directory')}
+              className="flex items-center gap-2.5 sm:gap-3.5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#006B54] rounded-xl p-1 group transition-transform active:scale-98"
+            >
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#006B54] to-[#004B3A] text-white flex items-center justify-center shadow-lg border border-emerald-500/30 group-hover:scale-105 transition-transform shrink-0 overflow-hidden">
+                <img src="/noon-moon-logo.png" alt="Noon-Moon Logo" className="w-full h-full object-cover select-none" />
               </div>
-              <p className="text-[11px] sm:text-[12px] text-red-100/80 leading-none mt-0.5 hidden md:block">
-                {language === 'bn' ? 'বাংলা ডিজিটাল টুলস, কিবোর্ড কনভার্টার ও নাগরিক সেবা হাব' : 'Bengali Digital Tools, Keyboard Converters & Citizen Service Hub'}
-              </p>
-            </div>
-          </button>
-        </div>
-
-        {/* Center Live Date & Time Widget (Lipighor / FontBD Status Widget) */}
-        <div className="hidden lg:flex items-center gap-3 bg-red-950/45 border border-red-500/30 text-red-100 px-4 py-1.5 rounded-full text-xs shadow-inner">
-          <div className="flex items-center gap-1.5 font-medium">
-            <Calendar className="w-3.5 h-3.5 text-red-300" />
-            <span>{bengaliDateInfo}</span>
-          </div>
-          <span className="w-1 h-1 rounded-full bg-red-400/50" />
-          <div className="flex items-center gap-1.5 font-mono-code text-white font-semibold">
-            <Clock className="w-3.5 h-3.5 text-red-300" />
-            <span>{timeStr}</span>
-          </div>
-        </div>
-
-        {/* Action Controls & Language Switcher */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Language Switcher Button (বাংলা ⇄ English) */}
-          <div className="flex items-center bg-red-950/50 border border-red-500/30 p-0.5 rounded-xl shadow-xs" title="ভাষা পরিবর্তন / Switch Language">
-            <button
-              id="lang-btn-bn"
-              onClick={() => setLanguage('bn')}
-              aria-label="Switch to Bengali"
-              className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all ${
-                language === 'bn'
-                  ? 'bg-white text-red-800 shadow-sm'
-                  : 'text-red-100 hover:text-white'
-              }`}
-            >
-              বাংলা
-            </button>
-            <button
-              id="lang-btn-en"
-              onClick={() => setLanguage('en')}
-              aria-label="Switch to English"
-              className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all ${
-                language === 'en'
-                  ? 'bg-white text-red-800 shadow-sm'
-                  : 'text-red-100 hover:text-white'
-              }`}
-            >
-              ENG
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="font-extrabold text-[19px] sm:text-[22px] text-slate-900 tracking-tight font-sans-ui flex items-center gap-1.5">
+                    <span>{language === 'bn' ? 'নুন-মুন' : 'Noon-Moon'}</span>
+                    <span className="text-[#006B54] text-[11px] sm:text-xs font-semibold px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200">
+                      {language === 'bn' ? 'বাংলা পোর্টাল' : 'Bangla Portal'}
+                    </span>
+                  </span>
+                  <span className="hidden xs:inline-flex text-[10px] sm:text-[11px] bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-0.5 rounded-full border border-emerald-200">
+                    {t('brandBadge')}
+                  </span>
+                </div>
+                <p className="text-[11px] sm:text-[12px] text-slate-500 leading-none mt-0.5 hidden md:block font-medium">
+                  {language === 'bn' ? 'বাংলা ডিজিটাল টুলস, কিবোর্ড কনভার্টার ও নাগরিক সেবা হাব' : 'Bengali Digital Tools, Keyboard Converters & Citizen Service Hub'}
+                </p>
+              </div>
             </button>
           </div>
 
-          {/* Mobile Menu Hamburger Button */}
-          <button
-            id="mobile-menu-toggle-btn"
-            onClick={() => setMobileMenuOpen(prev => !prev)}
-            aria-label="Toggle Mobile Menu"
-            className="lg:hidden p-1.5 sm:p-2 rounded-xl bg-red-950/40 text-red-100 hover:text-white border border-red-500/30 hover:bg-red-950/60 focus:outline-none transition-colors"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Primary Navigation Bar (Secondary Categories / Tools Strip like Lipighor) */}
-      <div className="relative bg-red-950/35 border-t border-red-500/20 select-none">
-        {/* Left Scroll Arrow Button */}
-        {canScrollLeft && (
-          <button
-            onClick={() => scrollHorizontally(-220)}
-            aria-label="Scroll left"
-            className="absolute left-0 top-0 bottom-1 z-10 px-1 sm:px-2 flex items-center justify-center bg-gradient-to-r from-red-950 via-red-950/90 to-transparent text-red-100 hover:text-white transition-all shadow-md group"
-          >
-            <div className="p-1 rounded-lg bg-red-800/80 border border-red-600/40 group-hover:scale-105 transition-all shadow-sm">
-              <ChevronLeft className="w-4 h-4" />
+          {/* Center Live Date & Time Widget */}
+          <div className="hidden lg:flex items-center gap-3 bg-white/70 border border-slate-200/60 text-slate-600 px-4 py-1.5 rounded-full text-xs shadow-sm">
+            <div className="flex items-center gap-1.5 font-medium">
+              <Calendar className="w-3.5 h-3.5 text-[#006B54]" />
+              <span>{bengaliDateInfo}</span>
             </div>
-          </button>
-        )}
+            <span className="w-1 h-1 rounded-full bg-slate-300" />
+            <div className="flex items-center gap-1.5 font-mono-code text-slate-800 font-semibold">
+              <Clock className="w-3.5 h-3.5 text-[#006B54]" />
+              <span>{timeStr}</span>
+            </div>
+          </div>
 
-        {/* Navigation Tabs Scroll Container */}
-        <nav 
-          ref={scrollContainerRef}
-          id="primary-navigation-bar"
-          aria-label="Primary Services Navigation"
-          className="nav-scroll-container max-w-7xl mx-auto px-2 sm:px-6 flex items-center gap-1.5 sm:gap-2 py-2 scroll-smooth"
-        >
-          {navTabs.map((tab) => {
-            const Icon = tab.icon;
-            const isActive = activeTab === tab.id;
-            const label = language === 'bn' ? tab.labelBn : tab.labelEn;
-            return (
+          {/* Action Controls & Language Switcher */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Language Switcher Button (বাংলা ⇄ English) */}
+            <div className="flex items-center bg-slate-100/80 border border-slate-200/60 p-1 rounded-full shadow-inner" title="ভাষা পরিবর্তন / Switch Language">
               <button
-                key={tab.id}
-                id={`nav-tab-${tab.id}`}
-                onClick={() => handleTabClick(tab.id)}
-                role="tab"
-                aria-selected={isActive}
-                className={`flex items-center gap-1.5 sm:gap-2 whitespace-nowrap px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs sm:text-[13.5px] font-medium transition-all duration-150 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-white ${
-                  isActive
-                    ? 'bg-white text-red-800 shadow-md font-bold scale-[1.02]'
-                    : 'bg-red-950/30 text-red-100 hover:text-white border border-red-600/25 hover:bg-red-800/50'
+                id="lang-btn-bn"
+                onClick={() => setLanguage('bn')}
+                aria-label="Switch to Bengali"
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
+                  language === 'bn'
+                    ? 'bg-white text-slate-800 shadow-sm border border-slate-200/50'
+                    : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 ${isActive ? 'text-red-700' : 'text-red-300'}`} />
-                <span>{label}</span>
-                {tab.tag && (
-                  <span className={`text-[9px] sm:text-[10px] px-1.5 py-0.2 rounded-full font-bold uppercase shrink-0 ${
-                    isActive ? 'bg-red-100 text-red-800' : 'bg-red-950/60 text-red-200 border border-red-600/30'
-                  }`}>
-                    {tab.tag}
-                  </span>
-                )}
+                বাংলা
               </button>
-            );
-          })}
-        </nav>
-
-        {/* Right Scroll Arrow Button */}
-        {canScrollRight && (
-          <button
-            onClick={() => scrollHorizontally(220)}
-            aria-label="Scroll right"
-            className="absolute right-0 top-0 bottom-1 z-10 px-1 sm:px-2 flex items-center justify-center bg-gradient-to-l from-red-950 via-red-950/90 to-transparent text-red-100 hover:text-white transition-all shadow-md group"
-          >
-            <div className="p-1 rounded-lg bg-red-800/80 border border-red-600/40 group-hover:scale-105 transition-all shadow-sm">
-              <ChevronRight className="w-4 h-4" />
+              <button
+                id="lang-btn-en"
+                onClick={() => setLanguage('en')}
+                aria-label="Switch to English"
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
+                  language === 'en'
+                    ? 'bg-white text-slate-800 shadow-sm border border-slate-200/50'
+                    : 'text-slate-500 hover:text-slate-700'
+                }`}
+              >
+                ENG
+              </button>
             </div>
-          </button>
-        )}
 
-        {/* Visual Line Bar Scroll Track & Active Indicator */}
-        <div 
-          className="w-full h-1 bg-red-950/40 relative overflow-hidden border-t border-red-600/20"
-          title="Scroll Indicator Bar"
-        >
-          <div 
-            className="h-full bg-red-300 rounded-full transition-all duration-150 shadow-sm"
-            style={{
-              width: '35%',
-              transform: `translateX(${scrollProgress * 1.85}%)`,
-            }}
-          />
+            {/* Mobile Menu Hamburger Button */}
+            <button
+              id="mobile-menu-toggle-btn"
+              onClick={() => setMobileMenuOpen(prev => !prev)}
+              aria-label="Toggle Mobile Menu"
+              className="lg:hidden p-1.5 sm:p-2 rounded-xl bg-white/60 text-slate-600 hover:text-slate-900 border border-slate-200/60 hover:bg-white focus:outline-none transition-colors shadow-sm"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Primary Navigation Bar (Secondary Categories / Tools Strip) */}
+        <div className="relative border-t border-slate-200/50 select-none bg-slate-50/40">
+          {/* Left Scroll Arrow Button */}
+          {canScrollLeft && (
+            <button
+              onClick={() => scrollHorizontally(-220)}
+              aria-label="Scroll left"
+              className="absolute left-0 top-0 bottom-1 z-10 px-1 flex items-center justify-center bg-gradient-to-r from-white via-white/90 to-transparent text-slate-500 hover:text-slate-800 transition-all rounded-bl-[2rem]"
+            >
+              <div className="p-1 rounded-full bg-white border border-slate-200 shadow-sm">
+                <ChevronLeft className="w-4 h-4" />
+              </div>
+            </button>
+          )}
+
+          {/* Navigation Tabs Scroll Container */}
+          <nav 
+            ref={scrollContainerRef}
+            id="primary-navigation-bar"
+            aria-label="Primary Services Navigation"
+            className="nav-scroll-container px-3 sm:px-6 flex items-center gap-2 py-3 scroll-smooth"
+          >
+            {navTabs.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              const label = language === 'bn' ? tab.labelBn : tab.labelEn;
+              return (
+                <button
+                  key={tab.id}
+                  id={`nav-tab-${tab.id}`}
+                  onClick={() => handleTabClick(tab.id)}
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`flex items-center gap-1.5 sm:gap-2 whitespace-nowrap px-4 py-2 rounded-full text-[13px] sm:text-[14px] font-medium transition-all duration-300 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#006B54] ${
+                    isActive
+                      ? 'bg-[#006B54] text-white shadow-pill-green font-bold'
+                      : 'bg-white/80 text-slate-600 hover:text-slate-900 hover:bg-white shadow-sm border border-slate-200/50'
+                  }`}
+                >
+                  <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-emerald-200' : 'text-slate-400'}`} />
+                  <span>{label}</span>
+                  {tab.tag && (
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase shrink-0 ${
+                      isActive ? 'bg-emerald-800 text-emerald-100' : 'bg-slate-100 text-slate-500 border border-slate-200'
+                    }`}>
+                      {tab.tag}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+
+          {/* Right Scroll Arrow Button */}
+          {canScrollRight && (
+            <button
+              onClick={() => scrollHorizontally(220)}
+              aria-label="Scroll right"
+              className="absolute right-0 top-0 bottom-1 z-10 px-1 flex items-center justify-center bg-gradient-to-l from-white via-white/90 to-transparent text-slate-500 hover:text-slate-800 transition-all rounded-br-[2rem]"
+            >
+              <div className="p-1 rounded-full bg-white border border-slate-200 shadow-sm">
+                <ChevronRight className="w-4 h-4" />
+              </div>
+            </button>
+          )}
         </div>
       </div>
 
       {/* Mobile Drawer Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-red-950 border-t border-red-700/60 p-4 space-y-3 shadow-2xl animate-in fade-in duration-150">
+        <div className="lg:hidden mt-2 bg-white rounded-[2rem] p-4 space-y-3 shadow-xl border border-slate-200 animate-in fade-in duration-150 relative z-40">
           {/* Mobile Date & Time Banner */}
-          <div className="flex items-center justify-between p-2.5 rounded-xl bg-red-900/50 border border-red-700/60 text-xs text-red-100">
+          <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600">
             <div className="flex items-center gap-1.5 font-medium">
-              <Calendar className="w-3.5 h-3.5 text-red-300" />
+              <Calendar className="w-4 h-4 text-[#006B54]" />
               <span>{bengaliDateInfo}</span>
             </div>
-            <div className="flex items-center gap-1.5 font-mono-code text-white font-semibold">
-              <Clock className="w-3.5 h-3.5 text-red-300" />
+            <div className="flex items-center gap-1.5 font-mono-code text-slate-800 font-semibold">
+              <Clock className="w-4 h-4 text-[#006B54]" />
               <span>{timeStr}</span>
             </div>
           </div>
 
           {/* Grid of Tools for Quick Mobile Access */}
-          <div className="grid grid-cols-2 gap-2 pt-1">
+          <div className="grid grid-cols-2 gap-2 pt-2">
             {navTabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -328,31 +313,19 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                 <button
                   key={tab.id}
                   onClick={() => handleTabClick(tab.id)}
-                  className={`flex items-center justify-between p-2.5 rounded-xl text-left text-xs font-semibold border transition-all ${
+                  className={`flex items-center justify-between p-3 rounded-2xl text-left text-xs font-semibold border transition-all ${
                     isActive
-                      ? 'bg-white text-red-900 border-white font-bold shadow-sm'
-                      : 'bg-red-950/40 text-red-100 border-red-700/50 hover:bg-red-800'
+                      ? 'bg-[#006B54] text-white border-[#006B54] shadow-sm'
+                      : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                   }`}
                 >
                   <div className="flex items-center gap-2 truncate">
-                    <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-red-700' : 'text-red-300'}`} />
+                    <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-emerald-200' : 'text-slate-400'}`} />
                     <span className="truncate">{label}</span>
                   </div>
-                  <ChevronRight className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-red-700' : 'text-red-400'}`} />
                 </button>
               );
             })}
-          </div>
-
-          {/* Mobile Bottom Info */}
-          <div className="pt-2 border-t border-red-700/40 flex items-center justify-between text-xs text-red-200">
-            <span className="text-[11px] font-medium">
-              {language === 'bn' ? 'নুন-মুন • বাংলা ডিজিটাল সেবা ও ফন্ট হাব' : 'Noon-Moon • Bangla Online Hub'}
-            </span>
-            <span className="text-[11px] font-medium flex items-center gap-1 text-red-300">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              WCAG 2.2 AA
-            </span>
           </div>
         </div>
       )}

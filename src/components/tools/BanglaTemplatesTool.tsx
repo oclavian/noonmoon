@@ -140,10 +140,10 @@ export const BanglaTemplatesTool: React.FC = () => {
   return (
     <section id="bangla-templates-tool-container" className="space-y-4 sm:space-y-6">
       {/* Header Card */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 shadow-xs">
+      <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-8">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200/60 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-50 text-slate-900 border border-purple-200 flex items-center justify-center font-bold shadow-xs shrink-0">
+            <div className="w-10 h-10 rounded-[1rem] bg-purple-50 text-slate-900 border border-purple-200 flex items-center justify-center font-bold shadow-sm shrink-0">
               <FileText className="w-5 h-5" />
             </div>
             <div>
@@ -171,7 +171,7 @@ export const BanglaTemplatesTool: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={language === 'bn' ? 'টেমপ্লেট খুঁজুন...' : 'Search templates...'}
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-300/60 rounded-xl outline-none focus:border-slate-900 focus:bg-white transition-all"
+              className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-300/60 rounded-[1rem] outline-none focus:border-slate-900 focus:bg-white transition-all"
             />
           </div>
         </div>
@@ -185,10 +185,10 @@ export const BanglaTemplatesTool: React.FC = () => {
               <button
                 key={cat.id}
                 onClick={() => setCategoryFilter(cat.id)}
-                className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl border transition-all ${
+                className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-[1rem] border transition-all ${
                   isSelected
-                    ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-purple-600 shadow-xs'
-                    : 'bg-slate-50 hover:bg-slate-100 text-slate-600 dark:text-slate-400 border-slate-300/60'
+                    ? 'bg-slate-900 text-white border-purple-600 shadow-sm'
+                    : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-300/60'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -207,10 +207,10 @@ export const BanglaTemplatesTool: React.FC = () => {
             <button
               key={tpl.id}
               onClick={() => setSelectedTemplateId(tpl.id)}
-              className={`p-3 text-left rounded-xl border transition-all flex flex-col justify-between ${
+              className={`p-3 text-left rounded-[1rem] border transition-all flex flex-col justify-between ${
                 isSelected
-                  ? 'bg-purple-50/80 border-slate-900 dark:border-white ring-2 ring-purple-500/20 shadow-xs'
-                  : 'bg-white hover:bg-slate-50 border-slate-300/60 text-slate-700 dark:text-slate-300'
+                  ? 'bg-purple-50/80 border-slate-900 ring-2 ring-purple-500/20 shadow-sm'
+                  : 'bg-white hover:bg-slate-50 border-slate-300/60 text-slate-700'
               }`}
             >
               <div>
@@ -232,7 +232,7 @@ export const BanglaTemplatesTool: React.FC = () => {
       {/* Interactive Workbench: Form Inputs (Left) & Live Document Preview (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Left Column: Customized Input Form (5 cols) */}
-        <div className="lg:col-span-5 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-5 shadow-xs flex flex-col justify-between space-y-4">
+        <div className="lg:col-span-5 bg-white rounded-[2rem] card-elevation p-5 sm:p-6 flex flex-col justify-between space-y-4">
           <div>
             <div className="flex items-center justify-between border-b border-slate-200/60 pb-3 mb-3">
               <div>
@@ -259,7 +259,7 @@ export const BanglaTemplatesTool: React.FC = () => {
                 const val = currentValues[field.key] ?? field.defaultValue;
                 return (
                   <div key={field.key} className="space-y-1">
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">
+                    <label className="text-xs font-semibold text-slate-700 block">
                       {language === 'bn' ? field.label : field.labelEn}
                     </label>
                     {field.type === 'textarea' ? (
@@ -268,7 +268,7 @@ export const BanglaTemplatesTool: React.FC = () => {
                         value={val}
                         onChange={(e) => handleFieldChange(field.key, e.target.value)}
                         placeholder={field.placeholder}
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-300/60 px-3 py-1.5 rounded-xl text-slate-900 focus:border-slate-900 focus:bg-white outline-none"
+                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-300/60 px-3 py-1.5 rounded-[1rem] text-slate-900 focus:border-slate-900 focus:bg-white outline-none"
                       />
                     ) : (
                       <input
@@ -276,7 +276,7 @@ export const BanglaTemplatesTool: React.FC = () => {
                         value={val}
                         onChange={(e) => handleFieldChange(field.key, e.target.value)}
                         placeholder={field.placeholder}
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-300/60 px-3 py-1.5 rounded-xl text-slate-900 focus:border-slate-900 focus:bg-white outline-none"
+                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-300/60 px-3 py-1.5 rounded-[1rem] text-slate-900 focus:border-slate-900 focus:bg-white outline-none"
                       />
                     )}
                   </div>
@@ -287,7 +287,7 @@ export const BanglaTemplatesTool: React.FC = () => {
         </div>
 
         {/* Right Column: Live Printable Document Preview (7 cols) */}
-        <div className="lg:col-span-7 bg-white rounded-2xl border border-purple-200 p-4 sm:p-6 shadow-xs flex flex-col justify-between bg-gradient-to-b from-purple-50/20 to-white">
+        <div className="lg:col-span-7 bg-white rounded-[2rem] border border-purple-200 p-4 sm:p-6 shadow-sm flex flex-col justify-between bg-gradient-to-b from-purple-50/20 to-white">
           <div>
             <div className="flex items-center justify-between border-b border-purple-100 pb-3 mb-4">
               <div className="flex items-center gap-2">
@@ -302,7 +302,7 @@ export const BanglaTemplatesTool: React.FC = () => {
             </div>
 
             {/* Document Paper Preview Box */}
-            <div className="bg-white border border-slate-300/60/80 rounded-xl p-5 sm:p-7 shadow-inner text-slate-900 font-bangla text-xs sm:text-sm leading-relaxed min-h-[380px] max-h-[500px] overflow-y-auto whitespace-pre-wrap select-all">
+            <div className="bg-white border border-slate-300/60/80 rounded-[1rem] p-5 sm:p-7 shadow-inner text-slate-900 font-bangla text-xs sm:text-sm leading-relaxed min-h-[380px] max-h-[500px] overflow-y-auto whitespace-pre-wrap select-all">
               {generated.bodyText}
             </div>
           </div>
@@ -312,7 +312,7 @@ export const BanglaTemplatesTool: React.FC = () => {
             <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={handleDownloadDoc}
-                className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition-all"
+                className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-[1rem] bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition-all"
                 title="মাইক্রোসফট ওয়ার্ড (.doc) ফাইল ডাউনলোড"
               >
                 <Download className="w-3.5 h-3.5" />
@@ -320,7 +320,7 @@ export const BanglaTemplatesTool: React.FC = () => {
               </button>
               <button
                 onClick={handleDownloadPdf}
-                className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 transition-all"
+                className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-[1rem] bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 transition-all"
                 title="পিডিএফ (.pdf) ফাইল ডাউনলোড"
               >
                 <Download className="w-3.5 h-3.5" />
@@ -328,7 +328,7 @@ export const BanglaTemplatesTool: React.FC = () => {
               </button>
               <button
                 onClick={handleDownloadTxt}
-                className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 dark:text-slate-300 transition-all"
+                className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-[1rem] bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all"
                 title="টেক্সট ফাইল ডাউনলোড"
               >
                 <Download className="w-3.5 h-3.5" />
@@ -336,7 +336,7 @@ export const BanglaTemplatesTool: React.FC = () => {
               </button>
               <button
                 onClick={handlePrint}
-                className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 dark:text-slate-300 transition-all"
+                className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-[1rem] bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all"
                 title="প্রিন্ট প্রিভিউ ও প্রিন্ট"
               >
                 <Printer className="w-3.5 h-3.5" />
@@ -346,10 +346,10 @@ export const BanglaTemplatesTool: React.FC = () => {
 
             <button
               onClick={handleCopy}
-              className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-4 py-2 rounded-xl shadow-xs transition-all active:scale-95 ${
+              className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-4 py-2 rounded-[1rem] shadow-sm transition-all active:scale-95 ${
                 copied
                   ? 'bg-purple-700 text-white'
-                  : 'bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900'
+                  : 'bg-slate-900 hover:bg-slate-800:bg-slate-200 text-white'
               }`}
             >
               {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}

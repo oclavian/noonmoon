@@ -45,10 +45,10 @@ export const NumberToWordsTool: React.FC = () => {
   return (
     <section id="number-to-words-tool-container" className="space-y-4 sm:space-y-6">
       {/* Header & Controls */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 shadow-xs">
+      <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/60 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-50 text-slate-900 border border-purple-200 flex items-center justify-center font-bold shadow-xs shrink-0">
+            <div className="w-10 h-10 rounded-[1rem] bg-purple-50 text-slate-900 border border-purple-200 flex items-center justify-center font-bold shadow-sm shrink-0">
               <FileText className="w-5 h-5" />
             </div>
             <div>
@@ -71,10 +71,10 @@ export const NumberToWordsTool: React.FC = () => {
             <button
               id="numwords-toggle-currency-btn"
               onClick={() => setCurrencyMode(!currencyMode)}
-              className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl border transition-all ${
+              className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-[1rem] border transition-all ${
                 currencyMode
-                  ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-purple-600 shadow-xs'
-                  : 'bg-slate-100 text-slate-700 dark:text-slate-300 border-slate-300/60 hover:bg-slate-200'
+                  ? 'bg-slate-900 text-white border-purple-600 shadow-sm'
+                  : 'bg-slate-100 text-slate-700 border-slate-300/60 hover:bg-slate-200'
               }`}
             >
               <DollarSign className="w-4 h-4" />
@@ -84,7 +84,7 @@ export const NumberToWordsTool: React.FC = () => {
             <button
               id="numwords-clear-btn"
               onClick={() => setNumberInput('')}
-              className="flex items-center gap-1 text-xs text-slate-600 dark:text-slate-400 hover:text-rose-600 bg-slate-100 hover:bg-rose-50 px-3 py-1.5 rounded-xl border border-slate-300/60 transition-colors"
+              className="flex items-center gap-1 text-xs text-slate-600 hover:text-rose-600 bg-slate-100 hover:bg-rose-50 px-3 py-1.5 rounded-[1rem] border border-slate-300/60 transition-colors"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>{t('clear')}</span>
@@ -95,7 +95,7 @@ export const NumberToWordsTool: React.FC = () => {
         {/* Input & Quick Presets */}
         <div className="pt-3.5 space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <label htmlFor="numwords-input" className="font-bold text-slate-700 dark:text-slate-300 text-xs sm:text-sm flex items-center gap-1.5">
+            <label htmlFor="numwords-input" className="font-bold text-slate-700 text-xs sm:text-sm flex items-center gap-1.5">
               <Hash className="w-4 h-4 text-purple-600" />
               {language === 'bn' ? 'যেকোনো সংখ্যা লিখুন (ইংরেজি বা বাংলা অংকে):' : 'Enter number in English or Bengali digits:'}
             </label>
@@ -113,7 +113,7 @@ export const NumberToWordsTool: React.FC = () => {
             value={numberInput}
             onChange={(e) => setNumberInput(e.target.value)}
             placeholder="যেমন: 7543210 বা ৭৫৪৩২১০.৫০"
-            className="w-full bg-slate-50 text-slate-900 border border-slate-300/60 focus:border-slate-900 focus:bg-white rounded-xl p-3 sm:p-3.5 text-lg sm:text-2xl font-mono-code font-bold outline-none focus:ring-2 focus:ring-slate-900/10 transition-all"
+            className="w-full bg-slate-50 text-slate-900 border border-slate-300/60 focus:border-slate-900 focus:bg-white rounded-[1rem] p-3 sm:p-3.5 text-lg sm:text-2xl font-mono-code font-bold outline-none focus:ring-2 focus:ring-slate-900/10 transition-all"
           />
 
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-1">
@@ -122,7 +122,7 @@ export const NumberToWordsTool: React.FC = () => {
               <button
                 key={idx}
                 onClick={() => setNumberInput(p.val)}
-                className="text-xs bg-slate-50 hover:bg-purple-50 text-slate-600 dark:text-slate-400 hover:text-purple-800 border border-slate-300/60 hover:border-purple-300 px-2.5 py-1 rounded-lg transition-all"
+                className="text-xs bg-slate-50 hover:bg-purple-50 text-slate-600 hover:text-purple-800 border border-slate-300/60 hover:border-purple-300 px-2.5 py-1 rounded-lg transition-all"
               >
                 {p.label}
               </button>
@@ -132,7 +132,7 @@ export const NumberToWordsTool: React.FC = () => {
       </div>
 
       {/* Main Result Card */}
-      <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6 shadow-xs space-y-3.5 bg-gradient-to-b from-purple-50/20 to-white">
+      <div className="bg-slate-50/50 rounded-[2rem] border border-slate-200 p-4 sm:p-6 shadow-sm space-y-3.5 bg-gradient-to-b from-purple-50/20 to-white">
         <div className="flex items-center justify-between gap-2 border-b border-purple-100 pb-3">
           <span className="text-xs font-bold uppercase tracking-wider text-purple-800 flex items-center gap-1.5">
             <Sparkles className="w-4 h-4 text-purple-600" />
@@ -141,10 +141,10 @@ export const NumberToWordsTool: React.FC = () => {
           <button
             onClick={handleCopy}
             disabled={!wordsOutput}
-            className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-xl transition-all shadow-xs active:scale-95 ${
+            className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-[1rem] transition-all shadow-sm active:scale-95 ${
               copied
                 ? 'bg-purple-700 text-white'
-                : 'bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 disabled:opacity-40'
+                : 'bg-slate-900 hover:bg-slate-800:bg-slate-200 text-white disabled:opacity-40'
             }`}
           >
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
@@ -152,7 +152,7 @@ export const NumberToWordsTool: React.FC = () => {
           </button>
         </div>
 
-        <div className="p-3.5 sm:p-5 bg-white rounded-xl border border-purple-200 shadow-inner">
+        <div className="p-3.5 sm:p-5 bg-white rounded-[1rem] border border-purple-200 shadow-inner">
           <p className="text-lg sm:text-2xl font-bold font-bangla text-slate-900 leading-relaxed select-all">
             {wordsOutput || (language === 'bn' ? 'সংখ্যা ইনপুট দিলে এখানে কথায় রূপান্তর দেখা যাবে...' : 'Input number above to see conversion...')}
           </p>
@@ -160,7 +160,7 @@ export const NumberToWordsTool: React.FC = () => {
       </div>
 
       {/* Digital Bank Cheque Preview Simulation */}
-      <div className="bg-amber-50/40 rounded-2xl sm:rounded-3xl border-2 border-dashed border-amber-200/80 p-4 sm:p-8 shadow-md relative overflow-hidden bg-gradient-to-br from-amber-50/60 via-purple-50/20 to-slate-50">
+      <div className="bg-amber-50/40 rounded-[2rem] sm:rounded-3xl border-2 border-dashed border-amber-200/80 p-4 sm:p-8 shadow-md relative overflow-hidden bg-gradient-to-br from-amber-50/60 via-purple-50/20 to-slate-50">
         <div className="flex items-center justify-between border-b border-amber-200/60 pb-3 mb-4">
           <div className="flex items-center gap-2">
             <Receipt className="w-5 h-5 text-amber-700" />
@@ -193,7 +193,7 @@ export const NumberToWordsTool: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white/80 p-3 sm:p-4 rounded-xl border border-amber-200/60 shadow-xs space-y-1.5">
+          <div className="bg-white/80 p-3 sm:p-4 rounded-[1rem] border border-amber-200/60 shadow-sm space-y-1.5">
             <div className="text-xs text-slate-500 font-bold">{language === 'bn' ? 'টাকার পরিমাণ কথায় (The sum of):' : 'The sum of (In words):'}</div>
             <div className="text-sm sm:text-lg font-bold text-slate-900 leading-snug">
               {wordsOutput || '—'}
@@ -204,7 +204,7 @@ export const NumberToWordsTool: React.FC = () => {
             <div className="text-xs text-slate-500 font-mono-code">
               A/C PAYEE ONLY
             </div>
-            <div className="bg-[#064e3b] text-[#ffffff] font-mono-code font-extrabold text-base sm:text-xl px-3 sm:px-4 py-1.5 rounded-lg border border-[#047857] shadow-xs">
+            <div className="bg-[#064e3b] text-[#ffffff] font-mono-code font-extrabold text-base sm:text-xl px-3 sm:px-4 py-1.5 rounded-lg border border-[#047857] shadow-sm">
               ৳ {bengaliNumerals || '০.০০'} /-
             </div>
           </div>
