@@ -12,7 +12,6 @@ import { BanglaTemplatesTool } from './components/tools/BanglaTemplatesTool';
 import { NumberToWordsTool } from './components/tools/NumberToWordsTool';
 import { TextAnalyzerTool } from './components/tools/TextAnalyzerTool';
 import { SpellDictionaryTool } from './components/tools/SpellDictionaryTool';
-import { FontShowcaseTool } from './components/tools/FontShowcaseTool';
 import { PdfToolsHub } from './components/tools/PdfToolsHub';
 import { TabType } from './types';
 import { ShieldCheck, FileText, Info, Mail, ShieldAlert } from 'lucide-react';
@@ -71,11 +70,6 @@ const getSeoData = (tab: TabType, lang: 'en' | 'bn') => {
       desc: lang === 'bn' ? 'শুদ্ধ বাংলা বানান যাচাই, সমার্থক শব্দ ও বাংলা ডিকশনারি বা অভিধান।' : 'Check correct Bengali spelling, find synonyms, and use the Bengali dictionary.',
       schemaType: 'WebApplication'
     },
-    'fonts': {
-      title: lang === 'bn' ? 'বাংলা ফন্ট গ্যালারি | নুন-মুন' : 'Bengali Font Gallery | Noon-Moon',
-      desc: lang === 'bn' ? 'আকর্ষণীয় ও জনপ্রিয় সব বাংলা ফন্টের লাইভ প্রিভিউ ও শোকেস।' : 'Live preview and showcase of popular and attractive Bengali fonts.',
-      schemaType: 'WebApplication'
-    },
     'pdf-tools': {
       title: lang === 'bn' ? 'ফ্রি পিডিএফ এডিটর ও টুলস | নুন-মুন' : 'Free PDF Editor & Tools | Noon-Moon',
       desc: lang === 'bn' ? 'ব্রাউজার থেকেই সম্পূর্ণ ফ্রিতে পিডিএফ জোড়া লাগানো, আলাদা করা বা এডিট করার টুলস।' : 'Merge, split, watermark, and modify any PDF file directly from the browser for free.',
@@ -116,7 +110,7 @@ function AppContent() {
   const seoData = getSeoData(activeTab, language);
 
   return (
-    <div id="noon-moon-app-root" className={`min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-[#10b981] selection:text-[#ffffff] ${language === 'bn' ? 'font-bangla' : 'font-sans-ui'}`}>
+    <div id="noon-moon-app-root" className={`min-h-screen flex flex-col bg-[#f8fafc] text-slate-900 antialiased selection:bg-red-600 selection:text-white ${language === 'bn' ? 'font-bangla' : 'font-sans-ui'}`}>
       <SEO 
         title={seoData.title} 
         description={seoData.desc} 
@@ -143,72 +137,166 @@ function AppContent() {
         {activeTab === 'number-words' && <NumberToWordsTool />}
         {activeTab === 'analyzer' && <TextAnalyzerTool />}
         {activeTab === 'spell-dict' && <SpellDictionaryTool />}
-        {activeTab === 'fonts' && <FontShowcaseTool />}
         {activeTab === 'pdf-tools' && <PdfToolsHub />}
-
       </main>
 
-      {/* Structured Modern Responsive Footer */}
-      <footer id="app-global-footer" className="relative bg-gradient-to-r from-violet-600 via-fuchsia-600 to-rose-500 text-[#ffffff] mt-24 pt-8 sm:pt-10 pb-8 sm:pb-10">
+      {/* Structured Modern Responsive Footer (Lipighor Style in Crimson Red) */}
+      <footer id="app-global-footer" className="relative bg-gradient-to-r from-red-950 via-red-900 to-rose-950 text-white mt-24 pt-10 sm:pt-14 pb-8 sm:pb-12 border-t border-red-800/40">
         <WaveFooter />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-[#ffffff]/20">
-            <div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
+          {/* Main Footer Multi-Column Grid like Lipighor */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 pb-8 border-b border-red-800/50">
+            {/* Column 1: Brand Info */}
+            <div className="lg:col-span-2 space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#ffffff] text-purple-600 flex items-center justify-center shadow-sm border border-transparent overflow-hidden relative">
-                  <img src="/noon-moon-logo.png" alt="Noon-Moon Logo" className="w-full h-full object-cover drop-shadow-sm select-none" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                <div className="w-10 h-10 rounded-xl bg-white text-red-800 flex items-center justify-center shadow-md border border-red-200/50 overflow-hidden shrink-0">
+                  <img src="/noon-moon-logo.png" alt="Noon-Moon Logo" className="w-full h-full object-cover select-none" />
                 </div>
-                <span className="font-extrabold text-[20px] text-[#ffffff] tracking-tight font-sans-ui flex items-center gap-1.5">
-                  <span>{language === 'bn' ? 'নুন-মুন' : 'Noon-Moon'}</span>
-                  <span className="text-[#34d399] font-medium text-sm">({language === 'bn' ? 'Noon-Moon' : 'Bangla Hub'})</span>
-                </span>
-                <span className="text-[11px] bg-[#064e3b]/60 text-[#6ee7b7] px-2.5 py-0.5 rounded-full border border-[#047857]/40 flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#34d399]" />
+                <div>
+                  <span className="font-extrabold text-[21px] text-white tracking-tight font-sans-ui flex items-center gap-2">
+                    <span>{language === 'bn' ? 'নুন-মুন' : 'Noon-Moon'}</span>
+                    <span className="text-red-300 font-medium text-xs px-2 py-0.5 rounded-full bg-red-950/60 border border-red-500/40">
+                      {language === 'bn' ? 'বাংলা পোর্টাল' : 'Bangla Portal'}
+                    </span>
+                  </span>
+                </div>
+              </div>
+              
+              <p className="text-red-100/80 text-xs sm:text-[13.5px] leading-relaxed max-w-sm">
+                {language === 'bn'
+                  ? 'বাংলা টাইপোগ্রাফি, কিবোর্ড কনভার্টার, ইউনিকোড ফন্ট এবং নিত্যপ্রয়োজনীয় ডিজিটাল সেবা এক ক্লিকে ব্যবহারের একটি নির্ভরযোগ্য উন্মুক্ত প্ল্যাটফর্ম।'
+                  : 'A modern, reliable open platform for Bengali typography, keyboard converters, Unicode fonts, and essential digital citizen tools.'}
+              </p>
+
+              <div className="flex items-center gap-2 pt-1">
+                <span className="text-[11px] bg-red-950/50 text-red-200 px-3 py-1 rounded-full border border-red-500/30 flex items-center gap-1.5 font-medium">
+                  <ShieldCheck className="w-3.5 h-3.5 text-red-400" />
                   {t('wcagVerified')}
                 </span>
+                <span className="text-[11px] bg-red-950/50 text-red-200 px-3 py-1 rounded-full border border-red-500/30 font-medium">
+                  ১০০% ফ্রি ও নিরাপদ
+                </span>
               </div>
-              <p className="text-[#ffffff]/70 text-xs sm:text-[14px] mt-2 max-w-xl leading-relaxed">
-                {t('footerDescription')}
-              </p>
             </div>
 
-            {/* Quick Legal Actions / Links */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-[13.5px]">
+            {/* Column 2: Popular Converters */}
+            <div className="space-y-3">
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                <span>{language === 'bn' ? 'কনভার্টার ও টাইপিং' : 'Converters & Typing'}</span>
+              </h4>
+              <ul className="space-y-2 text-xs sm:text-[13px] text-red-100/80">
+                <li>
+                  <button onClick={() => setActiveTab('bijoy-unicode')} className="hover:text-white hover:underline transition-colors text-left">
+                    {language === 'bn' ? 'বিজয় ⇄ ইউনিকোড কনভার্টার' : 'Bijoy ⇄ Unicode'}
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => setActiveTab('phonetic')} className="hover:text-white hover:underline transition-colors text-left">
+                    {language === 'bn' ? 'অভ্র ফোনেটিক টাইপিং' : 'Avro Phonetic Typing'}
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => setActiveTab('number-words')} className="hover:text-white hover:underline transition-colors text-left">
+                    {language === 'bn' ? 'সংখ্যা থেকে কথায় রূপান্তর' : 'Number to Words'}
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 3: Fonts & Text Tools */}
+            <div className="space-y-3">
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                <span>{language === 'bn' ? 'টেক্সট টুলস' : 'Text Tools'}</span>
+              </h4>
+              <ul className="space-y-2 text-xs sm:text-[13px] text-red-100/80">
+                <li>
+                  <button onClick={() => setActiveTab('analyzer')} className="hover:text-white hover:underline transition-colors text-left">
+                    {language === 'bn' ? 'বাংলা টেক্সট অ্যানালাইজার' : 'Text Word Counter'}
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => setActiveTab('spell-dict')} className="hover:text-white hover:underline transition-colors text-left">
+                    {language === 'bn' ? 'বাংলা বানান ও ডিকশনারি' : 'Spelling & Dictionary'}
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 4: Daily Utilities & Legal */}
+            <div className="space-y-3">
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                <span>{language === 'bn' ? 'দৈনন্দিন সেবা ও নীতি' : 'Utilities & Legal'}</span>
+              </h4>
+              <ul className="space-y-2 text-xs sm:text-[13px] text-red-100/80">
+                <li>
+                  <button onClick={() => setActiveTab('age-calculator')} className="hover:text-white hover:underline transition-colors text-left">
+                    {language === 'bn' ? 'বাংলা বয়স ক্যালকুলেটর' : 'Age Calculator'}
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => setActiveTab('calendar')} className="hover:text-white hover:underline transition-colors text-left">
+                    {language === 'bn' ? 'বঙ্গাব্দ পঞ্জিকা ও ছুটির তালিকা' : 'Bengali Calendar'}
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => setActiveTab('pdf-tools')} className="hover:text-white hover:underline transition-colors text-left">
+                    {language === 'bn' ? 'ফ্রি অনলাইন পিডিএফ টুলস' : 'Free PDF Tools'}
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => setLegalModal('privacy')} className="hover:text-white hover:underline transition-colors text-left">
+                    {language === 'bn' ? 'গোপনীয়তা নীতি' : 'Privacy Policy'}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Quick Legal Buttons Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-4 text-xs sm:text-[13.5px] pt-1">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <button 
                 onClick={() => setLegalModal('about')}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#ffffff]/10 hover:bg-[#ffffff]/20 backdrop-blur-sm border-[#ffffff]/20 text-[#ffffff] border border-[#ffffff]/20 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-950/40 hover:bg-red-950/70 border border-red-600/30 text-red-100 hover:text-white transition-colors"
               >
                 <Info className="w-3.5 h-3.5" />
                 {language === 'bn' ? 'আমাদের সম্পর্কে' : 'About Us'}
               </button>
               <button 
                 onClick={() => setLegalModal('privacy')}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#ffffff]/10 hover:bg-[#ffffff]/20 backdrop-blur-sm border-[#ffffff]/20 text-[#ffffff] border border-[#ffffff]/20 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-950/40 hover:bg-red-950/70 border border-red-600/30 text-red-100 hover:text-white transition-colors"
               >
                 <ShieldAlert className="w-3.5 h-3.5" />
                 {language === 'bn' ? 'গোপনীয়তা নীতি' : 'Privacy Policy'}
               </button>
               <button 
                 onClick={() => setLegalModal('terms')}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#ffffff]/10 hover:bg-[#ffffff]/20 backdrop-blur-sm border-[#ffffff]/20 text-[#ffffff] border border-[#ffffff]/20 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-950/40 hover:bg-red-950/70 border border-red-600/30 text-red-100 hover:text-white transition-colors"
               >
                 <FileText className="w-3.5 h-3.5" />
                 {language === 'bn' ? 'শর্তাবলী' : 'Terms of Service'}
               </button>
               <button 
                 onClick={() => setLegalModal('contact')}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#ffffff]/10 hover:bg-[#ffffff]/20 backdrop-blur-sm border-[#ffffff]/20 text-[#ffffff] border border-[#ffffff]/20 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-950/40 hover:bg-red-950/70 border border-red-600/30 text-red-100 hover:text-white transition-colors"
               >
                 <Mail className="w-3.5 h-3.5" />
-                {language === 'bn' ? 'যোগাযোগ' : 'Contact Us'}
+                {language === 'bn' ? 'যোগাযোগ ও ফিডব্যাক' : 'Contact Us'}
               </button>
             </div>
+
+            <p className="text-red-200/70 text-xs">
+              {language === 'bn' ? 'বাংলা ভাষার ডিজিটাল উৎকর্ষতায় নিবেদিত' : 'Dedicated to Bangla Digital Typography'}
+            </p>
           </div>
 
-          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#ffffff]/70 text-center sm:text-left">
-            <p>© {new Date().getFullYear()} {t('footerCopyright')}</p>
-            <p className="text-[#ffffff]/60">{t('footerTag')}</p>
+          {/* Bottom Copyright Bar */}
+          <div className="pt-4 border-t border-red-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-red-200/70 text-center sm:text-left">
+            <p>© {new Date().getFullYear()} নুন-মুন (Noon-Moon) • সর্বস্বত্ব সংরক্ষিত</p>
+            <p>বাংলা ফন্ট, কনভার্টার ও অনলাইন টুলস পোর্টাল</p>
           </div>
         </div>
       </footer>

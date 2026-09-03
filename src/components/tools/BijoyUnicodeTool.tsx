@@ -181,10 +181,10 @@ export const BijoyUnicodeTool: React.FC = () => {
   return (
     <section id="bijoy-unicode-converter-container" className="space-y-4 sm:space-y-6">
       {/* Tool Header & Mode Selector */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 shadow-xs">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200/60 pb-4">
+      <div className="bg-white rounded-2xl border border-red-100 p-4 sm:p-6 shadow-xs">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-red-100 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-50 text-slate-900 border border-purple-200 flex items-center justify-center font-bold shadow-xs shrink-0">
+            <div className="w-11 h-11 rounded-xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center font-bold shadow-xs shrink-0">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
@@ -192,7 +192,7 @@ export const BijoyUnicodeTool: React.FC = () => {
                 <h2 className="text-lg sm:text-xl font-bold text-slate-900">
                   {t('bijoyToolTitle')}
                 </h2>
-                <span className="text-[11px] bg-purple-100 text-purple-800 font-bold px-2.5 py-0.5 rounded-full">
+                <span className="text-[11px] bg-red-50 text-red-700 font-bold px-2.5 py-0.5 rounded-full border border-red-200">
                   ANSI & Unicode 100% Accurate
                 </span>
               </div>
@@ -204,7 +204,7 @@ export const BijoyUnicodeTool: React.FC = () => {
 
           <div className="flex flex-wrap items-center gap-2">
             {/* Mode Switcher Tabs */}
-            <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-300/60">
+            <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
               <button
                 onClick={() => {
                   setConversionMode('unicode-to-bijoy');
@@ -212,8 +212,8 @@ export const BijoyUnicodeTool: React.FC = () => {
                 }}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                   conversionMode === 'unicode-to-bijoy'
-                    ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xs'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                    ? 'bg-red-600 text-white shadow-xs'
+                    : 'text-slate-600 hover:text-red-700'
                 }`}
               >
                 {t('unicodeToBijoyTab')}
@@ -225,8 +225,8 @@ export const BijoyUnicodeTool: React.FC = () => {
                 }}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                   conversionMode === 'bijoy-to-unicode'
-                    ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xs'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                    ? 'bg-red-600 text-white shadow-xs'
+                    : 'text-slate-600 hover:text-red-700'
                 }`}
               >
                 {t('bijoyToUnicodeTab')}
@@ -238,8 +238,8 @@ export const BijoyUnicodeTool: React.FC = () => {
               onClick={() => setShowHistory(!showHistory)}
               className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl border transition-all ${
                 showHistory
-                  ? 'bg-slate-800 text-white border-slate-800'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:text-slate-300 border-slate-300/60'
+                  ? 'bg-red-600 text-white border-red-600'
+                  : 'bg-slate-100 hover:bg-red-50 hover:text-red-700 text-slate-700 border-slate-200'
               }`}
               title="পূর্ববর্তী রূপান্তরের ইতিহাস"
             >
@@ -253,15 +253,15 @@ export const BijoyUnicodeTool: React.FC = () => {
         <div className="pt-3 flex flex-wrap items-center justify-between gap-2.5 text-xs">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-slate-500 font-medium">{t('fontStatusLabel')}</span>
-            <span className="bg-purple-50 text-slate-900 font-semibold px-2.5 py-1 rounded-lg border border-purple-200 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+            <span className="bg-red-50 text-red-800 font-semibold px-2.5 py-1 rounded-lg border border-red-200 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
               {fontName}
             </span>
 
             {/* Text File Upload */}
             <button
               onClick={() => textFileInputRef.current?.click()}
-              className="text-slate-600 dark:text-slate-400 hover:text-slate-900 bg-slate-50 hover:bg-purple-50 border border-slate-300/60 hover:border-purple-300 px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 font-medium"
+              className="text-slate-600 hover:text-red-700 bg-slate-50 hover:bg-red-50 border border-slate-200 hover:border-red-300 px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 font-medium"
             >
               <Upload className="w-3 h-3" />
               <span>{language === 'bn' ? 'ফাইল কনভার্ট (.txt)' : 'Convert File'}</span>
@@ -277,7 +277,7 @@ export const BijoyUnicodeTool: React.FC = () => {
             {/* Custom font upload trigger */}
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="text-slate-600 dark:text-slate-400 hover:text-slate-900 bg-slate-50 hover:bg-purple-50 border border-slate-300/60 hover:border-purple-300 px-2.5 py-1 rounded-lg transition-all flex items-center gap-1"
+              className="text-slate-600 hover:text-red-700 bg-slate-50 hover:bg-red-50 border border-slate-200 hover:border-red-300 px-2.5 py-1 rounded-lg transition-all flex items-center gap-1"
             >
               <Upload className="w-3 h-3" />
               <span>{t('uploadFontBtn')}</span>
@@ -298,7 +298,7 @@ export const BijoyUnicodeTool: React.FC = () => {
               <button
                 key={idx}
                 onClick={() => setInputText(s.text)}
-                className="bg-slate-50 hover:bg-purple-50 text-slate-600 dark:text-slate-400 hover:text-purple-800 border border-slate-300/60 px-2 py-0.5 rounded transition-all font-medium text-xs"
+                className="bg-slate-50 hover:bg-red-50 text-slate-600 hover:text-red-800 border border-slate-200 hover:border-red-200 px-2 py-0.5 rounded transition-all font-medium text-xs"
               >
                 {s.label}
               </button>
@@ -307,8 +307,8 @@ export const BijoyUnicodeTool: React.FC = () => {
         </div>
 
         {uploadStatus && (
-          <div className="mt-3 p-2.5 bg-purple-50 text-purple-800 border border-purple-200 rounded-xl text-xs flex items-center gap-2">
-            <Check className="w-4 h-4 text-purple-600" />
+          <div className="mt-3 p-2.5 bg-red-50 text-red-800 border border-red-200 rounded-xl text-xs flex items-center gap-2">
+            <Check className="w-4 h-4 text-red-600" />
             <span>{uploadStatus}</span>
           </div>
         )}
@@ -378,15 +378,15 @@ export const BijoyUnicodeTool: React.FC = () => {
       )}
 
       {/* Info helper guide */}
-      <div className="bg-purple-50/70 border border-purple-200/80 rounded-2xl p-3.5 sm:p-4 text-xs sm:text-sm text-purple-900 flex items-start gap-3">
-        <Info className="w-5 h-5 text-slate-900 shrink-0 mt-0.5" />
+      <div className="bg-red-50/70 border border-red-200/80 rounded-2xl p-3.5 sm:p-4 text-xs sm:text-sm text-red-950 flex items-start gap-3">
+        <Info className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
         <div className="space-y-1 leading-relaxed">
-          <p className="font-bold text-purple-950">
+          <p className="font-bold text-red-950">
             {conversionMode === 'unicode-to-bijoy' 
               ? (language === 'bn' ? '💡 ইউনিকোড থেকে বিজয়ে রূপান্তরের পর ব্যবহার পদ্ধতি:' : '💡 How to use converted Bijoy text:')
               : (language === 'bn' ? '💡 বিজয় থেকে ইউনিকোডে রূপান্তরের সুবিধা:' : '💡 Benefits of Bijoy to Unicode conversion:')}
           </p>
-          <p className="text-purple-800 text-xs sm:text-sm">
+          <p className="text-red-900/90 text-xs sm:text-sm">
             {conversionMode === 'unicode-to-bijoy'
               ? (language === 'bn' ? 'নিচের ডানপাশের আউটপুট কপি করে মাইক্রোসফট ওয়ার্ড (MS Word), ফটোশপ (Photoshop) বা ইলাস্ট্রেটরে পেস্ট করুন এবং টেক্সট সিলেক্ট করে ফন্ট হিসেবে SutonnyMJ বেছে নিন।' : 'Copy the output on the right, paste it into MS Word, Photoshop, or Illustrator, select the text, and choose SutonnyMJ font.')
               : (language === 'bn' ? 'বিজয় বা সুতন্বী ফন্টে টাইপ করা যেকোনো পুরনো টেক্সট বা ফাইল পেস্ট করলেই আধুনিক ওয়েব-সম্মত স্ট্যান্ডার্ড ইউনিকোডে রূপান্তরিত হবে।' : 'Paste any legacy text typed in SutonnyMJ/Bijoy to convert it into standard web-compatible Unicode.')}
@@ -400,9 +400,9 @@ export const BijoyUnicodeTool: React.FC = () => {
         <div className="flex lg:hidden justify-center my-1">
           <button
             onClick={handleSwapModes}
-            className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl bg-white text-slate-900 border border-slate-300/60 shadow-xs active:scale-95"
+            className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl bg-white text-slate-900 border border-slate-200 shadow-xs active:scale-95"
           >
-            <ArrowRightLeft className="w-3.5 h-3.5" />
+            <ArrowRightLeft className="w-3.5 h-3.5 text-red-600" />
             <span>{language === 'bn' ? 'দিক পরিবর্তন করুন' : 'Swap Modes'}</span>
           </button>
         </div>
@@ -410,17 +410,17 @@ export const BijoyUnicodeTool: React.FC = () => {
         <button
           onClick={handleSwapModes}
           title="ইনপুট ও আউটপুট অদলবদল করুন"
-          className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white hover:bg-purple-50 text-slate-700 dark:text-slate-300 hover:text-slate-900 border border-slate-300/60 shadow-md items-center justify-center transition-transform hover:scale-110 active:scale-95"
+          className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white hover:bg-red-50 text-slate-700 hover:text-red-700 border border-red-200 shadow-md items-center justify-center transition-transform hover:scale-110 active:scale-95"
         >
-          <ArrowRightLeft className="w-4 h-4" />
+          <ArrowRightLeft className="w-4 h-4 text-red-600" />
         </button>
 
         {/* Input Panel */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-5 shadow-xs flex flex-col justify-between focus-within:border-slate-900 dark:border-white transition-colors">
+        <div className="bg-white rounded-2xl border border-red-100 p-4 sm:p-5 shadow-xs flex flex-col justify-between focus-within:border-red-400 transition-colors">
           <div>
             <div className="flex items-center justify-between gap-2 mb-2.5">
-              <label htmlFor="bijoy-converter-input" className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-blue-500" />
+              <label htmlFor="bijoy-converter-input" className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-red-600" />
                 {conversionMode === 'unicode-to-bijoy' 
                   ? (language === 'bn' ? 'ইউনিকোড টেক্সট ইনপুট (Avro / Unicode)' : 'Unicode Input (Avro / Web)')
                   : (language === 'bn' ? 'বিজয় টেক্সট ইনপুট (SutonnyMJ ANSI)' : 'Bijoy Input (SutonnyMJ ANSI)')}
@@ -437,15 +437,15 @@ export const BijoyUnicodeTool: React.FC = () => {
                 ? (language === 'bn' ? 'এখানে ইউনিকোড বাংলা টেক্সট লিখুন বা পেস্ট করুন...' : 'Type or paste Bengali Unicode text here...') 
                 : (language === 'bn' ? 'এখানে বিজয় টেক্সট পেস্ট করুন (যেমন: Avwg †Zvgv‡K fv‡jvevwm)...' : 'Paste Bijoy ANSI text here...')}
               rows={8}
-              className={`w-full text-sm sm:text-base text-slate-900 bg-slate-50/50 p-3.5 sm:p-4 rounded-xl border border-slate-300/60/80 focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 outline-none resize-none transition-all ${
+              className={`w-full text-sm sm:text-base text-slate-900 bg-slate-50/50 p-3.5 sm:p-4 rounded-xl border border-slate-200 focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-500/10 outline-none resize-none transition-all ${
                 conversionMode === 'unicode-to-bijoy' ? 'font-bangla' : 'font-mono'
               }`}
             />
           </div>
-          <div className="pt-2.5 flex items-center justify-between text-xs text-slate-500 border-t border-slate-200/60 mt-2">
+          <div className="pt-2.5 flex items-center justify-between text-xs text-slate-500 border-t border-slate-200 mt-2">
             <button
               onClick={handleClear}
-              className="text-slate-500 hover:text-rose-600 transition-colors flex items-center gap-1 font-medium"
+              className="text-slate-500 hover:text-red-600 transition-colors flex items-center gap-1 font-medium"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>{t('clear')}</span>
@@ -457,11 +457,11 @@ export const BijoyUnicodeTool: React.FC = () => {
         </div>
 
         {/* Output Panel */}
-        <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 sm:p-5 shadow-xs flex flex-col justify-between bg-gradient-to-b from-purple-50/30 to-white">
+        <div className="bg-red-50/20 rounded-2xl border border-red-100 p-4 sm:p-5 shadow-xs flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between gap-2 mb-2.5">
-              <label className="text-xs font-bold uppercase tracking-wider text-purple-800 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-purple-500" />
+              <label className="text-xs font-bold uppercase tracking-wider text-red-700 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-red-600" />
                 {conversionMode === 'unicode-to-bijoy' 
                   ? (language === 'bn' ? 'রূপান্তরিত বিজয় আউটপুট (SutonnyMJ)' : 'Converted Bijoy Output (SutonnyMJ)')
                   : (language === 'bn' ? 'রূপান্তরিত ইউনিকোড বাংলা আউটপুট' : 'Converted Unicode Output')}
@@ -469,11 +469,11 @@ export const BijoyUnicodeTool: React.FC = () => {
               
               {/* View mode toggle for Bijoy output */}
               {conversionMode === 'unicode-to-bijoy' && (
-                <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-lg border border-slate-300/60 text-xs">
+                <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-xs">
                   <button
                     onClick={() => setViewMode('font')}
                     className={`px-2 py-0.5 rounded flex items-center gap-1 font-medium transition-all ${
-                      viewMode === 'font' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-900'
+                      viewMode === 'font' ? 'bg-white text-slate-900 shadow-xs font-bold' : 'text-slate-500 hover:text-slate-900'
                     }`}
                     title="সুতন্বী ফন্টে প্রদর্শন"
                   >
@@ -483,7 +483,7 @@ export const BijoyUnicodeTool: React.FC = () => {
                   <button
                     onClick={() => setViewMode('ansi')}
                     className={`px-2 py-0.5 rounded flex items-center gap-1 font-medium transition-all ${
-                      viewMode === 'ansi' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-900'
+                      viewMode === 'ansi' ? 'bg-white text-slate-900 shadow-xs font-bold' : 'text-slate-500 hover:text-slate-900'
                     }`}
                     title="রিয়েল ANSI টেক্সট কোড"
                   >
@@ -499,7 +499,7 @@ export const BijoyUnicodeTool: React.FC = () => {
               value={outputText}
               placeholder={language === 'bn' ? 'রূপান্তরিত ফলাফল এখানে প্রদর্শিত হবে...' : 'Converted results will appear here...'}
               rows={8}
-              className={`w-full text-sm sm:text-base text-slate-900 bg-white p-3.5 sm:p-4 rounded-xl border border-purple-200/80 shadow-inner outline-none resize-none select-all transition-all ${
+              className={`w-full text-sm sm:text-base text-slate-900 bg-white p-3.5 sm:p-4 rounded-xl border border-red-200 shadow-inner outline-none resize-none select-all transition-all ${
                 conversionMode === 'bijoy-to-unicode' 
                   ? 'font-bangla' 
                   : (viewMode === 'font' ? 'font-sutonny' : 'font-mono')
@@ -508,12 +508,12 @@ export const BijoyUnicodeTool: React.FC = () => {
           </div>
 
           {/* Action Toolbar */}
-          <div className="pt-3.5 mt-3 border-t border-purple-100 flex flex-wrap items-center justify-between gap-2">
+          <div className="pt-3.5 mt-3 border-t border-red-100 flex flex-wrap items-center justify-between gap-2">
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <button
                 onClick={handleDownloadDoc}
                 disabled={!outputText}
-                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 disabled:opacity-40 transition-all"
+                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-700 border border-slate-200 disabled:opacity-40 transition-all"
                 title="ওয়ার্ড ফাইল (.doc) ডাউনলোড"
               >
                 <FileText className="w-3.5 h-3.5" />
@@ -523,7 +523,7 @@ export const BijoyUnicodeTool: React.FC = () => {
               <button
                 onClick={handleDownloadTxt}
                 disabled={!outputText}
-                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 dark:text-slate-300 disabled:opacity-40 transition-all"
+                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-700 border border-slate-200 disabled:opacity-40 transition-all"
                 title="ডাউনলোড .txt"
               >
                 <Download className="w-3.5 h-3.5" />
@@ -534,7 +534,7 @@ export const BijoyUnicodeTool: React.FC = () => {
               <button
                 onClick={handlePrint}
                 disabled={!outputText}
-                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 dark:text-slate-300 disabled:opacity-40 transition-all"
+                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-700 border border-slate-200 disabled:opacity-40 transition-all"
                 title="প্রিন্ট করুন"
               >
                 <Printer className="w-3.5 h-3.5" />
@@ -545,10 +545,10 @@ export const BijoyUnicodeTool: React.FC = () => {
             <button
               onClick={handleCopy}
               disabled={!outputText}
-              className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-xl shadow-xs transition-all active:scale-95 ${
+              className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-4 py-2 rounded-xl shadow-xs transition-all active:scale-95 ${
                 copied
-                  ? 'bg-purple-700 text-white'
-                  : 'bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 disabled:opacity-40'
+                  ? 'bg-red-800 text-white'
+                  : 'bg-red-600 hover:bg-red-700 text-white disabled:opacity-40'
               }`}
             >
               {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}

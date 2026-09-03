@@ -8,7 +8,6 @@ export type TabType =
   | 'number-words'
   | 'analyzer'
   | 'spell-dict'
-  | 'fonts'
   | 'directory'
   | 'pdf-tools';
 
@@ -16,7 +15,6 @@ export type ServiceCategory =
   | 'text-typing'
   | 'language-lexicon'
   | 'dates-numbers'
-  | 'fonts-unicode'
   | 'audio-speech'
   | 'gov-public'
   | 'media-literature'
