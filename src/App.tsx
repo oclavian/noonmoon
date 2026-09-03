@@ -12,6 +12,7 @@ import { NumberToWordsTool } from './components/tools/NumberToWordsTool';
 import { TextAnalyzerTool } from './components/tools/TextAnalyzerTool';
 import { SpellDictionaryTool } from './components/tools/SpellDictionaryTool';
 import { PdfToolsHub } from './components/tools/PdfToolsHub';
+import { Preloader } from './components/Preloader';
 import { TabType } from './types';
 import { ShieldCheck, FileText, Info, Mail, ShieldAlert } from 'lucide-react';
 import { SEO } from './components/SEO';
@@ -114,6 +115,7 @@ function AppContent() {
 
   return (
     <div id="noon-moon-app-root" className={`min-h-screen flex flex-col bg-[var(--color-surface-subtle)] text-[var(--color-text-main)] antialiased selection:bg-emerald-200 selection:text-emerald-900 ${language === 'bn' ? 'font-bangla' : 'font-sans-ui'}`}>
+      <Preloader />
       <SEO 
         title={seoData.title} 
         description={seoData.desc} 
