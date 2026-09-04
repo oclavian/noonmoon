@@ -155,6 +155,7 @@ export const BijoyUnicodeTool: React.FC = () => {
       }
     };
     reader.readAsText(file);
+    e.target.value = '';
   };
 
   const handleFontUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -163,6 +164,7 @@ export const BijoyUnicodeTool: React.FC = () => {
 
     if (!file.name.match(/\.(ttf|otf|woff|woff2)$/i)) {
       setUploadStatus(language === 'bn' ? 'অনুগ্রহ করে সঠিক ফন্ট ফাইল নির্বাচন করুন (.ttf, .otf)' : 'Please upload a valid font file (.ttf, .otf)');
+      e.target.value = '';
       return;
     }
 
@@ -181,6 +183,7 @@ export const BijoyUnicodeTool: React.FC = () => {
     } catch {
       setUploadStatus(language === 'bn' ? 'ফন্ট লোড করতে সমস্যা হয়েছে।' : 'Failed to load font file.');
     }
+    e.target.value = '';
   };
 
   const samples = conversionMode === 'bijoy-to-unicode' ? [

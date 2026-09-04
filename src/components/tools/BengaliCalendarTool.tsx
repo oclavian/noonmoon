@@ -153,7 +153,7 @@ export const BengaliCalendarTool: React.FC = () => {
             className={`flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-[1rem] transition-all shadow-sm ${
               copied
                 ? 'bg-purple-700 text-white'
-                : 'bg-slate-900 hover:bg-slate-800:bg-slate-200 text-white active:scale-95'
+                : 'bg-slate-900 hover:bg-slate-800 text-white active:scale-95'
             }`}
           >
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
@@ -223,7 +223,7 @@ export const BengaliCalendarTool: React.FC = () => {
                 className={`p-3 rounded-[1rem] border text-center transition-all ${
                   isCurrent
                     ? 'bg-purple-50 border-slate-900 shadow-sm ring-2 ring-purple-500/20'
-                    : 'bg-slate-50/70 border-slate-300/60/80 hover:border-purple-300'
+                    : 'bg-slate-50/70 border-slate-300/60 hover:border-purple-300'
                 }`}
               >
                 <div className={`font-bold text-sm sm:text-base ${isCurrent ? 'text-purple-800' : 'text-slate-900'}`}>

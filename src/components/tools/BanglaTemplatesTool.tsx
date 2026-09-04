@@ -302,7 +302,7 @@ export const BanglaTemplatesTool: React.FC = () => {
             </div>
 
             {/* Document Paper Preview Box */}
-            <div className="bg-white border border-slate-300/60/80 rounded-[1rem] p-5 sm:p-7 shadow-inner text-slate-900 font-bangla text-xs sm:text-sm leading-relaxed min-h-[380px] max-h-[500px] overflow-y-auto whitespace-pre-wrap select-all">
+            <div className="bg-white border border-slate-300/60 rounded-[1rem] p-5 sm:p-7 shadow-inner text-slate-900 font-bangla text-xs sm:text-sm leading-relaxed min-h-[380px] max-h-[500px] overflow-y-auto whitespace-pre-wrap select-all">
               {generated.bodyText}
             </div>
           </div>
@@ -349,7 +349,7 @@ export const BanglaTemplatesTool: React.FC = () => {
               className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-4 py-2 rounded-[1rem] shadow-sm transition-all active:scale-95 ${
                 copied
                   ? 'bg-purple-700 text-white'
-                  : 'bg-slate-900 hover:bg-slate-800:bg-slate-200 text-white'
+                  : 'bg-slate-900 hover:bg-slate-800 text-white'
               }`}
             >
               {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}

@@ -15,7 +15,7 @@ import {
   ArrowRight,
   Download
 } from 'lucide-react';
-import { calculateBanglaAge, calculateDateDifference } from '../../utils/banglaAgeCalculator';
+import { calculateBanglaAge, calculateDateDifference, parseLocalDate } from '../../utils/banglaAgeCalculator';
 import { useLanguage } from '../../context/LanguageContext';
 import { printFormattedText, downloadAsPdf } from '../../utils/documentExport';
 import { saveHistoryItem } from '../../utils/historyStorage';
@@ -38,14 +38,14 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
   );
 
   const ageResult = useMemo(() => {
-    const bDate = new Date(birthDateStr);
-    const tDate = mode === 'current-age' ? new Date() : new Date(targetDateStr);
+    const bDate = parseLocalDate(birthDateStr);
+    const tDate = mode === 'current-age' ? new Date() : parseLocalDate(targetDateStr);
     return calculateBanglaAge(bDate, tDate);
   }, [birthDateStr, targetDateStr, mode]);
 
   const diffResult = useMemo(() => {
     if (mode !== 'date-difference') return null;
-    return calculateDateDifference(new Date(diffStartStr), new Date(diffEndStr));
+    return calculateDateDifference(parseLocalDate(diffStartStr), parseLocalDate(diffEndStr));
   }, [diffStartStr, diffEndStr, mode]);
 
   const handleCopySummary = async () => {

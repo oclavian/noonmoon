@@ -60,6 +60,20 @@ export interface DateDifferenceResult {
   totalDaysBn: string;
 }
 
+export function parseLocalDate(dateStr: string): Date {
+  if (!dateStr) return new Date();
+  const parts = dateStr.split('-');
+  if (parts.length === 3) {
+    const y = parseInt(parts[0], 10);
+    const m = parseInt(parts[1], 10) - 1;
+    const d = parseInt(parts[2], 10);
+    if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
+      return new Date(y, m, d, 12, 0, 0);
+    }
+  }
+  return new Date(dateStr);
+}
+
 export function calculateBanglaAge(birthDate: Date, asOfDate: Date = new Date()): AgeCalculationResult | null {
   if (isNaN(birthDate.getTime()) || isNaN(asOfDate.getTime())) return null;
   if (birthDate > asOfDate) return null;

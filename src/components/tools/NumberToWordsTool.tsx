@@ -144,7 +144,7 @@ export const NumberToWordsTool: React.FC = () => {
             className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-[1rem] transition-all shadow-sm active:scale-95 ${
               copied
                 ? 'bg-purple-700 text-white'
-                : 'bg-slate-900 hover:bg-slate-800:bg-slate-200 text-white disabled:opacity-40'
+                : 'bg-slate-900 hover:bg-slate-800 text-white disabled:opacity-40'
             }`}
           >
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}

@@ -23,12 +23,25 @@ export const PdfToolsHub: React.FC = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [outputFilename, setOutputFilename] = useState<string>('output.pdf');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const t = (bn: string, en: string) => language === 'bn' ? bn : en;
 
+  const showNotification = (msg: string, isError = false) => {
+    if (isError) {
+      setErrorMessage(msg);
+      setSuccessMessage(null);
+    } else {
+      setSuccessMessage(msg);
+      setErrorMessage(null);
+    }
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorMessage(null);
     if (e.target.files) {
       const files = Array.from(e.target.files);
       if (activeMode === 'merge' || activeMode === 'image-to-pdf') {
@@ -41,13 +54,22 @@ export const PdfToolsHub: React.FC = () => {
 
   const removeFile = (index: number) => {
     setSelectedFiles(prev => prev.filter((_, i) => i !== index));
-    if (selectedFiles.length <= 1) setOutputUrl(null);
+    if (selectedFiles.length <= 1) {
+      if (outputUrl) {
+        URL.revokeObjectURL(outputUrl);
+      }
+      setOutputUrl(null);
+    }
   };
 
   const processMerge = async () => {
-    if (selectedFiles.length < 2) return alert(t('কমপক্ষে দুটি পিডিএফ ফাইল নির্বাচন করুন।', 'Select at least two PDF files.'));
+    if (selectedFiles.length < 2) {
+      showNotification(t('কমপক্ষে দুটি পিডিএফ ফাইল নির্বাচন করুন।', 'Select at least two PDF files.'), true);
+      return;
+    }
     
     setIsProcessing(true);
+    setErrorMessage(null);
     try {
       const mergedPdf = await PDFDocument.create();
       
@@ -60,9 +82,10 @@ export const PdfToolsHub: React.FC = () => {
       
       const pdfBytes = await mergedPdf.save();
       createDownloadUrl(pdfBytes, 'Merged_Document.pdf');
+      showNotification(t('পিডিএফ সফলভাবে মার্জ হয়েছে!', 'PDF merged successfully!'));
     } catch (err) {
       console.error(err);
-      alert(t('ফাইল মার্জ করতে সমস্যা হয়েছে।', 'Failed to merge files.'));
+      showNotification(t('ফাইল মার্জ করতে সমস্যা হয়েছে। ফাইলের বৈধতা যাচাই করুন।', 'Failed to merge files. Please verify PDF integrity.'), true);
     }
     setIsProcessing(false);
   };
@@ -71,6 +94,7 @@ export const PdfToolsHub: React.FC = () => {
     if (selectedFiles.length !== 1) return;
     
     setIsProcessing(true);
+    setErrorMessage(null);
     try {
       const fileBuffer = await selectedFiles[0].arrayBuffer();
       const pdf = await PDFDocument.load(fileBuffer);
@@ -94,7 +118,7 @@ export const PdfToolsHub: React.FC = () => {
       pagesToExtract = [...new Set(pagesToExtract)].sort((a,b) => a-b);
       
       if (pagesToExtract.length === 0) {
-        alert(t('সঠিক পেজ নম্বর দিন।', 'Enter valid page numbers.'));
+        showNotification(t('সঠিক পেজ নম্বর দিন। (যেমন: 1-3, 5)', 'Enter valid page numbers. (e.g., 1-3, 5)'), true);
         setIsProcessing(false);
         return;
       }
@@ -105,9 +129,10 @@ export const PdfToolsHub: React.FC = () => {
       
       const pdfBytes = await newPdf.save();
       createDownloadUrl(pdfBytes, 'Split_Document.pdf');
+      showNotification(t('পিডিএফ সফলভাবে স্প্লিট হয়েছে!', 'PDF split successfully!'));
     } catch (err) {
       console.error(err);
-      alert(t('ফাইল স্প্লিট করতে সমস্যা হয়েছে।', 'Failed to split file.'));
+      showNotification(t('ফাইল স্প্লিট করতে সমস্যা হয়েছে।', 'Failed to split file.'), true);
     }
     setIsProcessing(false);
   };
@@ -116,6 +141,7 @@ export const PdfToolsHub: React.FC = () => {
     if (selectedFiles.length !== 1 || !watermarkText) return;
     
     setIsProcessing(true);
+    setErrorMessage(null);
     try {
       const fileBuffer = await selectedFiles[0].arrayBuffer();
       const pdf = await PDFDocument.load(fileBuffer);
@@ -137,9 +163,10 @@ export const PdfToolsHub: React.FC = () => {
       
       const pdfBytes = await pdf.save();
       createDownloadUrl(pdfBytes, 'Watermarked_Document.pdf');
+      showNotification(t('ওয়াটারমার্ক সফলভাবে যুক্ত হয়েছে!', 'Watermark added successfully!'));
     } catch (err) {
       console.error(err);
-      alert(t('ওয়াটারমার্ক যুক্ত করতে সমস্যা হয়েছে।', 'Failed to add watermark.'));
+      showNotification(t('ওয়াটারমার্ক যুক্ত করতে সমস্যা হয়েছে।', 'Failed to add watermark.'), true);
     }
     setIsProcessing(false);
   };
@@ -148,6 +175,7 @@ export const PdfToolsHub: React.FC = () => {
     if (selectedFiles.length === 0) return;
     
     setIsProcessing(true);
+    setErrorMessage(null);
     try {
       const newPdf = await PDFDocument.create();
       
@@ -175,16 +203,18 @@ export const PdfToolsHub: React.FC = () => {
       
       const pdfBytes = await newPdf.save();
       createDownloadUrl(pdfBytes, 'Images_Document.pdf');
+      showNotification(t('ছবিগুলো দিয়ে সফলভাবে পিডিএফ তৈরি হয়েছে!', 'PDF successfully created from images!'));
     } catch (err) {
       console.error(err);
-      alert(t('পিডিএফ তৈরি করতে সমস্যা হয়েছে।', 'Failed to create PDF from images.'));
+      showNotification(t('পিডিএফ তৈরি করতে সমস্যা হয়েছে।', 'Failed to create PDF from images.'), true);
     }
     setIsProcessing(false);
   };
 
-    const processPdfToImage = async () => {
+  const processPdfToImage = async () => {
     if (selectedFiles.length !== 1) return;
     setIsProcessing(true);
+    setErrorMessage(null);
     try {
       const file = selectedFiles[0];
       const arrayBuffer = await file.arrayBuffer();
@@ -224,15 +254,18 @@ export const PdfToolsHub: React.FC = () => {
       
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       createDownloadUrl(new Uint8Array(await zipBlob.arrayBuffer()), `${file.name.replace('.pdf', '')}_images.zip`, 'application/zip');
-      
+      showNotification(t('পিডিএফ সফলভাবে ছবিতে কনভার্ট হয়েছে!', 'PDF converted to images successfully!'));
     } catch (err) {
       console.error(err);
-      alert(t('পিডিএফ থেকে ছবি তৈরি করতে সমস্যা হয়েছে।', 'Failed to convert PDF to images.'));
+      showNotification(t('পিডিএফ থেকে ছবি তৈরি করতে সমস্যা হয়েছে।', 'Failed to convert PDF to images.'), true);
     }
     setIsProcessing(false);
   };
 
   const createDownloadUrl = (bytes: Uint8Array, filename: string, mimeType: string = 'application/pdf') => {
+    if (outputUrl) {
+      URL.revokeObjectURL(outputUrl);
+    }
     const blob = new Blob([bytes], { type: mimeType });
     const url = URL.createObjectURL(blob);
     setOutputUrl(url);
@@ -256,9 +289,14 @@ export const PdfToolsHub: React.FC = () => {
   ] as const;
 
   const handleModeSwitch = (mode: PdfToolMode) => {
+    if (outputUrl) {
+      URL.revokeObjectURL(outputUrl);
+    }
     setActiveMode(mode);
     setSelectedFiles([]);
     setOutputUrl(null);
+    setErrorMessage(null);
+    setSuccessMessage(null);
   };
 
   return (
@@ -284,7 +322,7 @@ export const PdfToolsHub: React.FC = () => {
             className={`flex flex-col items-center justify-center gap-2 p-4 rounded-[2rem] border transition-all ${
               activeMode === mode.id
                 ? 'bg-purple-600 text-white border-purple-600 shadow-md scale-[1.02]'
-                : 'bg-white text-slate-700 border-slate-200 hover:bg-purple-50:bg-slate-800'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-purple-50'
             }`}
           >
             {mode.icon}
@@ -293,12 +331,31 @@ export const PdfToolsHub: React.FC = () => {
         ))}
       </div>
 
+      {/* Notifications Banner */}
+      {errorMessage && (
+        <div role="alert" className="p-4 rounded-[1.5rem] bg-rose-50 border border-rose-200 text-rose-800 text-sm font-medium flex items-center justify-between animate-in fade-in duration-200">
+          <span>{errorMessage}</span>
+          <button onClick={() => setErrorMessage(null)} className="text-rose-600 hover:text-rose-800 text-xs font-bold underline ml-4">
+            {t('বন্ধ করুন', 'Dismiss')}
+          </button>
+        </div>
+      )}
+
+      {successMessage && (
+        <div role="status" className="p-4 rounded-[1.5rem] bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium flex items-center justify-between animate-in fade-in duration-200">
+          <span>{successMessage}</span>
+          <button onClick={() => setSuccessMessage(null)} className="text-emerald-600 hover:text-emerald-800 text-xs font-bold underline ml-4">
+            {t('বন্ধ করুন', 'Dismiss')}
+          </button>
+        </div>
+      )}
+
       <div className="bg-white rounded-[2rem] card-elevation p-5 sm:p-8">
         
         {/* Upload Area */}
         <div 
           onClick={() => fileInputRef.current?.click()}
-          className="w-full border-2 border-dashed border-slate-300 rounded-[2rem] p-8 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-slate-50:bg-slate-800/50 hover:border-purple-400 transition-all text-slate-500"
+          className="w-full border-2 border-dashed border-slate-300 rounded-[2rem] p-8 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-slate-50 hover:border-purple-400 transition-all text-slate-500"
         >
           <div className="w-14 h-14 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
             <Plus className="w-7 h-7" />
@@ -335,7 +392,7 @@ export const PdfToolsHub: React.FC = () => {
                     {activeMode === 'image-to-pdf' ? <ImageIcon className="w-5 h-5 text-blue-500 shrink-0" /> : <FileText className="w-5 h-5 text-rose-500 shrink-0" />}
                     <span className="text-sm font-medium text-slate-700 truncate">{file.name}</span>
                   </div>
-                  <button onClick={() => removeFile(i)} className="p-1.5 text-slate-400 hover:text-rose-500 hover:bg-rose-50:bg-rose-900/30 rounded-lg transition-colors">
+                  <button onClick={() => removeFile(i)} className="p-1.5 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-colors">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>

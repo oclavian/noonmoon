@@ -144,7 +144,10 @@ function AppContent() {
       </main>
 
       {/* Structured Modern Responsive Footer */}
-      <footer id="app-global-footer" className="bg-gradient-to-b from-[#005B48] to-[#003B2E] text-white mt-10 pt-8 pb-6 border-t border-emerald-900/40">
+      <footer 
+        id="app-global-footer" 
+        className="bg-gradient-to-b from-[#005B48] to-[#003B2E] text-white mt-10 pt-8 pb-6 border-t border-emerald-700/40 rounded-t-2xl sm:rounded-t-[2rem] md:rounded-t-[2.5rem] shadow-[0_-6px_25px_rgba(0,0,0,0.08)] overflow-hidden"
+      >
         <div className="max-w-[1400px] w-full mx-auto px-4 xl:px-8 space-y-6">
           {/* Main Footer Info */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-emerald-800/50">

@@ -116,7 +116,17 @@ export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab 
   const { language, t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<ServiceCategory | 'all'>('all');
-  const [favorites, setFavorites] = useState<string[]>(['s-1', 's-2', 's-3', 's-4']);
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    try {
+      const stored = localStorage.getItem('noon_moon_fav_services');
+      if (stored) {
+        return JSON.parse(stored);
+      }
+    } catch {
+      // fallback
+    }
+    return ['phonetic-typing', 'bijoy-unicode-converter', 'age-calculator', 'bangla-calendar'];
+  });
 
   // 8 Primary Core Tools
   const coreTools: CoreToolItem[] = [
@@ -270,9 +280,15 @@ export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab 
 
   const toggleFavorite = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    setFavorites(prev => 
-      prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
-    );
+    setFavorites(prev => {
+      const next = prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id];
+      try {
+        localStorage.setItem('noon_moon_fav_services', JSON.stringify(next));
+      } catch {
+        // ignore
+      }
+      return next;
+    });
   };
 
   const filteredServices = BANGLA_SERVICES.filter(service => {

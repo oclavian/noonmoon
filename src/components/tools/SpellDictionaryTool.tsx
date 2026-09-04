@@ -70,7 +70,7 @@ export const SpellDictionaryTool: React.FC = () => {
             {spellResult.hasMistakes && (
               <button
                 onClick={applyAllCorrections}
-                className="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800:bg-slate-200 text-white text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-[1rem] transition-all shadow-sm"
+                className="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-[1rem] transition-all shadow-sm"
               >
                 <Sparkles className="w-3.5 h-3.5 text-purple-300" />
                 <span>{language === 'bn' ? 'সব ভুল শুদ্ধ করুন' : 'Fix All Mistakes'}</span>

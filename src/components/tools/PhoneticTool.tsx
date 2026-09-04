@@ -88,7 +88,7 @@ export const PhoneticTool: React.FC = () => {
 
   const toggleVoiceTyping = () => {
     if (!recognizerRef.current) {
-      alert(language === 'bn' ? 'আপনার ব্রাউজারে ভয়েস টাইপিং সমর্থিত নয়। ক্রোম বা এজ ব্যবহার করুন।' : 'Speech recognition not supported in this browser.');
+      setVoiceStatus(language === 'bn' ? '⚠️ আপনার ব্রাউজারে ভয়েস টাইপিং সমর্থিত নয়। ক্রোম বা এজ ব্রাউজার ব্যবহার করুন।' : '⚠️ Speech recognition is not supported in this browser. Please use Chrome or Edge.');
       return;
     }
     if (isListening) {
@@ -406,7 +406,7 @@ export const PhoneticTool: React.FC = () => {
               onChange={(e) => setEnglishInput(e.target.value)}
               placeholder={language === 'bn' ? 'এখানে ইংরেজিতে টাইপ করুন (যেমন: ami banglay gan gai)...' : 'Type in English phonetics here (e.g. ami banglay gan gai)...'}
               rows={7}
-              className="w-full text-sm sm:text-base font-mono-code text-slate-900 bg-slate-50/50 p-3.5 sm:p-4 rounded-[1rem] border border-slate-300/60/80 focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 outline-none resize-none transition-all"
+              className="w-full text-sm sm:text-base font-mono-code text-slate-900 bg-slate-50/50 p-3.5 sm:p-4 rounded-[1rem] border border-slate-300/60 focus:border-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-900/10 outline-none resize-none transition-all"
             />
           </div>
           <div className="pt-2.5 flex items-center justify-between text-xs text-slate-500 border-t border-slate-200/60 mt-2">
@@ -492,7 +492,7 @@ export const PhoneticTool: React.FC = () => {
               className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-[1rem] shadow-sm transition-all active:scale-95 ${
                 copied
                   ? 'bg-purple-700 text-white'
-                  : 'bg-slate-900 hover:bg-slate-800:bg-slate-200 text-white disabled:opacity-40'
+                  : 'bg-slate-900 hover:bg-slate-800 text-white disabled:opacity-40'
               }`}
             >
               {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
@@ -529,7 +529,7 @@ export const PhoneticTool: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3">
             {filteredCheatRules.map((rule, idx) => (
-              <div key={idx} className="bg-slate-50 p-2.5 sm:p-3 rounded-[1rem] border border-slate-300/60/80 space-y-1 hover:border-purple-300 transition-colors">
+              <div key={idx} className="bg-slate-50 p-2.5 sm:p-3 rounded-[1rem] border border-slate-300/60 space-y-1 hover:border-purple-300 transition-colors">
                 <div className="flex items-center justify-between">
                   <span className="font-mono-code font-bold text-slate-900 text-xs bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200">
                     {rule.key}

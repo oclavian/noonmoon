@@ -133,7 +133,7 @@ export const TextAnalyzerTool: React.FC = () => {
         {statCards.map((stat, idx) => (
           <div
             key={idx}
-            className={`p-3.5 sm:p-4 rounded-[1rem] sm:rounded-[2rem] border border-slate-300/60/80 ${stat.bg} shadow-sm text-center space-y-1 transition-all hover:scale-102`}
+            className={`p-3.5 sm:p-4 rounded-[1rem] sm:rounded-[2rem] border border-slate-300/60 ${stat.bg} shadow-sm text-center space-y-1 transition-all hover:scale-102`}
           >
             <div className="text-xs text-slate-600 font-medium">{stat.label}</div>
             <div className={`text-xl sm:text-3xl font-extrabold font-bangla ${stat.color}`}>
@@ -155,7 +155,7 @@ export const TextAnalyzerTool: React.FC = () => {
             className={`flex items-center gap-1.5 text-xs sm:text-sm font-bold px-3 sm:px-3.5 py-1.5 rounded-[1rem] transition-all shadow-sm ${
               copied
                 ? 'bg-purple-700 text-white'
-                : 'bg-slate-900 hover:bg-slate-800:bg-slate-200 text-white'
+                : 'bg-slate-900 hover:bg-slate-800 text-white'
             }`}
           >
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
@@ -164,25 +164,25 @@ export const TextAnalyzerTool: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-xs sm:text-sm">
-          <div className="bg-slate-50 p-3.5 sm:p-4 rounded-[1rem] border border-slate-300/60/80 space-y-1">
+          <div className="bg-slate-50 p-3.5 sm:p-4 rounded-[1rem] border border-slate-300/60 space-y-1">
             <span className="text-slate-500 font-medium">{language === 'bn' ? 'কার ও স্বরচিহ্ন (Modifiers):' : 'Modifiers (Kar/Matra):'}</span>
             <div className="text-base sm:text-lg font-bold text-slate-900 font-bangla">
               {formatNum(metrics.modifiers)} {language === 'bn' ? 'টি' : ''}
             </div>
           </div>
-          <div className="bg-slate-50 p-3.5 sm:p-4 rounded-[1rem] border border-slate-300/60/80 space-y-1">
+          <div className="bg-slate-50 p-3.5 sm:p-4 rounded-[1rem] border border-slate-300/60 space-y-1">
             <span className="text-slate-500 font-medium">{language === 'bn' ? 'মোট বাক্য (Sentences):' : 'Sentences:'}</span>
             <div className="text-base sm:text-lg font-bold text-slate-900 font-bangla">
               {formatNum(metrics.sentences)} {language === 'bn' ? 'টি' : ''}
             </div>
           </div>
-          <div className="bg-slate-50 p-3.5 sm:p-4 rounded-[1rem] border border-slate-300/60/80 space-y-1">
+          <div className="bg-slate-50 p-3.5 sm:p-4 rounded-[1rem] border border-slate-300/60 space-y-1">
             <span className="text-slate-500 font-medium">{language === 'bn' ? 'প্যারাগ্রাফ (Paragraphs):' : 'Paragraphs:'}</span>
             <div className="text-base sm:text-lg font-bold text-slate-900 font-bangla">
               {formatNum(metrics.paragraphs)} {language === 'bn' ? 'টি' : ''}
             </div>
           </div>
-          <div className="bg-slate-50 p-3.5 sm:p-4 rounded-[1rem] border border-slate-300/60/80 space-y-1">
+          <div className="bg-slate-50 p-3.5 sm:p-4 rounded-[1rem] border border-slate-300/60 space-y-1">
             <span className="text-slate-500 font-medium">{language === 'bn' ? 'সংখ্যা ও অংক (Digits):' : 'Digits:'}</span>
             <div className="text-base sm:text-lg font-bold text-slate-900 font-bangla">
               {formatNum(metrics.digits)} {language === 'bn' ? 'টি' : ''}
