@@ -285,22 +285,31 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
       {mode === 'current-age' && ageResult && (
         <div className="space-y-4 sm:space-y-5 animate-in fade-in duration-200">
           {/* Primary Age Big Card */}
-          <div className="bg-white text-slate-900 border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-md border border-[#047857]/60 relative overflow-hidden">
-            <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 w-48 h-48 bg-purple-500/10 rounded-full blur-2xl pointer-events-none" />
+          <div className="bg-white rounded-[2rem] card-elevation p-6 sm:p-8 border border-emerald-200/80 bg-gradient-to-br from-emerald-50/40 via-white to-slate-50 relative overflow-hidden shadow-sm">
+            <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 w-48 h-48 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
             
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-purple-700/60 text-[#6ee7b7] text-xs font-bold px-3 py-1 rounded-full border border-slate-900/40 mb-3">
-                  <Sparkles className="w-3.5 h-3.5 text-[#34d399]" />
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full border border-emerald-300/80 mb-1">
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                   <span>{language === 'bn' ? 'বর্তমান বয়স হিসাব' : 'Calculated Age'}</span>
                 </div>
-                <h3 className="text-2xl sm:text-4xl font-extrabold tracking-tight font-bangla text-[#ffffff] flex flex-wrap items-baseline gap-2">
-                  <span>{ageResult.yearsBn} <span className="text-[#34d399] text-lg sm:text-2xl font-semibold">বছর</span></span>
-                  <span>{ageResult.monthsBn} <span className="text-[#34d399] text-lg sm:text-2xl font-semibold">মাস</span></span>
-                  <span>{ageResult.daysBn} <span className="text-[#34d399] text-lg sm:text-2xl font-semibold">দিন</span></span>
+                <h3 className="text-3xl sm:text-5xl font-black tracking-tight font-bangla text-slate-900 flex flex-wrap items-baseline gap-3">
+                  <span className="flex items-baseline gap-1.5">
+                    <span className="text-slate-900 text-3xl sm:text-5xl font-black">{ageResult.yearsBn}</span>
+                    <span className="text-emerald-700 text-xl sm:text-2xl font-bold">বছর</span>
+                  </span>
+                  <span className="flex items-baseline gap-1.5">
+                    <span className="text-slate-900 text-3xl sm:text-5xl font-black">{ageResult.monthsBn}</span>
+                    <span className="text-emerald-700 text-xl sm:text-2xl font-bold">মাস</span>
+                  </span>
+                  <span className="flex items-baseline gap-1.5">
+                    <span className="text-slate-900 text-3xl sm:text-5xl font-black">{ageResult.daysBn}</span>
+                    <span className="text-emerald-700 text-xl sm:text-2xl font-bold">দিন</span>
+                  </span>
                 </h3>
-                <p className="text-xs sm:text-sm text-[#6ee7b7]/90 mt-2 font-bangla">
-                  মোট জীবনকাল: <strong className="text-[#ffffff]">{ageResult.totalDaysBn} দিন</strong> ({ageResult.totalWeeksBn} সপ্তাহ বা {ageResult.totalMonthsBn} মাস)
+                <p className="text-sm sm:text-base text-slate-600 font-bangla pt-1">
+                  মোট জীবনকাল: <strong className="text-emerald-950 font-bold bg-emerald-100/70 px-2 py-0.5 rounded-md border border-emerald-200/80">{ageResult.totalDaysBn} দিন</strong> <span className="text-slate-500">({ageResult.totalWeeksBn} সপ্তাহ বা {ageResult.totalMonthsBn} মাস)</span>
                 </p>
               </div>
 
@@ -308,23 +317,23 @@ export const BanglaAgeCalculatorTool: React.FC = () => {
               <div className="flex flex-wrap items-center gap-2.5 shrink-0">
                 <button
                   onClick={handleCopySummary}
-                  className="flex items-center gap-1.5 bg-purple-500 hover:bg-purple-400 text-slate-950 text-xs sm:text-sm font-bold px-4 py-2 rounded-[1rem] transition-all shadow-sm active:scale-95"
+                  className="flex items-center gap-1.5 bg-[#006B54] hover:bg-[#005744] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-[1rem] transition-all shadow-sm active:scale-95"
                 >
                   {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   <span>{copied ? (language === 'bn' ? 'কপি হয়েছে!' : 'Copied!') : (language === 'bn' ? 'বিবরণী কপি' : 'Copy Summary')}</span>
                 </button>
                 <button
                   onClick={handlePrintCertificate}
-                  className="flex items-center gap-1.5 bg-[#022c22]/70 hover:bg-purple-900 text-[#d1fae5] text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-[1rem] border border-purple-600/50 transition-all"
+                  className="flex items-center gap-1.5 bg-white hover:bg-slate-100 text-slate-800 text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-[1rem] border border-slate-300 shadow-sm transition-all"
                 >
-                  <Printer className="w-4 h-4" />
+                  <Printer className="w-4 h-4 text-slate-600" />
                   <span>{language === 'bn' ? 'সনদ প্রিন্ট' : 'Print View'}</span>
                 </button>
                 <button
                   onClick={handleDownloadPdfCertificate}
-                  className="flex items-center gap-1.5 bg-rose-950/70 hover:bg-rose-900 text-rose-100 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-[1rem] border border-rose-600/50 transition-all"
+                  className="flex items-center gap-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-[1rem] border border-rose-200 shadow-sm transition-all"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="w-4 h-4 text-rose-600" />
                   <span>{language === 'bn' ? 'পিডিএফ সনদ' : 'PDF Cert'}</span>
                 </button>
               </div>
