@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Search, 
   ExternalLink, 
@@ -50,6 +50,67 @@ interface CoreToolItem {
   actionBn: string;
   actionEn: string;
 }
+
+interface TypewriterSubtitleProps {
+  text: string;
+}
+
+const TypewriterSubtitle: React.FC<TypewriterSubtitleProps> = ({ text }) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    // Segment accurately by Unicode graphemes (especially essential for complex Bengali conjuncts)
+    const graphemes = Array.from(
+      typeof Intl !== 'undefined' && (Intl as any).Segmenter
+        ? new (Intl as any).Segmenter('bn', { granularity: 'grapheme' }).segment(text)
+        : text
+    ).map((item: any) => (typeof item === 'string' ? item : item.segment));
+
+    let timer: NodeJS.Timeout;
+    let index = isDeleting ? graphemes.length : 0;
+    setDisplayedText(isDeleting ? text : '');
+
+    const runTypewriter = () => {
+      if (!isDeleting) {
+        if (index < graphemes.length) {
+          index++;
+          setDisplayedText(graphemes.slice(0, index).join(''));
+          timer = setTimeout(runTypewriter, 35);
+        } else {
+          // Finished typing, hold for 4.5 seconds for comfortable reading
+          timer = setTimeout(() => {
+            setIsDeleting(true);
+          }, 4500);
+        }
+      } else {
+        if (index > 0) {
+          index--;
+          setDisplayedText(graphemes.slice(0, index).join(''));
+          timer = setTimeout(runTypewriter, 18);
+        } else {
+          // Finished erasing, brief pause then retype
+          setIsDeleting(false);
+          timer = setTimeout(runTypewriter, 500);
+        }
+      }
+    };
+
+    timer = setTimeout(runTypewriter, 200);
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting]);
+
+  return (
+    <span className="inline">
+      <span>{displayedText}</span>
+      <span
+        className="inline-block w-[2.5px] h-[1.15em] bg-emerald-600 ml-1.5 align-middle animate-pulse"
+        aria-hidden="true"
+      />
+    </span>
+  );
+};
 
 export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab }) => {
   const { language, t } = useLanguage();
@@ -238,49 +299,53 @@ export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab 
   };
 
   return (
-    <div className="space-y-10 sm:space-y-16 animate-in fade-in duration-300">
+    <div className="space-y-6 sm:space-y-8 animate-in fade-in duration-300">
       
-      {/* 1. HERO SEARCH BANNER */}
-      <section className="bg-white rounded-[2rem] card-elevation p-6 sm:p-10 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#006B54]/5 to-transparent rounded-bl-full pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#FF8A3D]/5 to-transparent rounded-tr-full pointer-events-none" />
+      {/* 1. HERO SEARCH BANNER (Balanced & Elegant) */}
+      <section className="bg-white rounded-2xl sm:rounded-3xl card-elevation px-5 py-6 sm:px-8 sm:py-7 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-br from-[#006B54]/5 to-transparent rounded-bl-full pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-[#FF8A3D]/5 to-transparent rounded-tr-full pointer-events-none" />
         
-        <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8 relative z-10">
-          <div className="space-y-3">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-              {language === 'bn' ? 'বাংলা পোর্টাল হাব' : 'Bangla Portal Hub'}
+        <div className="max-w-3xl mx-auto text-center space-y-3.5 sm:space-y-4 relative z-10">
+          <div className="space-y-1 sm:space-y-1.5 pt-1 sm:pt-2">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl tracking-tight leading-[1.5] sm:leading-[1.6] overflow-visible py-2">
+              <span className="multicolor-hero-title font-mahin drop-shadow-sm inline-block px-4 pt-3 sm:pt-4 pb-6 sm:pb-8 overflow-visible">
+                {language === 'bn' ? 'বাংলা পোর্টাল হাব' : 'Bangla Portal Hub'}
+              </span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto leading-relaxed">
-              {language === 'bn' 
-                ? 'টাইপিং, কনভার্টার, পঞ্জিকা থেকে শুরু করে দৈনন্দিন সকল প্রয়োজনীয় ডিজিটাল নাগরিক সেবা এখন এক ঠিকানায়।' 
-                : 'From typing, converters, calendar to daily essential digital citizen services, all in one place.'}
+            <p className="text-xs sm:text-sm md:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium min-h-[1.75rem] sm:min-h-[1.5rem] flex items-center justify-center">
+              <TypewriterSubtitle 
+                text={language === 'bn' 
+                  ? 'টাইপিং, কনভার্টার, পঞ্জিকা থেকে শুরু করে দৈনন্দিন সকল প্রয়োজনীয় ডিজিটাল নাগরিক সেবা এখন এক ঠিকানায়।' 
+                  : 'From typing, converters, calendar to daily essential digital citizen services, all in one place.'} 
+              />
             </p>
           </div>
 
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-xl mx-auto">
             <div className="relative group">
-              <div className="absolute inset-y-0 left-0 pl-4 sm:pl-5 flex items-center pointer-events-none">
-                <Search className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400 group-focus-within:text-[#006B54] transition-colors" />
+              <div className="absolute inset-y-0 left-0 pl-3.5 sm:pl-4 flex items-center pointer-events-none">
+                <Search className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-focus-within:text-[#006B54] transition-colors" />
               </div>
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={language === 'bn' ? 'সেবা, টুল বা কিবোর্ড খুঁজুন...' : 'Search services, tools or keywords...'}
-                className="w-full bg-slate-50 border-2 border-slate-200 text-slate-900 rounded-full pl-12 sm:pl-14 pr-12 sm:pr-14 py-3 sm:py-4 text-sm sm:text-base font-semibold focus:outline-none focus:border-[#006B54] focus:bg-white shadow-sm transition-all placeholder-slate-400"
+                className="w-full bg-slate-50 border-2 border-slate-200 text-slate-900 rounded-full pl-10 sm:pl-11 pr-10 sm:pr-11 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold focus:outline-none focus:border-[#006B54] focus:bg-white shadow-xs transition-all placeholder-slate-400"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute inset-y-0 right-0 pr-4 sm:pr-5 flex items-center"
+                  className="absolute inset-y-0 right-0 pr-3.5 sm:pr-4 flex items-center"
                 >
-                  <X className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 hover:text-slate-700 transition-colors" />
+                  <X className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 hover:text-slate-700 transition-colors" />
                 </button>
               )}
             </div>
 
             {/* Quick Filter Tag Pills */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs">
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-2.5 text-[11px] sm:text-xs">
               <span className="text-slate-400 font-medium">{language === 'bn' ? 'জনপ্রিয়:' : 'Popular:'}</span>
               {[
                 { label: language === 'bn' ? 'বিজয় ⇄ ইউনিকোড' : 'Bijoy ⇄ Unicode', tab: 'bijoy-unicode' as TabType },
@@ -291,7 +356,7 @@ export const ServiceDirectory: React.FC<ServiceDirectoryProps> = ({ onSelectTab 
                 <button
                   key={idx}
                   onClick={() => onSelectTab(pill.tab)}
-                  className="bg-white hover:bg-slate-50 text-slate-600 px-3 py-1.5 rounded-full border border-slate-200 hover:border-slate-300 transition-all font-medium shadow-sm active:scale-95"
+                  className="bg-white hover:bg-slate-50 text-slate-600 px-2.5 py-1 rounded-full border border-slate-200 hover:border-slate-300 transition-all font-medium shadow-xs active:scale-95"
                 >
                   {pill.label}
                 </button>

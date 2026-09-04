@@ -36,6 +36,40 @@
   font-display: swap;
 }
 
+/* Mahin Dui Dashok Free Bangla Font */
+@font-face {
+  font-family: 'MahinDuiDashok';
+  src: url('./assets/fonts/mahin-dui-dashok.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MahinDuiDashok';
+  src: url('./assets/fonts/mahin-dui-dashok-italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Helal Arafat Free Bangla Font (https://fontbd.com/free-font/helal-arafat/) */
+@font-face {
+  font-family: 'HelalArafat';
+  src: url('./assets/fonts/helal-arafat.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelalArafat';
+  src: url('./assets/fonts/helal-arafat-italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --font-family-primary: 'SolaimanLipi', 'Hind Siliguri', 'Noto Sans Bengali', 'Plus Jakarta Sans', sans-serif;
@@ -172,20 +206,83 @@
 .wave-parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
 .wave-parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Rainbow Glow Effect behind Header */
+@keyframes rainbow-glow-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-@keyframes spin-reverse-slow {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+@keyframes rainbow-pulse-glow {
+  0%, 100% {
+    opacity: 0.45;
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 0.65;
+    filter: blur(12px);
+  }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 32s linear infinite;
+.rainbow-glow-ambient {
+  background: linear-gradient(115deg, #ff1a75, #ff7a00, #ffc107, #00e676, #00b0ff, #7c4dff, #e040fb, #ff1a75);
+  background-size: 300% 300%;
+  animation: rainbow-glow-flow 8s ease infinite, rainbow-pulse-glow 4s ease-in-out infinite;
 }
 
-.animate-spin-reverse-slow {
-  animation: spin-reverse-slow 48s linear infinite;
+.rainbow-glow-rim {
+  background: linear-gradient(115deg, #ff1a75, #ff7a00, #ffc107, #00e676, #00b0ff, #7c4dff, #e040fb, #ff1a75);
+  background-size: 300% 300%;
+  animation: rainbow-glow-flow 8s ease infinite;
 }
+
+/* Multicolor Hero Title (Red, Yellow, Green, Blue) */
+@keyframes multicolor-text-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.multicolor-hero-title {
+  background: linear-gradient(
+    90deg,
+    #ef4444 0%,   /* লাল - Red */
+    #f59e0b 25%,  /* হলুদ/গোল্ড - Yellow */
+    #10b981 50%,  /* সবুজ - Green */
+    #2563eb 75%,  /* নীল - Blue */
+    #ef4444 100%  /* লাল - Red loop */
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: multicolor-text-shift 7s ease infinite;
+}
+
+.font-mahin {
+  font-family: 'MahinDuiDashok', 'SolaimanLipi', sans-serif;
+  line-height: 1.6;
+  overflow: visible;
+}
+
+.font-helal-arafat {
+  font-family: 'HelalArafat', 'SolaimanLipi', sans-serif;
+  overflow: visible;
+  line-height: 1.25;
+}
+
+

@@ -12,7 +12,6 @@ import { NumberToWordsTool } from './components/tools/NumberToWordsTool';
 import { TextAnalyzerTool } from './components/tools/TextAnalyzerTool';
 import { SpellDictionaryTool } from './components/tools/SpellDictionaryTool';
 import { PdfToolsHub } from './components/tools/PdfToolsHub';
-import { Preloader } from './components/Preloader';
 import { TabType } from './types';
 import { ShieldCheck, FileText, Info, Mail, ShieldAlert } from 'lucide-react';
 import { SEO } from './components/SEO';
@@ -115,7 +114,6 @@ function AppContent() {
 
   return (
     <div id="noon-moon-app-root" className={`min-h-screen flex flex-col bg-[var(--color-surface-subtle)] text-[var(--color-text-main)] antialiased selection:bg-emerald-200 selection:text-emerald-900 ${language === 'bn' ? 'font-bangla' : 'font-sans-ui'}`}>
-      <Preloader />
       <SEO 
         title={seoData.title} 
         description={seoData.desc} 
@@ -130,7 +128,7 @@ function AppContent() {
       />
 
       {/* Main Content Viewport */}
-      <main id="main-content-viewport" className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-8 py-6 sm:py-10 transition-all">
+      <main id="main-content-viewport" className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-8 pt-7 sm:pt-10 pb-8 sm:pb-12 transition-all">
         {activeTab === 'directory' && (
           <ServiceDirectory onSelectTab={(tab) => setActiveTab(tab)} />
         )}
@@ -158,7 +156,9 @@ function AppContent() {
                 </div>
                 <div>
                   <span className="font-extrabold text-[21px] text-white tracking-tight font-sans-ui flex items-center gap-2">
-                    <span>{language === 'bn' ? 'নুন-মুন' : 'Noon-Moon'}</span>
+                    <span className={language === 'bn' ? 'font-helal-arafat text-[24px] sm:text-[27px] font-normal tracking-wide text-white inline-block' : ''}>
+                      {language === 'bn' ? 'নুন-মুন' : 'Noon-Moon'}
+                    </span>
                     <span className="text-emerald-100 font-medium text-xs px-3 py-1 rounded-full bg-emerald-900/60 border border-emerald-500/40 shadow-sm">
                       {language === 'bn' ? 'বাংলা পোর্টাল' : 'Bangla Portal'}
                     </span>
@@ -223,7 +223,7 @@ function AppContent() {
 
           {/* Bottom Copyright Bar */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-emerald-200/70 text-center sm:text-left">
-            <p>© {new Date().getFullYear()} নুন-মুন (Noon-Moon) • সর্বস্বত্ব সংরক্ষিত</p>
+            <p>© {new Date().getFullYear()} <span className={language === 'bn' ? 'font-helal-arafat text-[15px] font-normal tracking-wide text-emerald-100' : ''}>{language === 'bn' ? 'নুন-মুন' : 'Noon-Moon'}</span> (Noon-Moon) • সর্বস্বত্ব সংরক্ষিত</p>
             <p>বাংলা ফন্ট, কনভার্টার ও অনলাইন টুলস পোর্টাল</p>
           </div>
         </div>

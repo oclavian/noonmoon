@@ -133,10 +133,25 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
 
   return (
     <header className="sticky top-2 sm:top-6 z-50 max-w-[1400px] w-full mx-auto px-4 xl:px-8">
-      <div className="glass-panel rounded-[2rem] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] transition-all flex flex-col overflow-hidden border border-white/80">
-        {/* Top Brand & Controls Bar */}
-        <div className="px-4 sm:px-6 py-3 flex items-center justify-between gap-2 sm:gap-4 bg-white/40">
-          {/* Brand Logo & Title */}
+      {/* Relative container that anchors the glowing rainbow backdrop */}
+      <div className="relative">
+        {/* Layer 1: Slim Ambient Soft Glow (Delicate 3-4px halo behind the header) */}
+        <div 
+          className="rainbow-glow-ambient absolute -inset-[3px] sm:-inset-[4px] rounded-[2.2rem] pointer-events-none transition-all duration-500"
+          aria-hidden="true"
+        />
+
+        {/* Layer 2: Sleek Radiant Rim (Fine 1.5px colorful outline around the card) */}
+        <div 
+          className="rainbow-glow-rim absolute -inset-[1.5px] rounded-[2.08rem] opacity-90 blur-[1px] pointer-events-none"
+          aria-hidden="true"
+        />
+
+        {/* Main Foreground Header Card */}
+        <div className="relative z-10 glass-panel rounded-[2rem] shadow-[0_12px_40px_-10px_rgba(0,0,0,0.12)] transition-all flex flex-col overflow-hidden border border-white/90 bg-white/95 backdrop-blur-2xl">
+          {/* Top Brand & Controls Bar */}
+          <div className="px-4 sm:px-6 py-3 flex items-center justify-between gap-2 sm:gap-4 bg-white/70">
+            {/* Brand Logo & Title */}
           <div className="flex items-center gap-2 sm:gap-3">
             <button 
               id="brand-logo-btn"
@@ -146,10 +161,12 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
               <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#006B54] to-[#004B3A] text-white flex items-center justify-center shadow-lg border border-emerald-500/30 group-hover:scale-105 transition-transform shrink-0 overflow-hidden">
                 <img src="/noon-moon-logo.png" alt="Noon-Moon Logo" className="w-full h-full object-cover select-none" />
               </div>
-              <div>
+              <div className="flex flex-col justify-center">
                 <div className="flex items-center gap-2">
                   <span className="font-extrabold text-[19px] sm:text-[22px] text-slate-900 tracking-tight font-sans-ui flex items-center gap-1.5">
-                    <span>{language === 'bn' ? 'নুন-মুন' : 'Noon-Moon'}</span>
+                    <span className={language === 'bn' ? 'font-helal-arafat text-[22px] sm:text-[25px] font-normal tracking-wide text-slate-900 inline-block' : ''}>
+                      {language === 'bn' ? 'নুন-মুন' : 'Noon-Moon'}
+                    </span>
                     <span className="text-[#006B54] text-[11px] sm:text-xs font-semibold px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200">
                       {language === 'bn' ? 'বাংলা পোর্টাল' : 'Bangla Portal'}
                     </span>
@@ -158,7 +175,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                     {t('brandBadge')}
                   </span>
                 </div>
-                <p className="text-[11px] sm:text-[12px] text-slate-500 leading-none mt-0.5 hidden md:block font-medium">
+                <p className="text-[11px] sm:text-[12px] text-slate-500 leading-normal mt-1 sm:mt-1.5 hidden md:block font-medium">
                   {language === 'bn' ? 'বাংলা ডিজিটাল টুলস, কিবোর্ড কনভার্টার ও নাগরিক সেবা হাব' : 'Bengali Digital Tools, Keyboard Converters & Citizen Service Hub'}
                 </p>
               </div>
@@ -287,6 +304,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
           )}
         </div>
       </div>
+    </div>
 
       {/* Mobile Drawer Dropdown Menu */}
       {mobileMenuOpen && (
