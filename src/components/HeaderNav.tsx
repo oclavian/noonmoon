@@ -18,6 +18,7 @@ import {
 import { TabType } from '../types';
 import { getBengaliDate } from '../utils/bengaliCalendar';
 import { useLanguage } from '../context/LanguageContext';
+import { AnimatedLogo } from './AnimatedLogo';
 
 interface HeaderNavProps {
   activeTab: TabType;
@@ -159,7 +160,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
               className="flex items-center gap-2.5 sm:gap-3.5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#006B54] rounded-xl p-1 group transition-transform active:scale-98"
             >
               <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#006B54] to-[#004B3A] text-white flex items-center justify-center shadow-lg border border-emerald-500/30 group-hover:scale-105 transition-transform shrink-0 overflow-hidden">
-                <img src="/noon-moon-logo.png" alt="Noon-Moon Logo" className="w-full h-full object-cover select-none" />
+                <AnimatedLogo className="w-full h-full object-cover" />
               </div>
               <div className="flex flex-col justify-center">
                 <div className="flex items-center gap-2">

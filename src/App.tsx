@@ -17,6 +17,9 @@ import { ShieldCheck, FileText, Info, Mail, ShieldAlert } from 'lucide-react';
 import { SEO } from './components/SEO';
 import { LegalModal, LegalModalType } from './components/LegalModal';
 import { CookieConsent } from './components/CookieConsent';
+import { AnimatedLogo } from './components/AnimatedLogo';
+import { VideoPreloader } from './components/VideoPreloader';
+import { WelcomeVoicePlayer } from './components/WelcomeVoicePlayer';
 
 const getSeoData = (tab: TabType, lang: 'en' | 'bn') => {
   const baseUrl = 'https://noon-moon.tools';
@@ -105,6 +108,7 @@ const getSeoData = (tab: TabType, lang: 'en' | 'bn') => {
 function AppContent() {
   const [activeTab, setActiveTab] = useState<TabType>('directory');
   const [legalModal, setLegalModal] = useState<LegalModalType>(null);
+  const [showPreloader, setShowPreloader] = useState<boolean>(true);
   const { language, t } = useLanguage();
   const seoData = getSeoData(activeTab, language);
 
@@ -114,6 +118,14 @@ function AppContent() {
 
   return (
     <div id="noon-moon-app-root" className={`min-h-screen flex flex-col bg-[var(--color-surface-subtle)] text-[var(--color-text-main)] antialiased selection:bg-emerald-200 selection:text-emerald-900 ${language === 'bn' ? 'font-bangla' : 'font-sans-ui'}`}>
+      {/* Intro Video Preloader */}
+      {showPreloader && (
+        <VideoPreloader onComplete={() => setShowPreloader(false)} />
+      )}
+
+      {/* Welcome Voice Note on First Load After Preloader */}
+      <WelcomeVoicePlayer shouldPlay={!showPreloader} />
+
       <SEO 
         title={seoData.title} 
         description={seoData.desc} 
@@ -155,7 +167,7 @@ function AppContent() {
             <div className="flex flex-col items-center md:items-start space-y-3">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-[1rem] bg-white text-emerald-800 flex items-center justify-center shadow-lg border border-emerald-100 overflow-hidden shrink-0">
-                  <img src="/noon-moon-logo.png" alt="Noon-Moon Logo" className="w-full h-full object-cover select-none" />
+                  <AnimatedLogo className="w-full h-full object-cover" />
                 </div>
                 <div>
                   <span className="font-extrabold text-[21px] text-white tracking-tight font-sans-ui flex items-center gap-2">
